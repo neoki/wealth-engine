@@ -1,0 +1,55 @@
+name: Verify public pricing sources
+
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check public source claims
+        id: source_check
+        run: node scripts/check-sources.mjs > source-check.json
+      - name: Open or refresh drift issue
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync('source-check.json')
+              ? fs.readFileSync('source-check.json', 'utf8')
+              : 'The source monitor failed before producing a report.';
+            const title = '[source-drift] Voice Margin Index needs review';
+            const body = `The automated pricing-source check failed. Review the public plans before publishing new calculations.\n\n\`\`\`json\n${report}\n\`\`\``;
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body
+              });
+            }
