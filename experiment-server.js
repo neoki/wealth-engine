@@ -16,20 +16,20 @@ const experiments = {
     issueNumber: 3
   },
   'x402-readiness': {
-    title: 'x402 Seller Readiness Audit',
+    title: 'x402 Buyer Compatibility Fix',
     price: '€39 one-time',
-    promise: 'Find out why autonomous buyers may fail to pay for your x402 endpoint and get a prioritized fix list.',
-    buyer: 'x402 API sellers and marketplace operators',
-    deliverable: ['402 challenge validation','payment metadata checks','facilitator reachability','price/quote consistency','machine-payability checks','prioritized remediation actions'],
-    cta: 'Request the €39 audit',
+    promise: 'Find the interoperability issue that makes generic autonomous buyers bounce — and get the concrete remediation needed to enter a standard payment flow.',
+    buyer: 'x402 API sellers with live or near-live paid endpoints',
+    deliverable: ['buyer-facing 402 challenge check','PAYMENT-REQUIRED / PAYMENT-SIGNATURE compatibility review','discovery metadata and network checks','facilitator and quote consistency review','specific remediation or adapter guidance','post-fix public-surface recheck'],
+    cta: 'Fix buyer compatibility — €39',
     issueNumber: 4
   },
   'voice-pricing': {
-    title: 'Verified Voice-AI Pricing Intelligence',
+    title: 'Voice-AI Margin Intelligence',
     price: '€29/month founding price',
-    promise: 'Track real voice-AI provider pricing changes and normalized cost-per-minute economics without manually checking vendors.',
+    promise: 'Know the all-in provider economics behind every client minute so pricing changes do not silently eat your agency margin.',
     buyer: 'Voice-AI agencies, integrators and procurement teams',
-    deliverable: ['verified pricing snapshot','normalized provider comparison','pricing-change alerts','margin-oriented procurement notes'],
+    deliverable: ['verified provider cost snapshot','normalized all-in cost comparison','pricing-change alerts','margin ceilings by client selling price'],
     cta: 'Request founding access',
     issueNumber: 5
   }
