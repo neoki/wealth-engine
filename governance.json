@@ -1,11 +1,20 @@
 {
   "objective": "maximize net capital generated with increasing autonomy",
   "experimentPolicy": {
-    "defaultMaxActive": 3,
-    "absoluteMaxActive": 5,
+    "defaultMaxActive": 6,
+    "absoluteMaxActive": 6,
     "defaultExpiryDays": 14,
     "requireEconomicMetric": true,
     "separateTrafficClasses": ["self", "bot", "crawler", "unknown_human", "qualified_lead", "payment"],
+    "portfolioDiversity": {
+      "maxSharePerDomain": 0.4,
+      "exception": "a domain may exceed the share only when superior economic performance is demonstrated with external evidence"
+    },
+    "reservedSlots": {
+      "agenticEconomy": 2,
+      "traditionalB2B": 2,
+      "openWorld": 2
+    },
     "killIf": [
       "no external signal by expiry",
       "negative expected economics after evidence update",
