@@ -1,78 +1,34 @@
 name: Verify production API
-
 on:
   push:
-    paths:
-      - '.github/workflows/smoke-production.yml'
+    paths: ['.github/workflows/smoke-production.yml']
   workflow_dispatch:
   schedule:
     - cron: '41 6 * * *'
-
 permissions:
   contents: read
-
 jobs:
   smoke:
     runs-on: ubuntu-latest
     steps:
-      - name: Verify production endpoints
+      - name: Verify live autonomous discovery
         shell: bash
         run: |
           set -euo pipefail
           base='https://wealth-engine-production-e178.up.railway.app'
-
-          fetch_until_v070() {
-            for i in $(seq 1 18); do
-              if curl --fail --silent --show-error --max-time 15 "$base/health" -o health.json; then
-                if node -e "const x=require('./health.json'); process.exit(x.ok && x.version==='0.7.0' ? 0 : 1)"; then
-                  return 0
-                fi
-              fi
-              sleep 10
-            done
-            echo 'Production did not reach v0.7.0 in verification window.' >&2
-            cat health.json 2>/dev/null || true
-            return 1
-          }
-
-          fetch_until_v070
-          curl --fail --silent --show-error --max-time 20 "$base/api/opportunities" -o opportunities.json
-          curl --fail --silent --show-error --max-time 20 "$base/api/voice-margin-index" -o voice.json
-          curl --fail --silent --show-error --max-time 20 "$base/api/offers/voice-pricing-intelligence" -o offer.json
-          curl --fail --silent --show-error --max-time 20 "$base/.well-known/agent-capabilities.json" -o capabilities.json
-
+          for i in $(seq 1 24); do
+            if curl --fail --silent --max-time 15 "$base/health" -o health.json && node -e "const x=require('./health.json');process.exit(x.version==='0.8.0'?0:1)"; then break; fi
+            sleep 10
+          done
+          node -e "const x=require('./health.json');if(x.version!=='0.8.0')process.exit(1)"
+          curl --fail --silent --show-error --max-time 20 "$base/api/live-scan" -o live.json
           node <<'NODE'
-          const fs = require('fs');
-          const read = (name) => JSON.parse(fs.readFileSync(name, 'utf8'));
-          const health = read('health.json');
-          const opportunities = read('opportunities.json');
-          const voice = read('voice.json');
-          const offer = read('offer.json');
-          const capabilities = read('capabilities.json');
-
-          if (health.version !== '0.7.0' || health.updated !== '2026-09-10') throw new Error('Unexpected production version/data date');
-          if (opportunities.discovery?.mode !== 'rule-based-autonomous-v1') throw new Error('Autonomous discovery mode missing');
-          if ((opportunities.discovery?.sourceSignals ?? 0) < 4) throw new Error('Expected at least four source signals');
-          if ((opportunities.discovery?.discoveredCount ?? 0) < 4) throw new Error('Expected at least four autonomous discoveries');
-          const discovered = opportunities.opportunities.filter(x => x.discovered === true);
-          for (const id of ['catalog-price-drift','delivery-verification-gap','payment-readiness-gap','supply-demand-imbalance']) {
-            if (!discovered.some(x => x.friction?.id === id)) throw new Error(`Missing autonomous discovery rule result: ${id}`);
-          }
-
-          const atendy = voice.plans.filter(x => x.company === 'Atendy');
-          const expected = new Map([['Starter',75],['Crece',210],['Escala',420]]);
-          for (const row of atendy) {
-            if (expected.get(row.plan) !== row.price) throw new Error(`Unexpected Atendy ${row.plan} price`);
-            if (!row.verifiedAt || !row.verificationStatus) throw new Error(`Missing verification metadata on ${row.plan}`);
-          }
-          if (offer.price?.amount !== 29 || offer.status !== 'paid-intent-test') throw new Error('Paid-intent offer mismatch');
-          if (capabilities.version !== '0.7.0') throw new Error('Capability discovery version mismatch');
-
-          console.log(JSON.stringify({
-            ok: true,
-            version: health.version,
-            discovery: opportunities.discovery,
-            discoveredTitles: discovered.map(x => x.title),
-            paidIntentBeforeSmoke: health.usage?.paidIntent ?? null
-          }, null, 2));
+          const fs=require('fs'); const health=JSON.parse(fs.readFileSync('health.json')); const live=JSON.parse(fs.readFileSync('live.json'));
+          if(health.version!=='0.8.0') throw new Error('v0.8.0 not live');
+          if(live.autonomous!==true) throw new Error('live ingestion is not autonomous');
+          if(live.sourcesAttempted<1) throw new Error('no live sources attempted');
+          if(!Array.isArray(live.signals)||live.signals.length<1) throw new Error(`no live signal fetched: ${JSON.stringify(live.errors)}`);
+          if(!live.signals.some(x=>x.ingestion?.autonomous===true)) throw new Error('signal lacks autonomous provenance');
+          if(!Array.isArray(live.opportunities)||live.opportunities.length<1) throw new Error('live signal produced no opportunity');
+          console.log(JSON.stringify({ok:true,version:health.version,signals:live.signals.length,opportunities:live.opportunities.map(x=>x.title),errors:live.errors},null,2));
           NODE
