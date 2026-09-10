@@ -32,6 +32,33 @@ const experiments = {
     deliverable: ['verified provider cost snapshot','normalized all-in cost comparison','pricing-change alerts','margin ceilings by client selling price'],
     cta: 'Request founding access',
     issueNumber: 5
+  },
+  'spain-einvoice-readiness': {
+    title: 'Spain B2B E-Invoice Readiness',
+    price: '€79 one-time',
+    promise: 'Find the gaps between your current invoicing workflow and Spain’s mandatory B2B e-invoicing operating model before buying or changing software.',
+    buyer: 'Spanish SMEs and advisory firms',
+    deliverable: ['current workflow intake','B2B e-invoice gap map','interoperability and platform questions','PDF / UBL / status-flow readiness checklist where applicable','prioritized remediation actions','one-page management summary'],
+    cta: 'Request the €79 readiness review',
+    issueNumber: 6
+  },
+  'overdue-invoice-recovery': {
+    title: 'Overdue Invoice Recovery Pack',
+    price: '€39 one-time',
+    promise: 'Turn an awkward overdue-invoice chase into a professional staged recovery sequence without improvising every reminder.',
+    buyer: 'Freelancers and small businesses with overdue invoices',
+    deliverable: ['tailored reminder sequence','escalation timing','client-safe wording by stage','payment-status tracker template','final formal-notice template for jurisdictional review'],
+    cta: 'Request the €39 recovery pack',
+    issueNumber: 7
+  },
+  'web-cognitive-accessibility': {
+    title: 'Web Cognitive Accessibility Audit',
+    price: '€69 one-time',
+    promise: 'Get a rapid public-surface review of cognitive-accessibility risks in your website, forms and transactional journey, with fixes prioritized by severity and effort.',
+    buyer: 'Spanish digital-service providers',
+    deliverable: ['homepage and key-journey review','forms / consent / authentication / payment observations where public','plain-language and interaction-friction findings','prioritized remediation list','management summary with severity and effort'],
+    cta: 'Request the €69 audit',
+    issueNumber: 8
   }
 };
 
