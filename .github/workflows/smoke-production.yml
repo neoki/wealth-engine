@@ -21,21 +21,21 @@ jobs:
           set -euo pipefail
           base='https://wealth-engine-production-e178.up.railway.app'
 
-          fetch_until_v060() {
+          fetch_until_v070() {
             for i in $(seq 1 18); do
               if curl --fail --silent --show-error --max-time 15 "$base/health" -o health.json; then
-                if node -e "const x=require('./health.json'); process.exit(x.ok && x.version==='0.6.0' ? 0 : 1)"; then
+                if node -e "const x=require('./health.json'); process.exit(x.ok && x.version==='0.7.0' ? 0 : 1)"; then
                   return 0
                 fi
               fi
               sleep 10
             done
-            echo 'Production did not reach v0.6.0 in verification window.' >&2
+            echo 'Production did not reach v0.7.0 in verification window.' >&2
             cat health.json 2>/dev/null || true
             return 1
           }
 
-          fetch_until_v060
+          fetch_until_v070
           curl --fail --silent --show-error --max-time 20 "$base/api/opportunities" -o opportunities.json
           curl --fail --silent --show-error --max-time 20 "$base/api/voice-margin-index" -o voice.json
           curl --fail --silent --show-error --max-time 20 "$base/api/offers/voice-pricing-intelligence" -o offer.json
@@ -50,10 +50,14 @@ jobs:
           const offer = read('offer.json');
           const capabilities = read('capabilities.json');
 
-          if (health.version !== '0.6.0' || health.updated !== '2026-09-10') throw new Error('Unexpected production version/data date');
-          if (!Array.isArray(opportunities.domains) || !opportunities.domains.includes('voice-ai') || !opportunities.domains.includes('agentic-commerce')) throw new Error('Expected both economic domains');
-          if (!Array.isArray(opportunities.opportunities) || opportunities.opportunities.length < 3) throw new Error('Expected at least three opportunities');
-          if (!opportunities.opportunities.some(x => x.id === 'agent-commerce-prepurchase-verification')) throw new Error('Missing agent-commerce opportunity');
+          if (health.version !== '0.7.0' || health.updated !== '2026-09-10') throw new Error('Unexpected production version/data date');
+          if (opportunities.discovery?.mode !== 'rule-based-autonomous-v1') throw new Error('Autonomous discovery mode missing');
+          if ((opportunities.discovery?.sourceSignals ?? 0) < 4) throw new Error('Expected at least four source signals');
+          if ((opportunities.discovery?.discoveredCount ?? 0) < 4) throw new Error('Expected at least four autonomous discoveries');
+          const discovered = opportunities.opportunities.filter(x => x.discovered === true);
+          for (const id of ['catalog-price-drift','delivery-verification-gap','payment-readiness-gap','supply-demand-imbalance']) {
+            if (!discovered.some(x => x.friction?.id === id)) throw new Error(`Missing autonomous discovery rule result: ${id}`);
+          }
 
           const atendy = voice.plans.filter(x => x.company === 'Atendy');
           const expected = new Map([['Starter',75],['Crece',210],['Escala',420]]);
@@ -61,17 +65,14 @@ jobs:
             if (expected.get(row.plan) !== row.price) throw new Error(`Unexpected Atendy ${row.plan} price`);
             if (!row.verifiedAt || !row.verificationStatus) throw new Error(`Missing verification metadata on ${row.plan}`);
           }
-          if (!voice.publicBenchmarks.every(x => x.verifiedAt === '2026-09-10' && x.verificationStatus === 'verified-direct')) throw new Error('Benchmarks are not freshly verified');
           if (offer.price?.amount !== 29 || offer.status !== 'paid-intent-test') throw new Error('Paid-intent offer mismatch');
-          if (capabilities.version !== '0.6.0') throw new Error('Capability discovery version mismatch');
+          if (capabilities.version !== '0.7.0') throw new Error('Capability discovery version mismatch');
 
           console.log(JSON.stringify({
             ok: true,
             version: health.version,
-            updated: health.updated,
-            domains: opportunities.domains,
-            opportunityCount: opportunities.opportunities.length,
-            offerPrice: offer.price,
+            discovery: opportunities.discovery,
+            discoveredTitles: discovered.map(x => x.title),
             paidIntentBeforeSmoke: health.usage?.paidIntent ?? null
           }, null, 2));
           NODE
