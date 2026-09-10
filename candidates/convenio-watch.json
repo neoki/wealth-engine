@@ -1,0 +1,38 @@
+{
+  "id": "convenio-watch",
+  "status": "candidate_not_active",
+  "category": "traditional_b2b",
+  "thesis": "Spanish labor advisory firms need same-day, vendor-neutral monitoring of collective-agreement publications across BOE, autonomous-community journals and provincial bulletins, mapped to the convention codes and client companies they already manage.",
+  "buyer": "labor advisory firms, payroll bureaus and multi-company HR teams",
+  "problem": "Agreement changes are published across different official gazettes; existing payroll suites validate demand for alerts but often tie the feature to their own ecosystem or merely announce that a document changed.",
+  "wedge": "Customer supplies the REGCON agreement codes already used in payroll. The service watches official gazettes directly, matches new publications to those codes, summarizes what changed, states effective/retroactive dates, and identifies the customer's affected companies. REGCON is used as a secondary source/fallback, not the only same-day source.",
+  "mvp": {
+    "scope": "Galicia first: BOE + DOG + BOP A Coruna/Lugo/Ourense/Pontevedra, then national expansion",
+    "input": "CSV/list of REGCON agreement codes and internal client/company labels; no employee personal data required",
+    "output": [
+      "daily digest only when a watched agreement changes",
+      "official source link",
+      "change type: new text / salary review / tables / correction / extension / other",
+      "effective date and retroactivity flags where stated",
+      "plain-language summary of material changes",
+      "affected client/company labels",
+      "human-review flag for ambiguous material"
+    ]
+  },
+  "positioning": "Not another convenio database. A software-independent early-warning and impact layer between official bulletins and the advisory firm's payroll workflow.",
+  "initialPricingHypothesis": {
+    "starter": "EUR 29/month up to 10 watched agreement codes",
+    "advisor": "EUR 79/month up to 50 watched agreement codes",
+    "pro": "EUR 149/month up to 200 watched agreement codes"
+  },
+  "sellBeforeBuildExperiment": "Offer a 14-day concierge pilot to 5 labor advisory firms. Ask for 5-20 REGCON codes; manually/semiautomatically monitor and deliver actionable alerts. Success signal: at least 2 firms agree to pay after pilot or one prepays EUR 79 for the first month.",
+  "killCondition": "No qualified advisory firm agrees to provide its watched agreement-code list or pay after 10 qualified conversations.",
+  "promotionCondition": "At least 3 independent paying advisory firms plus evidence that alerts lead to a recurring operational action.",
+  "whyNotActive": "The experiment portfolio currently has six active slots. This candidate enters the ranked backlog and should replace a weaker experiment rather than silently exceeding the cap.",
+  "evidenceNotes": [
+    "Spanish law requires publication in BOE, autonomous-community or provincial official gazette depending on territorial scope.",
+    "REGCON centralizes public agreement data, while competent authorities can remit publication links to the central database within eight working days after gazette publication.",
+    "Commercial payroll suites such as Sage, TeamSystem Nominasol, a3 and CAILAB already market collective-agreement update/alert functionality, validating willingness to pay for the workflow.",
+    "A current independent provider exposes over 13,000 REGCON agreements as structured data/API, showing that raw data aggregation itself is already competitive; the differentiation must be impact and workflow, not catalog access."
+  ]
+}
