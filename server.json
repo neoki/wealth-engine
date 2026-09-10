@@ -3,7 +3,7 @@
   "name": "io.github.neoki/wealth-engine",
   "title": "Wealth Engine — Economic Opportunity Intelligence",
   "description": "Ranked economic opportunities, market evidence, experiments, and margin intelligence for AI agents.",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "repository": {
     "url": "https://github.com/neoki/wealth-engine",
     "source": "github"
