@@ -3,7 +3,7 @@
   "name": "io.github.neoki/wealth-engine",
   "title": "Voice AI Margin Intelligence",
   "description": "AI voice pricing benchmarks, provider comparison, and gross-margin intelligence for agents.",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "repository": {
     "url": "https://github.com/neoki/wealth-engine",
     "source": "github"
