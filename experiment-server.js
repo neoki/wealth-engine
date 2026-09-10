@@ -34,12 +34,12 @@ const experiments = {
     issueNumber: 5
   },
   'spain-einvoice-readiness': {
-    title: 'Spain B2B E-Invoice Readiness',
+    title: 'Spain B2B E-Invoice Portfolio Readiness Map',
     price: '€79 one-time',
-    promise: 'Find the gaps between your current invoicing workflow and Spain’s mandatory B2B e-invoicing operating model before buying or changing software.',
-    buyer: 'Spanish SMEs and advisory firms',
-    deliverable: ['current workflow intake','B2B e-invoice gap map','interoperability and platform questions','PDF / UBL / status-flow readiness checklist where applicable','prioritized remediation actions','one-page management summary'],
-    cta: 'Request the €79 readiness review',
+    promise: 'Turn a mixed client portfolio into a prioritized B2B e-invoice migration map: who needs attention first, why, and what must be resolved before choosing software.',
+    buyer: 'Spanish advisory and accounting firms managing multiple client invoicing stacks',
+    deliverable: ['anonymous portfolio intake by turnover band and current invoicing stack','client-archetype readiness segmentation','priority map for migration and follow-up','interoperability / platform questions by archetype','regulatory dependency and timing flags','one-page management action map'],
+    cta: 'Map my client portfolio — €79',
     issueNumber: 6
   },
   'overdue-invoice-recovery': {
