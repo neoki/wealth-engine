@@ -1,11 +1,11 @@
 {
   "name": "wealth-engine",
-  "version": "0.2.0",
+  "version": "0.5.1",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "check": "node --check server.js && node --check pages.js && node --check margin-data.js"
+    "check": "node --check server.js && node --check pages.js && node --check margin-data.js && node --check opportunities.js && node --check source-checks.js && node --check scripts/check-sources.mjs"
   },
   "engines": {
     "node": ">=20"
