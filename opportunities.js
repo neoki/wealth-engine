@@ -1,5 +1,6 @@
 import { getIndexData, publicBenchmarks, lastUpdated } from './margin-data.js';
 import { marketSignals } from './market-signals.js';
+import { discoverOpportunities, discoveryRules } from './discovery-engine.js';
 
 function round(value, digits = 3) {
   return Number(value.toFixed(digits));
@@ -25,9 +26,10 @@ export function getEconomicOpportunities() {
   const directlyVerifiedRows = plans.filter((plan) => plan.verificationStatus === 'verified-direct').length;
   const agentCommerce = marketSignals.find((signal) => signal.id === 'agent402-marketplace-2026-09-10');
 
-  const opportunities = [
+  const curated = [
     {
       id: 'voice-ai-productized-implementation',
+      discovered: false,
       domain: 'voice-ai',
       title: 'Productized AI voice implementation for a narrow business workflow',
       thesis: 'Competing on implementation, integration and business outcome is more defensible than reselling voice minutes alone.',
@@ -53,6 +55,7 @@ export function getEconomicOpportunities() {
     },
     {
       id: 'voice-ai-economic-intelligence-api',
+      discovered: false,
       domain: 'voice-ai',
       title: 'Continuously verified voice-AI pricing and margin intelligence',
       thesis: 'Agents and builders may pay for normalized, provenance-rich pricing data when freshness and structured comparison save repeated market research or support procurement decisions.',
@@ -74,6 +77,7 @@ export function getEconomicOpportunities() {
     },
     {
       id: 'agent-commerce-prepurchase-verification',
+      discovered: false,
       domain: 'agentic-commerce',
       title: 'Pre-purchase verification and economic trust layer for paid agent tools',
       thesis: 'As paid-agent marketplaces accumulate far more advertised tools than active buyers, buyers may value an independent layer that verifies whether a paid endpoint actually works, returns the promised output and is economically worth calling before autonomous spend is authorized.',
@@ -90,19 +94,28 @@ export function getEconomicOpportunities() {
       },
       dimensions: { evidence: 0.52, marginPotential: 0.84, speed: 0.7, automation: 0.9, distribution: 0.62 }
     }
-  ];
+  ].map((item) => ({ ...item, score: score(item.dimensions) }));
+
+  const discovered = discoverOpportunities(marketSignals);
+  const combined = [...curated, ...discovered].sort((a, b) => b.score - a.score);
 
   return {
     generatedAt: new Date().toISOString(),
     objective: 'Find the fastest falsifiable path from market evidence to autonomous economic value.',
-    domains: [...new Set(opportunities.map((item) => item.domain))],
+    domains: [...new Set(combined.map((item) => item.domain))],
+    discovery: {
+      mode: 'rule-based-autonomous-v1',
+      sourceSignals: marketSignals.length,
+      rules: discoveryRules,
+      discoveredCount: discovered.length,
+      note: 'Discovered opportunities are generated from market-signal metrics by reusable friction rules, not entered as individual opportunity records.'
+    },
     evidencePolicy: 'Opportunities are hypotheses ranked from observed evidence. Scores are not revenue forecasts. Each opportunity must include an explicit next experiment and kill criterion.',
     scoring: {
-      formula: '25% evidence + 25% margin potential + 20% speed + 15% automation + 15% distribution',
+      curatedFormula: '25% evidence + 25% margin potential + 20% speed + 15% automation + 15% distribution',
+      discoveredFormula: '35% evidence strength + 25% monetization clarity + 20% experiment speed + 20% automation potential',
       warning: 'Scores are prioritization heuristics, not forecasts.'
     },
-    opportunities: opportunities
-      .map((item) => ({ ...item, score: score(item.dimensions) }))
-      .sort((a, b) => b.score - a.score)
+    opportunities: combined
   };
 }
