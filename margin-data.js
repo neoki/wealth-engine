@@ -75,16 +75,18 @@ export const plans = [
 
 export const publicBenchmarks = [
   {
-    vendor: 'Retell AI', value: '$0.09–$0.19/min',
-    detail: 'Published all-in example range for a voice agent after model and telephony choices.',
-    source: 'https://www.retellai.com/es/use-cases/ai-concierge',
-    verificationStatus: 'needs-refresh'
+    vendor: 'Retell AI',
+    value: '$0.07–$0.31/min',
+    detail: 'Current published pay-as-you-go range for AI Voice Agents; exact cost depends on model, voice, telephony and add-ons. Retell also shows an example stack at $0.11/min.',
+    source: 'https://www.retellai.com/pricing',
+    ...verifiedToday
   },
   {
-    vendor: 'Bland AI', value: '$0.11–$0.14/min',
-    detail: 'Published AI talk-time rate including LLM, STT and TTS; telephony is separate.',
+    vendor: 'Bland AI',
+    value: '$0.12–$0.14/min',
+    detail: 'Current published talk-time rates: Start at $0.14/min and Build at $0.12/min; Build also carries a $299/month platform fee.',
     source: 'https://www.bland.ai/pricing',
-    verificationStatus: 'needs-refresh'
+    ...verifiedToday
   }
 ];
 
