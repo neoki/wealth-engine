@@ -3,6 +3,7 @@ import { getIndexData, lastUpdated, publicBenchmarks } from './margin-data.js';
 import { getEconomicOpportunities } from './opportunities.js';
 import { landingPage, marginIndexPage } from './pages.js';
 
+const VERSION = '0.6.0';
 const port = Number(process.env.PORT || 3000);
 const publicUrl = String(process.env.PUBLIC_URL || 'https://wealth-engine-production-e178.up.railway.app').replace(/\/$/, '');
 const usage = { startedAt: new Date().toISOString(), calls: 0, capabilities: 0, index: 0, opportunities: 0, paidIntent: 0, mcp: 0 };
@@ -41,7 +42,7 @@ const tools=[
   {
     name:'economic_opportunities',
     title:'Economic Opportunity Engine',
-    description:'Rank falsifiable economic opportunities using available market evidence, margin potential, speed, automation and distribution.',
+    description:'Rank falsifiable economic opportunities across evidence domains using market evidence, margin potential, speed, automation and distribution.',
     inputSchema:{type:'object',properties:{},additionalProperties:false},
     annotations:{title:'Economic Opportunity Engine',readOnlyHint:true,destructiveHint:false,idempotentHint:true,openWorldHint:false}
   }
@@ -54,7 +55,7 @@ const offerHtml=`<!doctype html><meta charset="utf-8"><title>${offer.title}</tit
 const server=http.createServer(async(req,res)=>{
   const url=new URL(req.url||'/','http://localhost');
   if(req.method==='OPTIONS'){res.writeHead(204,{...headers,'access-control-allow-methods':'GET,POST,OPTIONS'});return res.end()}
-  if(req.method==='GET'&&url.pathname==='/health') return json(res,200,{ok:true,service:'wealth-engine',version:'0.5.2',updated:lastUpdated,usage});
+  if(req.method==='GET'&&url.pathname==='/health') return json(res,200,{ok:true,service:'wealth-engine',version:VERSION,updated:lastUpdated,usage});
   if(req.method==='GET'&&url.pathname==='/privacy') return send(res,200,'text/html; charset=utf-8',privacyHtml,'public, max-age=3600');
   if(req.method==='GET'&&url.pathname==='/support') return send(res,200,'text/html; charset=utf-8',supportHtml,'public, max-age=3600');
   if(req.method==='GET'&&url.pathname==='/offers/voice-pricing-intelligence') return send(res,200,'text/html; charset=utf-8',offerHtml,'public, max-age=300');
@@ -65,7 +66,7 @@ const server=http.createServer(async(req,res)=>{
   }
   if(req.method==='GET'&&(url.pathname==='/.well-known/agent-capabilities.json'||url.pathname==='/capabilities')){
     usage.calls++; usage.capabilities++;
-    return json(res,200,{name:'Wealth Engine',version:'0.5.2',description:'Economic opportunity intelligence for AI agents.',capabilities:[{id:'economic-opportunities',description:'Rank falsifiable economic opportunities from market evidence.',method:'GET',url:`${publicUrl}/api/opportunities`,price:'free'},{id:'voice-margin-index',description:'Compare AI voice retail pricing with row-level verification metadata, revenue per minute, and gross-margin ceilings.',method:'GET',url:`${publicUrl}/api/voice-margin-index`,price:'free'},{id:'voice-pricing-founding-offer',description:'Founding paid-intent offer for fresh verified voice-AI pricing intelligence.',method:'GET',url:`${publicUrl}/api/offers/voice-pricing-intelligence`,price:'EUR 29/month intent test; no charge on intent'},{id:'mcp',description:'Remote MCP server for economic opportunity and market intelligence',method:'POST',url:`${publicUrl}/mcp`,price:'free'}],mcp:`${publicUrl}/mcp`,discovery:`${publicUrl}/.well-known/agent-capabilities.json`,privacy:`${publicUrl}/privacy`,support:`${publicUrl}/support`,usage:`${publicUrl}/usage`},'public, max-age=60');
+    return json(res,200,{name:'Wealth Engine',version:VERSION,description:'Economic opportunity intelligence for AI agents across multiple evidence domains.',capabilities:[{id:'economic-opportunities',description:'Rank falsifiable economic opportunities from traceable market evidence across multiple domains.',method:'GET',url:`${publicUrl}/api/opportunities`,price:'free'},{id:'voice-margin-index',description:'Compare AI voice retail pricing with row-level verification metadata, revenue per minute, and gross-margin ceilings.',method:'GET',url:`${publicUrl}/api/voice-margin-index`,price:'free'},{id:'voice-pricing-founding-offer',description:'Founding paid-intent offer for fresh verified voice-AI pricing intelligence.',method:'GET',url:`${publicUrl}/api/offers/voice-pricing-intelligence`,price:'EUR 29/month intent test; no charge on intent'},{id:'mcp',description:'Remote MCP server for economic opportunity and market intelligence',method:'POST',url:`${publicUrl}/mcp`,price:'free'}],mcp:`${publicUrl}/mcp`,discovery:`${publicUrl}/.well-known/agent-capabilities.json`,privacy:`${publicUrl}/privacy`,support:`${publicUrl}/support`,usage:`${publicUrl}/usage`},'public, max-age=60');
   }
   if(req.method==='GET'&&(url.pathname==='/api/opportunities'||url.pathname==='/opportunities.json')){
     usage.calls++; usage.opportunities++;
@@ -79,7 +80,7 @@ const server=http.createServer(async(req,res)=>{
     usage.calls++; usage.mcp++;
     try{
       const body=await readJson(req); const id=body.id??null; const method=body.method;
-      if(method==='initialize') return json(res,200,mcpResult(id,{protocolVersion:'2025-06-18',capabilities:{tools:{}},serverInfo:{name:'wealth-engine',version:'0.5.2'},instructions:'Use economic_opportunities to identify ranked, falsifiable paths to economic value. Use voice_margin_index for AI voice pricing, provenance and gross-margin economics. This server is read-only.'}));
+      if(method==='initialize') return json(res,200,mcpResult(id,{protocolVersion:'2025-06-18',capabilities:{tools:{}},serverInfo:{name:'wealth-engine',version:VERSION},instructions:'Use economic_opportunities to identify ranked, falsifiable paths to economic value across current evidence domains. Use voice_margin_index for AI voice pricing, provenance and gross-margin economics. This server is read-only.'}));
       if(method==='notifications/initialized') return send(res,202,'application/json; charset=utf-8','');
       if(method==='tools/list') return json(res,200,mcpResult(id,{tools}));
       if(method==='tools/call'&&body.params?.name==='economic_opportunities') {
