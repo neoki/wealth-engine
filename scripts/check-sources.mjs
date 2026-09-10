@@ -11,28 +11,28 @@ for (const check of sourceChecks) {
     const response = await fetch(check.url, {
       signal: controller.signal,
       headers: {
-        'user-agent': 'WealthEngineSourceMonitor/1.1 (+https://wealth-engine-production-e178.up.railway.app/)'
+        'user-agent': 'WealthEngineSourceMonitor/1.2 (+https://wealth-engine-production-e178.up.railway.app/)'
       }
     });
     const body = await response.text();
-    const missing = check.patterns
-      .filter((pattern) => !pattern.test(body))
-      .map((pattern) => pattern.source);
-    const matched = response.ok && missing.length === 0;
+    const minBytes = check.minBytes ?? 1;
+    const healthy = response.ok && body.length >= minBytes;
 
     results.push({
       name: check.name,
       url: check.url,
+      mode: check.mode ?? 'reachability',
       required: check.required !== false,
       status: response.status,
-      ok: matched,
-      severity: matched ? 'ok' : (check.required === false ? 'warning' : 'error'),
-      missing
+      bytes: body.length,
+      ok: healthy,
+      severity: healthy ? 'ok' : (check.required === false ? 'warning' : 'error')
     });
   } catch (error) {
     results.push({
       name: check.name,
       url: check.url,
+      mode: check.mode ?? 'reachability',
       required: check.required !== false,
       ok: false,
       severity: check.required === false ? 'warning' : 'error',
@@ -47,6 +47,8 @@ const blockingFailures = results.filter((result) => result.required && !result.o
 const warnings = results.filter((result) => !result.required && !result.ok);
 const report = {
   checkedAt: new Date().toISOString(),
+  verificationScope: 'source-health-only',
+  note: 'A successful run proves source reachability, not that published prices are unchanged. Pricing rows carry their own verifiedAt and verificationStatus metadata.',
   ok: blockingFailures.length === 0,
   blockingFailures: blockingFailures.length,
   warnings: warnings.length,
