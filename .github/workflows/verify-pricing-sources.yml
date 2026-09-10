@@ -1,6 +1,12 @@
 name: Verify public pricing sources
 
 on:
+  push:
+    paths:
+      - 'margin-data.js'
+      - 'source-checks.js'
+      - 'scripts/check-sources.mjs'
+      - '.github/workflows/verify-pricing-sources.yml'
   schedule:
     - cron: '17 6 * * *'
   workflow_dispatch:
@@ -20,36 +26,30 @@ jobs:
       - name: Check public source claims
         id: source_check
         run: node scripts/check-sources.mjs > source-check.json
+      - name: Close resolved drift issue
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '[source-drift] Voice Margin Index needs review';
+            const { data: issues } = await github.rest.issues.listForRepo({ owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100 });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({ owner: context.repo.owner, repo: context.repo.repo, issue_number: existing.number, state: 'closed', state_reason: 'completed' });
+            }
       - name: Open or refresh drift issue
         if: failure()
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
-            const report = fs.existsSync('source-check.json')
-              ? fs.readFileSync('source-check.json', 'utf8')
-              : 'The source monitor failed before producing a report.';
+            const report = fs.existsSync('source-check.json') ? fs.readFileSync('source-check.json', 'utf8') : 'The source monitor failed before producing a report.';
             const title = '[source-drift] Voice Margin Index needs review';
-            const body = `The automated pricing-source check failed. Review the public plans before publishing new calculations.\n\n\`\`\`json\n${report}\n\`\`\``;
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              per_page: 100
-            });
+            const body = `The automated pricing-source check failed. Review required sources before publishing new calculations.\n\n\`\`\`json\n${report}\n\`\`\``;
+            const { data: issues } = await github.rest.issues.listForRepo({ owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100 });
             const existing = issues.find((issue) => issue.title === title);
             if (existing) {
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: existing.number,
-                body
-              });
+              await github.rest.issues.update({ owner: context.repo.owner, repo: context.repo.repo, issue_number: existing.number, body });
             } else {
-              await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title,
-                body
-              });
+              await github.rest.issues.create({ owner: context.repo.owner, repo: context.repo.repo, title, body });
             }
