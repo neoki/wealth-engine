@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "io.github.neoki/wealth-engine",
+  "title": "Wealth Engine",
+  "description": "Machine-consumable economic intelligence for AI agents. Query public market benchmarks and margin economics through a remote MCP server.",
+  "version": "0.4.0",
+  "repository": {
+    "url": "https://github.com/neoki/wealth-engine",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://wealth-engine-production-e178.up.railway.app/mcp"
+    }
+  ]
+}
