@@ -1,6 +1,6 @@
 # Wealth Engine
 
-**Economic opportunity intelligence for AI agents.**
+**Economic opportunity intelligence for AI agents and digital business experiments.**
 
 Wealth Engine turns public market evidence into machine-consumable economic hypotheses, ranked experiments, pricing benchmarks, and explicit kill criteria. It is not a generic MCP directory and it does not claim to predict revenue. Its purpose is to shorten the path from observable market evidence to a falsifiable economic experiment.
 
@@ -26,7 +26,7 @@ GET https://wealth-engine-production-e178.up.railway.app/.well-known/agent-capab
 
 ## Active commercial experiments
 
-We run a small number of real demand tests at a time. Current offers are manually fulfilled while willingness to pay is validated.
+We run a small portfolio of real demand tests across different domains. Current offers are manually fulfilled while willingness to pay is validated.
 
 ### MCP Discovery & Reliability Audit — €49 one-time
 For operators of public remote MCP servers who need evidence that agents can discover, connect to and use the service, plus prioritized remediation.
@@ -34,8 +34,8 @@ For operators of public remote MCP servers who need evidence that agents can dis
 Live offer: https://exp-mcp-audit-live-production.up.railway.app/
 Request thread: https://github.com/neoki/wealth-engine/issues/3
 
-### x402 Seller Readiness Audit — €39 one-time
-For x402 sellers who need to know whether generic autonomous buyers can discover and enter a compatible payment flow, with prioritized remediation.
+### x402 Buyer Compatibility Fix — €39 one-time
+For x402 sellers with live or near-live paid endpoints that need generic autonomous buyers to enter a compatible payment flow, with concrete remediation or adapter guidance.
 
 Live offer: https://exp-x402-readiness-live-production.up.railway.app/
 Request thread: https://github.com/neoki/wealth-engine/issues/4
@@ -45,6 +45,24 @@ For voice-AI agencies, integrators and procurement teams that need comparable al
 
 Live offer: https://exp-voice-pricing-live-production.up.railway.app/
 Request thread: https://github.com/neoki/wealth-engine/issues/5
+
+### Spain B2B E-Invoice Readiness — €79 one-time
+For Spanish SMEs and advisory firms that need to identify gaps between their current invoicing workflow and the mandatory B2B electronic-invoicing operating model before buying or changing software.
+
+Live offer: https://exp-spain-einvoice-production.up.railway.app/
+Request thread: https://github.com/neoki/wealth-engine/issues/6
+
+### Overdue Invoice Recovery Pack — €39 one-time
+For freelancers and small businesses that want a professional staged recovery sequence for overdue invoices without improvising every reminder.
+
+Live offer: https://exp-overdue-invoice-production.up.railway.app/
+Request thread: https://github.com/neoki/wealth-engine/issues/7
+
+### Web Cognitive Accessibility Audit — €69 one-time
+For Spanish digital-service providers that want a rapid public-surface review of cognitive-accessibility risks in websites, forms and transactional journeys, with prioritized remediation.
+
+Live offer: https://exp-web-accessibility-production.up.railway.app/
+Request thread: https://github.com/neoki/wealth-engine/issues/8
 
 No automatic billing is enabled yet. Purchase intent is measured before payment infrastructure is added.
 
