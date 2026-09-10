@@ -58,6 +58,16 @@ Read-only. Returns structured AI-voice retail pricing, revenue-per-minute calcul
 
 No account. No API key. No signup. Both tools are currently free while demand and willingness to pay are validated.
 
+## First paid-demand experiment
+
+We are testing a founding offer for **Verified Voice-AI Pricing Intelligence** at **€29/month**: fresh verified pricing, change alerts, normalized provider comparison, and margin-oriented procurement notes.
+
+```text
+https://wealth-engine-production-e178.up.railway.app/offers/voice-pricing-intelligence
+```
+
+This is explicitly a willingness-to-pay test. Registering intent does not charge the user or create a subscription. Billing will only be built after genuine external buyer intent exists.
+
 ## Example prompts
 
 1. `Find the highest-ranked economic opportunity in Wealth Engine and explain the smallest experiment that could falsify it.`
@@ -88,11 +98,11 @@ The weighting will eventually be learned from real experiment outcomes rather th
 
 ## Privacy
 
-Wealth Engine does not require authentication and does not intentionally collect prompts, conversation history, uploaded files, personal identifiers, or request bodies. It records aggregate operational counters used to measure endpoint usage.
+Wealth Engine does not require authentication and does not intentionally collect prompts, conversation history, uploaded files, personal identifiers, or request bodies. It records aggregate operational counters used to measure endpoint usage and paid-intent clicks.
 
 ## Support and troubleshooting
 
-Report data-quality, compatibility, product, or security issues using this repository's GitHub issue tracker.
+Report data-quality, compatibility, product, purchasing-interest, or security issues using this repository's GitHub issue tracker.
 
 The MCP endpoint uses Streamable HTTP over JSON-RPC POST. A browser GET request to `/mcp` may return 404 and is not a valid protocol test. Use an MCP client or MCP Inspector to initialize the server and call `tools/list`.
 
