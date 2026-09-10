@@ -2,16 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
   "name": "io.github.neoki/wealth-engine",
   "title": "Wealth Engine — Autonomous Economic Opportunity Discovery",
-  "description": "Discovers and ranks falsifiable business opportunities from traceable market signals and reusable friction-detection rules.",
-  "version": "0.7.0",
-  "repository": {
-    "url": "https://github.com/neoki/wealth-engine",
-    "source": "github"
-  },
-  "remotes": [
-    {
-      "type": "streamable-http",
-      "url": "https://wealth-engine-production-e178.up.railway.app/mcp"
-    }
-  ]
+  "description": "Fetches live machine-readable market signals and autonomously derives falsifiable business opportunities from economic frictions.",
+  "version": "0.8.0",
+  "repository": {"url":"https://github.com/neoki/wealth-engine","source":"github"},
+  "remotes": [{"type":"streamable-http","url":"https://wealth-engine-production-e178.up.railway.app/mcp"}]
 }
