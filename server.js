@@ -4,28 +4,49 @@ import { landingPage, marginIndexPage } from './pages.js';
 
 const port = Number(process.env.PORT || 3000);
 const publicUrl = String(process.env.PUBLIC_URL || 'https://wealth-engine-production-e178.up.railway.app').replace(/\/$/, '');
-const usage = { startedAt: new Date().toISOString(), calls: 0, capabilities: 0, index: 0 };
+const usage = { startedAt: new Date().toISOString(), calls: 0, capabilities: 0, index: 0, mcp: 0 };
 
 const headers = {
   'access-control-allow-origin': '*',
+  'access-control-allow-headers': 'content-type,mcp-session-id',
   'content-security-policy': "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
   'x-content-type-options': 'nosniff',
   'x-frame-options': 'DENY'
 };
 function send(res,status,type,body,cache='no-store'){res.writeHead(status,{...headers,'content-type':type,'cache-control':cache});res.end(body)}
 function json(res,status,payload,cache='no-store'){send(res,status,'application/json; charset=utf-8',JSON.stringify(payload),cache)}
+function readJson(req){return new Promise((resolve,reject)=>{let raw='';req.setEncoding('utf8');req.on('data',c=>{raw+=c;if(raw.length>100000){reject(new Error('too_large'));req.destroy();}});req.on('end',()=>{try{resolve(JSON.parse(raw||'{}'))}catch{reject(new Error('invalid_json'))}});req.on('error',reject);});}
+function mcpResult(id,result){return {jsonrpc:'2.0',id,result};}
+function mcpError(id,code,message){return {jsonrpc:'2.0',id,error:{code,message}};}
 
-const server=http.createServer((req,res)=>{
+const tools=[{
+  name:'voice_margin_index',
+  description:'Compare public AI voice pricing and estimate gross-margin ceilings from the Wealth Engine public benchmark dataset.',
+  inputSchema:{type:'object',properties:{},additionalProperties:false}
+}];
+
+const server=http.createServer(async(req,res)=>{
   const url=new URL(req.url||'/','http://localhost');
-  if(req.method==='OPTIONS'){res.writeHead(204,{...headers,'access-control-allow-methods':'GET,OPTIONS'});return res.end()}
+  if(req.method==='OPTIONS'){res.writeHead(204,{...headers,'access-control-allow-methods':'GET,POST,OPTIONS'});return res.end()}
   if(req.method==='GET'&&url.pathname==='/health') return json(res,200,{ok:true,service:'wealth-engine',updated:lastUpdated,usage});
   if(req.method==='GET'&&(url.pathname==='/.well-known/agent-capabilities.json'||url.pathname==='/capabilities')){
     usage.calls++; usage.capabilities++;
-    return json(res,200,{name:'Wealth Engine',version:'0.3.0',description:'Machine-consumable economic intelligence. Experimental public API.',capabilities:[{id:'voice-margin-index',description:'Compare public AI voice pricing and estimate gross-margin ceilings.',method:'GET',url:`${publicUrl}/api/voice-margin-index`,price:'free'}],discovery:`${publicUrl}/.well-known/agent-capabilities.json`,usage:`${publicUrl}/usage`},'public, max-age=60');
+    return json(res,200,{name:'Wealth Engine',version:'0.4.0',description:'Machine-consumable economic intelligence. Experimental public API and remote MCP server.',capabilities:[{id:'voice-margin-index',description:'Compare public AI voice pricing and estimate gross-margin ceilings.',method:'GET',url:`${publicUrl}/api/voice-margin-index`,price:'free'},{id:'mcp',description:'Remote MCP server',method:'POST',url:`${publicUrl}/mcp`,price:'free'}],mcp:`${publicUrl}/mcp`,discovery:`${publicUrl}/.well-known/agent-capabilities.json`,usage:`${publicUrl}/usage`},'public, max-age=60');
   }
   if(req.method==='GET'&&(url.pathname==='/api/voice-margin-index'||url.pathname==='/voice-margin-index.json')){
     usage.calls++; usage.index++;
     return json(res,200,{title:'Voice Margin Index',lastUpdated,methodology:{targetGrossMargin:0.7,revenuePerMinute:'monthly price / included voice minutes',costCeiling:'revenue per minute * (1 - target gross margin)'},plans:getIndexData(),publicBenchmarks},'public, max-age=300');
+  }
+  if(req.method==='POST'&&url.pathname==='/mcp'){
+    usage.calls++; usage.mcp++;
+    try{
+      const body=await readJson(req); const id=body.id??null; const method=body.method;
+      if(method==='initialize') return json(res,200,mcpResult(id,{protocolVersion:'2025-06-18',capabilities:{tools:{}},serverInfo:{name:'wealth-engine',version:'0.4.0'},instructions:'Use voice_margin_index to inspect public AI voice economics.'}));
+      if(method==='notifications/initialized') return send(res,202,'application/json; charset=utf-8','');
+      if(method==='tools/list') return json(res,200,mcpResult(id,{tools}));
+      if(method==='tools/call'&&body.params?.name==='voice_margin_index') return json(res,200,mcpResult(id,{content:[{type:'text',text:JSON.stringify({title:'Voice Margin Index',lastUpdated,methodology:{targetGrossMargin:0.7,revenuePerMinute:'monthly price / included voice minutes',costCeiling:'revenue per minute * (1 - target gross margin)'},plans:getIndexData(),publicBenchmarks})}],structuredContent:{plans:getIndexData(),publicBenchmarks}}));
+      return json(res,200,mcpError(id,-32601,'Method not found'));
+    }catch{return json(res,400,mcpError(null,-32700,'Parse error'));}
   }
   if(req.method==='GET'&&url.pathname==='/usage') return json(res,200,usage);
   if(req.method==='GET'&&(url.pathname==='/voice-margin-index'||url.pathname==='/index')) return send(res,200,'text/html; charset=utf-8',marginIndexPage(),'public, max-age=300');
