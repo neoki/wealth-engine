@@ -1,0 +1,40 @@
+{
+  "objective": "maximize net capital generated with increasing autonomy",
+  "experimentPolicy": {
+    "defaultMaxActive": 3,
+    "absoluteMaxActive": 5,
+    "defaultExpiryDays": 14,
+    "requireEconomicMetric": true,
+    "separateTrafficClasses": ["self", "bot", "crawler", "unknown_human", "qualified_lead", "payment"],
+    "killIf": [
+      "no external signal by expiry",
+      "negative expected economics after evidence update",
+      "material legal, security, or operational risk"
+    ],
+    "promoteIf": [
+      "multiple independent paying customers",
+      "positive contribution margin",
+      "evidence of repeat purchase or reproducible acquisition channel"
+    ]
+  },
+  "businessPolicy": {
+    "validatedBusinessesDoNotCountTowardExperimentCap": true,
+    "profitableAssetsPersistWhileEconomicallyPositive": true
+  },
+  "buildPolicy": {
+    "noFullProductBeforePurchaseSignal": true,
+    "actionVerificationEvidenceRequiredBeforeReportingSuccess": true
+  },
+  "payments": {
+    "stripeConnected": false,
+    "connectStripeWhen": "a qualified buyer is ready to pay and payment friction becomes the bottleneck"
+  },
+  "railwayBudget": {
+    "requestedMonthlyCeilingEUR": 150,
+    "requestedAlertStepEUR": 50,
+    "railwayHardLimitApproxUSDAt2026_09_10Rate": 174.16,
+    "railwaySoftAlertApproxUSDAt2026_09_10Rate": 58.05,
+    "status": "NOT_ENFORCED_FROM_CONNECTOR",
+    "reason": "Railway workspace billing limits are not writable through the connected Railway tools; must be set in Workspace Usage/Billing"
+  }
+}
