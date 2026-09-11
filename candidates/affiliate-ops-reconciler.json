@@ -1,7 +1,8 @@
 {
   "id": "affiliate-ops-reconciler",
-  "status": "validation-passed-pain",
+  "status": "killed-competitive-wedge",
   "discovered_at": "2026-09-11",
+  "killed_at": "2026-09-11",
   "origin": "money-hunter",
   "category": "commerce-operations",
   "title": "Affiliate Ops Reconciler",
@@ -9,64 +10,29 @@
   "buyer": "DTC Shopify brands with roughly 20-100 active creators that have outgrown spreadsheets but do not want enterprise affiliate software or a dedicated marketing-ops hire.",
   "pain": {
     "description": "Monthly reconciliation of creator commissions, custom tiers, promo-code overlaps, attribution exceptions and payouts becomes manual, error-prone and financially risky as affiliate programs grow.",
-    "evidence": [
-      {
-        "date": "2026-09-11",
-        "source": "Reddit r/smallbusinessUS",
-        "signal": "A DTC skincare brand at about $300k/year with 35 creators says its Shopify plugin + large spreadsheet setup is becoming unmanageable and is actively evaluating affiliate-management software because reconciliation and payouts consume substantial team time."
-      },
-      {
-        "date": "2026-05-04",
-        "source": "Reddit r/shopify",
-        "signal": "A merchant using GoAffPro reports a creator-code/subscription-discount collision: creator commission should remain while customer discounts should not stack; the workaround described is explicitly messy."
-      },
-      {
-        "date": "2026-01-28",
-        "source": "Reddit r/Affiliatemarketing",
-        "signal": "A fast-scaling Shopify brand says it calculates affiliate and creator payouts from exports and pays partners manually one-by-one, and is actively looking for scheduled automated payouts with review/approval."
-      },
-      {
-        "date": "2025-12-05",
-        "source": "Reddit r/advertising",
-        "signal": "A merchant running affiliates across Instagram, TikTok and YouTube describes two parallel programs whose data does not talk to each other; Shopify native tooling is described as too limited for tiered commissions and performance bonuses."
-      },
-      {
-        "date": "2026-07-25",
-        "source": "Shopify App Store review of GoAffPro",
-        "signal": "A merchant reports paying more than $20k in allegedly fraudulent affiliate commissions after attribution interacted badly with existing discount codes/UTMs; GoAffPro replies that merchants must review and configure attribution rules themselves. This indicates a possible audit/reconciliation wedge rather than a need to replace the affiliate platform."
-      }
-    ]
+    "evidence_count": 5,
+    "pain_gate": "passed"
   },
-  "product_shape": {
-    "v0": "CSV/XLSX in -> normalized transactions -> deterministic commission rules -> overlap/attribution exceptions -> suspicious-commission flags -> anomaly report -> creator payout ledger out.",
-    "wedge": "Audit and reconcile the output of existing affiliate systems instead of replacing them.",
-    "not_yet": [
-      "full affiliate CRM",
-      "creator discovery marketplace",
-      "enterprise attribution suite",
-      "automated money movement"
-    ]
+  "competitive_validation": {
+    "gate": "failed",
+    "checked_at": "2026-09-11",
+    "findings": [
+      "AffluTrack launched in 2026 with multi-touch attribution and commission-fraud detection from $29/month.",
+      "Vyral includes fraud detection and automated affiliate rules in a free-to-install plan.",
+      "Influencer Affiliate Pro automates commission calculation and exports detailed commission history from $9/month.",
+      "Refersion is mature, highly reviewed and already combines attribution, commission management and payouts.",
+      "Shopify Collabs itself provides affiliate tracking plus procedures to flag high-risk creators and combat affiliate fraud.",
+      "Specialist affiliate-fraud/audit products also exist outside the payout workflow, so independent audit is not an uncontested wedge."
+    ],
+    "conclusion": "The pain is real, but the proposed product sits in a crowded feature set with low-cost and free incumbents. Building a generic reconciliation or fraud layer now would violate Wealth Engine's capital-allocation discipline."
   },
-  "distribution": {
-    "primary": "Shopify App Store after file-based validation; the app-store listing itself is a real acquisition surface.",
-    "secondary": "High-intent search around affiliate commission reconciliation, creator payout spreadsheets, coupon-code leakage and attribution overlap.",
-    "constraint": "Do not treat a Railway URL as distribution. Do not publicly launch until there is an actual acquisition route."
+  "decision": {
+    "action": "kill",
+    "reason": "No sufficiently sharp competitive wedge survived the second gate.",
+    "capital_spent_on_build": 0,
+    "service_deployed": false,
+    "reopen_only_if": "A future independent signal reveals a materially different capability, proprietary data advantage, distribution advantage, or recoverable-money mechanism that incumbents do not already provide."
   },
-  "monetization_hypotheses": [
-    "$29-$49 one-off historical commission audit",
-    "$39-$99/month recurring reconciliation/audit by creator or order volume",
-    "Higher-value recovery fee only if the tool can identify demonstrably invalid commissions"
-  ],
-  "validation": {
-    "pain_signals_required": 5,
-    "pain_signals_found": 5,
-    "pain_gate": "passed",
-    "next_gate": "competitive wedge and file-level prototype value",
-    "important_uncertainty": "Existing affiliate platforms may already cover enough reconciliation for most merchants; the strongest wedge may be independent audit/fraud/over-attribution detection rather than payout calculation itself."
-  },
-  "falsification": "Compare the narrow audit/reconciliation wedge against current low-cost Shopify affiliate tools. Kill if existing tools already expose equivalent overlap/fraud diagnostics simply, or if useful detection requires inaccessible attribution data rather than merchant exports.",
-  "kill": "Kill or radically reframe if low-cost incumbents already solve the audit problem cleanly, if merchant exports are insufficient for useful detection, or if no credible acquisition surface exists without manual selling.",
-  "persist": "Persist if merchant exports are sufficient to flag real payout/attribution anomalies and multiple existing-tool users still report costly exceptions or manual review.",
-  "scale": "Only build Shopify-native integration after a file-based audit prototype proves it produces findings merchants consider worth paying for.",
+  "lesson": "Pain evidence is not business evidence. Validate competitive substitutability before prototype construction, especially in app ecosystems with cheap incumbents.",
   "terminal_metric": "net-capital-generated"
 }
