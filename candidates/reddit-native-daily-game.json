@@ -10,6 +10,7 @@
     "Reddit announced that from 2026-08-01 Developer Funds would move toward sustained-engagement rewards, with a one-time qualification at 5,000 qualified engagers and a recurring program with monthly payouts up to $25,000.",
     "Devvit supports interactive games directly inside Reddit and Reddit has added multiple game discovery surfaces.",
     "Devvit has production payments and a Support This App purchase flow using Reddit Gold, creating a second monetization path independent of Developer Funds.",
+    "Reddit's current general earnings eligibility page explicitly lists Spain as a supported payout country.",
     "Recent 2026 app listings show multiple daily games, proving the delivery pattern is technically feasible with daily posts, streaks and leaderboards."
   ],
   "evidence": [
@@ -17,6 +18,11 @@
       "type": "platform-incentive",
       "url": "https://www.reddit.com/r/Devvit/comments/1ukrh8c/reddit_developer_funds_program_changes/",
       "claim": "Official Devvit announcement: new model starts August 1, 2026; one-time payout after 5,000 qualified engagers; recurring monthly payouts up to $25,000 based on average daily qualified engagers."
+    },
+    {
+      "type": "owner-eligibility",
+      "url": "https://support.reddithelp.com/hc/es-es/articles/37760672112660-Ganar-dinero-en-Reddit",
+      "claim": "Reddit's earnings eligibility list includes Spain among supported countries; account standing, enrollment and program-specific requirements still apply."
     },
     {
       "type": "platform-distribution",
@@ -67,7 +73,7 @@
     "No concept survives competitive scan without being a near-clone of existing daily games.",
     "The game requires external acquisition as its primary distribution route, eliminating the platform-native advantage.",
     "Playtest shows novelty but no voluntary replay or social interaction.",
-    "Current Developer Funds eligibility or payment availability for Spain makes the economics unavailable to the owner.",
+    "Program-specific Reddit enrollment or approval blocks Developer Funds and production payments despite Spain being generally supported.",
     "Expected maintenance/moderation burden destroys the low-touch economics."
   ],
   "persist": [
@@ -83,6 +89,6 @@
   "capital_policy": {
     "current_real_budget": 0,
     "max_prevalidation_build_hours": 4,
-    "rule": "Do not create a production service until concept uniqueness, owner eligibility, distribution route and replay loop survive falsification."
+    "rule": "Do not create a production service until concept uniqueness, program-specific owner eligibility, distribution route and replay loop survive falsification."
   }
 }
