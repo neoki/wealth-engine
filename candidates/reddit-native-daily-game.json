@@ -1,0 +1,88 @@
+{
+  "id": "reddit-native-daily-game",
+  "status": "promoted-for-falsification",
+  "origin": {
+    "explorers": ["wild-consumer", "frontier-hacker", "money-hunter"],
+    "note": "Cross-domain collision: consumer game mechanics + platform-native distribution + explicit recurring developer payouts and built-in payments. This is not a Railway landing-page experiment."
+  },
+  "thesis": "A very small daily social game built natively on Reddit/Devvit may have a materially better route to attention and money than standalone Wealth Engine microsites because the product, discovery surface, identity, social graph and monetization rails live inside an existing platform.",
+  "why_now": [
+    "Reddit announced that from 2026-08-01 Developer Funds would move toward sustained-engagement rewards, with a one-time qualification at 5,000 qualified engagers and a recurring program with monthly payouts up to $25,000.",
+    "Devvit supports interactive games directly inside Reddit and Reddit has added multiple game discovery surfaces.",
+    "Devvit has production payments and a Support This App purchase flow using Reddit Gold, creating a second monetization path independent of Developer Funds.",
+    "Recent 2026 app listings show multiple daily games, proving the delivery pattern is technically feasible with daily posts, streaks and leaderboards."
+  ],
+  "evidence": [
+    {
+      "type": "platform-incentive",
+      "url": "https://www.reddit.com/r/Devvit/comments/1ukrh8c/reddit_developer_funds_program_changes/",
+      "claim": "Official Devvit announcement: new model starts August 1, 2026; one-time payout after 5,000 qualified engagers; recurring monthly payouts up to $25,000 based on average daily qualified engagers."
+    },
+    {
+      "type": "platform-distribution",
+      "url": "https://www.reddit.com/r/GDC/comments/1qw3dtr/reddit_gdc_2026/",
+      "claim": "Reddit describes games running directly in its ecosystem and multiple game discovery entry points including a games feed and r/GamesOnReddit."
+    },
+    {
+      "type": "platform-payment",
+      "url": "https://developers.reddit.com/docs/earn-money/payments/support_this_app",
+      "claim": "Devvit apps can expose a Support This App purchase using Reddit Gold."
+    },
+    {
+      "type": "platform-payment",
+      "url": "https://developers.reddit.com/docs/earn-money/payments/payments_manage",
+      "claim": "Approved Devvit apps can trigger real production payments and query orders."
+    },
+    {
+      "type": "implementation-proof",
+      "url": "https://developers.reddit.com/apps/game-a-day",
+      "claim": "A Devvit app reports 42+ games built and playable directly in Reddit with leaderboards, voting and streaks."
+    },
+    {
+      "type": "implementation-proof",
+      "url": "https://developers.reddit.com/apps/ballparkdaily",
+      "claim": "A recent daily estimation game runs directly inside Reddit posts with streaks, leaderboards and social comparison."
+    }
+  ],
+  "counterevidence": [
+    {
+      "url": "https://www.reddit.com/r/Devvit/comments/1ukrh8c/reddit_developer_funds_program_changes/",
+      "claim": "Developer discussion highlights that 5,000 daily qualified engagers is a high threshold; one commenter reports even top-ranked games may receive only hundreds of daily plays without platform featuring."
+    },
+    {
+      "url": "https://www.reddit.com/r/Devvit/comments/1rpkc19/the_problem_with_reddit_developer_funds/",
+      "claim": "A developer reports that being #1 weekly and #2 monthly on r/GamesOnReddit still failed to reach a prior first payout threshold, illustrating distribution risk and dependence on featuring."
+    },
+    {
+      "url": "https://www.reddit.com/r/Devvit/comments/1vfog10/games_with_a_hook_hackathon_winners/",
+      "claim": "A July 2026 hackathon received 700+ entries, demonstrating substantial competition."
+    }
+  ],
+  "falsification": {
+    "phase_0": "Before coding a full game, identify a game loop that can be explained in one sentence, played in under 60 seconds, has an intrinsic social comparison/share mechanic, and is meaningfully distinct from recent Devvit daily-word/quiz/estimation clones.",
+    "phase_1": "Build only a local/playtest interaction loop and test whether repeated human plays occur voluntarily; no Railway service is required.",
+    "phase_2": "Only pursue public Devvit review if the loop has credible replay/retention behavior and a compliant path to distribution inside existing communities."
+  },
+  "kill": [
+    "No concept survives competitive scan without being a near-clone of existing daily games.",
+    "The game requires external acquisition as its primary distribution route, eliminating the platform-native advantage.",
+    "Playtest shows novelty but no voluntary replay or social interaction.",
+    "Current Developer Funds eligibility or payment availability for Spain makes the economics unavailable to the owner.",
+    "Expected maintenance/moderation burden destroys the low-touch economics."
+  ],
+  "persist": [
+    "A one-minute loop produces voluntary replay or sharing in playtest.",
+    "At least one realistic subreddit/community distribution route exists without paid acquisition.",
+    "The product can monetize via Developer Funds, Reddit payments, or both."
+  ],
+  "scale": [
+    "Organic daily qualified engagers grow across multiple communities.",
+    "Retention is stable enough to qualify for recurring Developer Funds economics.",
+    "Gold purchases or other approved in-app transactions produce positive net revenue."
+  ],
+  "capital_policy": {
+    "current_real_budget": 0,
+    "max_prevalidation_build_hours": 4,
+    "rule": "Do not create a production service until concept uniqueness, owner eligibility, distribution route and replay loop survive falsification."
+  }
+}
