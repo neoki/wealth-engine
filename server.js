@@ -5,22 +5,22 @@ import { discoverOpportunities } from './discovery-engine.js';
 import { ingestLiveSignals, liveSignalSources } from './live-signal-ingestion.js';
 import { landingPage } from './pages.js';
 
-const VERSION='0.9.2';
+const VERSION='0.9.3';
 const port=Number(process.env.PORT||3000);
 const publicUrl=String(process.env.PUBLIC_URL||'https://wealth-engine-production-e178.up.railway.app').replace(/\/$/,'');
 const usage={startedAt:new Date().toISOString(),calls:0,capabilities:0,index:0,opportunities:0,liveScans:0,paidIntent:0,mcpAuditIntent:0,mcp:0,traffic:{humanBrowser:0,automationOrCrawler:0,mcp:0,unknown:0,internal:0}};
 const headers={'access-control-allow-origin':'*','access-control-allow-headers':'content-type,mcp-session-id,x-wealth-internal','content-security-policy':"default-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",'x-content-type-options':'nosniff','x-frame-options':'DENY'};
-function send(res,status,type,body,cache='no-store'){res.writeHead(status,{...headers,'content-type':type,'cache-control':cache});res.end(body)}
-function json(res,status,payload,cache='no-store'){send(res,status,'application/json; charset=utf-8',JSON.stringify(payload),cache)}
+function send(res,status,type,body,cache='no-store',extraHeaders={}){res.writeHead(status,{...headers,...extraHeaders,'content-type':type,'cache-control':cache});res.end(body)}
+function json(res,status,payload,cache='no-store',extraHeaders={}){send(res,status,'application/json; charset=utf-8',JSON.stringify(payload),cache,extraHeaders)}
 function readJson(req){return new Promise((resolve,reject)=>{let raw='';req.setEncoding('utf8');req.on('data',c=>{raw+=c;if(raw.length>100000){reject(new Error('too_large'));req.destroy();}});req.on('end',()=>{try{resolve(JSON.parse(raw||'{}'))}catch{reject(new Error('invalid_json'))}});req.on('error',reject);});}
 function mcpResult(id,result){return{jsonrpc:'2.0',id,result}}function mcpError(id,code,message){return{jsonrpc:'2.0',id,error:{code,message}}}
 function voiceIndexPayload(){return{title:'Voice Margin Index',lastUpdated,plans:getIndexData(),publicBenchmarks}}
 async function liveScan(){const ingestion=await ingestLiveSignals();return{...ingestion,opportunities:discoverOpportunities(ingestion.signals),policy:'Live discoveries are hypotheses derived automatically from fetched machine-readable market signals; they are not revenue forecasts.'}}
 function classifyTraffic(req,path){
   if(req.headers['x-wealth-internal']==='1') return 'internal';
-  if(path==='/mcp') return 'mcp';
   const ua=String(req.headers['user-agent']||'').toLowerCase();
-  if(/bot|crawler|spider|curl|wget|python|postman|insomnia|httpie|go-http-client|uptime|healthcheck|monitor/.test(ua)) return 'automationOrCrawler';
+  if(path==='/mcp'&&req.method==='POST') return 'mcp';
+  if(/bot|crawler|spider|curl|wget|python|postman|insomnia|httpie|go-http-client|uptime|healthcheck|monitor|audit|sentinel|mcpbeat|golemreach/.test(ua)) return 'automationOrCrawler';
   if(/mozilla\//.test(ua)) return 'humanBrowser';
   return 'unknown';
 }
@@ -45,7 +45,8 @@ if(req.method==='GET'&&url.pathname==='/api/offers/mcp-discovery-audit')return j
 if(req.method==='POST'&&url.pathname==='/api/mcp-audit-intent'){usage.calls++;usage.mcpAuditIntent++;return json(res,202,{accepted:true,charged:false,offer:auditOffer.id,price:auditOffer.price,nextStep:'Open an issue at https://github.com/neoki/wealth-engine/issues with the public MCP endpoint to request the audit.'})}
 if(req.method==='GET'&&(url.pathname==='/.well-known/agent-card.json'||url.pathname==='/.well-known/agent.json')){usage.calls++;usage.capabilities++;return json(res,200,agentCard(),'public, max-age=300')}
 if(req.method==='GET'&&(url.pathname==='/.well-known/agent-capabilities.json'||url.pathname==='/capabilities')){usage.calls++;usage.capabilities++;return json(res,200,{name:'Wealth Engine',version:VERSION,description:'Autonomous economic-opportunity discovery engine.',capabilities:[{id:'live-market-scan',method:'GET',url:`${publicUrl}/api/live-scan`,price:'free'},{id:'economic-opportunities',method:'GET',url:`${publicUrl}/api/opportunities`,price:'free'},{id:'voice-pricing-intelligence',method:'GET',url:`${publicUrl}/offers/voice-pricing-intelligence`,price:'EUR 29/month founding price'},{id:'mcp-discovery-audit',method:'GET',url:`${publicUrl}/api/offers/mcp-discovery-audit`,price:'EUR 49 one-time; manually fulfilled'},{id:'mcp',method:'POST',url:`${publicUrl}/mcp`,price:'free'}],mcp:`${publicUrl}/mcp`})}
+if(req.method==='GET'&&url.pathname==='/mcp')return json(res,405,{error:'method_not_allowed',message:'This Wealth Engine MCP endpoint uses stateless Streamable HTTP. Send MCP JSON-RPC messages with POST.'},'no-store',{'allow':'POST, OPTIONS'});
 if(req.method==='POST'&&url.pathname==='/mcp'){usage.calls++;usage.mcp++;try{const body=await readJson(req);const id=body.id??null;if(body.method==='initialize')return json(res,200,mcpResult(id,{protocolVersion:'2025-06-18',capabilities:{tools:{}},serverInfo:{name:'wealth-engine',version:VERSION},instructions:'Use live_market_scan to fetch current machine-readable market signals and derive opportunities autonomously.'}));if(body.method==='notifications/initialized')return send(res,202,'application/json; charset=utf-8','');if(body.method==='tools/list')return json(res,200,mcpResult(id,{tools}));if(body.method==='tools/call'&&body.params?.name==='live_market_scan'){const data=await liveScan();return json(res,200,mcpResult(id,{content:[{type:'text',text:JSON.stringify(data)}],structuredContent:data}))}if(body.method==='tools/call'&&body.params?.name==='economic_opportunities'){const data=getEconomicOpportunities();return json(res,200,mcpResult(id,{content:[{type:'text',text:JSON.stringify(data)}],structuredContent:data}))}if(body.method==='tools/call'&&body.params?.name==='voice_margin_index'){const data=voiceIndexPayload();return json(res,200,mcpResult(id,{content:[{type:'text',text:JSON.stringify(data)}],structuredContent:data}))}return json(res,200,mcpError(id,-32601,'Unsupported MCP method'))}catch{return json(res,400,mcpError(null,-32700,'Invalid request'))}}
-if(req.method==='GET'&&url.pathname==='/usage')return json(res,200,{...usage,telemetryNote:'Traffic classes are heuristic and reset on deploy. No IP addresses, request bodies or personal identifiers are stored.'});
+if(req.method==='GET'&&url.pathname==='/usage')return json(res,200,{...usage,telemetryNote:'Traffic classes are heuristic and reset on deploy. MCP counts only POST requests to /mcp; crawler/audit GET probes are classified separately. No IP addresses, request bodies or personal identifiers are stored.'});
 if(req.method==='GET'&&url.pathname==='/')return send(res,200,'text/html; charset=utf-8',landingPage());
 return json(res,404,{error:'Not found'})});server.listen(port,'0.0.0.0',()=>console.log(`wealth-engine listening on ${port}`));
