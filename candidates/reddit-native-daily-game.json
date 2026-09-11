@@ -1,94 +1,92 @@
 {
   "id": "reddit-native-daily-game",
-  "status": "promoted-for-falsification",
+  "status": "held-at-distribution-gate",
   "origin": {
     "explorers": ["wild-consumer", "frontier-hacker", "money-hunter"],
-    "note": "Cross-domain collision: consumer game mechanics + platform-native distribution + explicit recurring developer payouts and built-in payments. This is not a Railway landing-page experiment."
+    "note": "Cross-domain collision: consumer game mechanics + platform-native identity/social graph + explicit developer payouts. Native hosting is no longer treated as equivalent to distribution."
   },
-  "thesis": "A very small daily social game built natively on Reddit/Devvit may have a materially better route to attention and money than standalone Wealth Engine microsites because the product, discovery surface, identity, social graph and monetization rails live inside an existing platform.",
+  "thesis": "A very small social game on Reddit/Devvit can be economically attractive only if distribution is secured before meaningful build effort. The product surface, identity and monetization rails are native, but discovery is scarce and must be treated as the primary asset.",
   "why_now": [
-    "Reddit announced that from 2026-08-01 Developer Funds would move toward sustained-engagement rewards, with a one-time qualification at 5,000 qualified engagers and a recurring program with monthly payouts up to $25,000.",
-    "Devvit supports interactive games directly inside Reddit and Reddit has added multiple game discovery surfaces.",
-    "Devvit has production payments and a Support This App purchase flow using Reddit Gold, creating a second monetization path independent of Developer Funds.",
-    "Reddit's current general earnings eligibility page explicitly lists Spain as a supported payout country.",
-    "Recent 2026 app listings show multiple daily games, proving the delivery pattern is technically feasible with daily posts, streaks and leaderboards."
+    "From 2026-08-01 Reddit Developer Funds moved toward sustained-engagement rewards, including a qualification threshold and recurring payouts tied to qualified engagement.",
+    "Devvit supports games directly inside Reddit and Reddit operates game discovery/featuring surfaces.",
+    "Devvit supports approved production payments and Support This App via Reddit Gold.",
+    "Spain appears on Reddit's general supported earnings-country list.",
+    "Recent hackathon winners repeatedly emphasize recurring gameplay, community contribution and Reddit-native social mechanics rather than generic daily puzzles."
   ],
   "evidence": [
     {
       "type": "platform-incentive",
       "url": "https://www.reddit.com/r/Devvit/comments/1ukrh8c/reddit_developer_funds_program_changes/",
-      "claim": "Official Devvit announcement: new model starts August 1, 2026; one-time payout after 5,000 qualified engagers; recurring monthly payouts up to $25,000 based on average daily qualified engagers."
+      "claim": "Official Devvit announcement: the new model began August 1, 2026 and includes recurring payouts based on qualified engagement."
     },
     {
       "type": "owner-eligibility",
       "url": "https://support.reddithelp.com/hc/es-es/articles/37760672112660-Ganar-dinero-en-Reddit",
-      "claim": "Reddit's earnings eligibility list includes Spain among supported countries; account standing, enrollment and program-specific requirements still apply."
+      "claim": "Reddit's general earnings eligibility list includes Spain; program-specific enrollment and account requirements still apply."
     },
     {
-      "type": "platform-distribution",
-      "url": "https://www.reddit.com/r/GDC/comments/1qw3dtr/reddit_gdc_2026/",
-      "claim": "Reddit describes games running directly in its ecosystem and multiple game discovery entry points including a games feed and r/GamesOnReddit."
+      "type": "distribution-reality",
+      "url": "https://www.reddit.com/r/Devvit/comments/1vzqoop/i_didnt_win_the_hackathon_ive_been_promoting_my/",
+      "claim": "A developer disclosed a complete recent funnel: 2,586 promotional post views produced only 29 all-time game opens (~1.1%), 15 completions, 4 people returning on 3 separate days and 1 seven-day streak. The product converted reasonably after opening; discovery was the dominant leak."
     },
     {
-      "type": "platform-payment",
-      "url": "https://developers.reddit.com/docs/earn-money/payments/support_this_app",
-      "claim": "Devvit apps can expose a Support This App purchase using Reddit Gold."
+      "type": "featuring-signal",
+      "url": "https://www.reddit.com/r/Devvit/comments/1ve9c0f/is_this_a_featured_game/",
+      "claim": "Developers describe a featured-games program and launchpad placement as a material discovery mechanism, while also reporting uncertainty and delays around acceptance."
     },
     {
-      "type": "platform-payment",
-      "url": "https://developers.reddit.com/docs/earn-money/payments/payments_manage",
-      "claim": "Approved Devvit apps can trigger real production payments and query orders."
+      "type": "competition-pattern",
+      "url": "https://www.reddit.com/r/Devvit/comments/1vfog10/games_with_a_hook_hackathon_winners/",
+      "claim": "The July 2026 Games with a Hook hackathon received 700+ entries; winners emphasized hooks such as retention mechanics and user contributions."
     },
     {
-      "type": "implementation-proof",
-      "url": "https://developers.reddit.com/apps/game-a-day",
-      "claim": "A Devvit app reports 42+ games built and playable directly in Reddit with leaderboards, voting and streaks."
-    },
-    {
-      "type": "implementation-proof",
-      "url": "https://developers.reddit.com/apps/ballparkdaily",
-      "claim": "A recent daily estimation game runs directly inside Reddit posts with streaks, leaderboards and social comparison."
+      "type": "community-native-pattern",
+      "url": "https://www.reddit.com/r/Devvit/comments/1rffubl/announcing_the_reddit_daily_games_hackathon/",
+      "claim": "The 2026 Daily Games winner combined a daily challenge with player-created levels and competition, suggesting community contribution is a stronger platform fit than isolated puzzle consumption."
     }
   ],
   "counterevidence": [
     {
-      "url": "https://www.reddit.com/r/Devvit/comments/1ukrh8c/reddit_developer_funds_program_changes/",
-      "claim": "Developer discussion highlights that 5,000 daily qualified engagers is a high threshold; one commenter reports even top-ranked games may receive only hundreds of daily plays without platform featuring."
+      "url": "https://www.reddit.com/r/Devvit/comments/1vzqoop/i_didnt_win_the_hackathon_ive_been_promoting_my/",
+      "claim": "Manual promotion can generate thousands of impressions yet almost no opens; platform presence alone does not solve acquisition."
     },
     {
-      "url": "https://www.reddit.com/r/Devvit/comments/1rpkc19/the_problem_with_reddit_developer_funds/",
-      "claim": "A developer reports that being #1 weekly and #2 monthly on r/GamesOnReddit still failed to reach a prior first payout threshold, illustrating distribution risk and dependence on featuring."
+      "url": "https://www.reddit.com/r/Devvit/comments/1ukrh8c/reddit_developer_funds_program_changes/",
+      "claim": "Developer discussion indicates qualification thresholds can remain difficult even for visible games without platform featuring."
     },
     {
       "url": "https://www.reddit.com/r/Devvit/comments/1vfog10/games_with_a_hook_hackathon_winners/",
-      "claim": "A July 2026 hackathon received 700+ entries, demonstrating substantial competition."
+      "claim": "700+ recent game submissions imply significant supply-side competition."
     }
   ],
   "falsification": {
-    "phase_0": "Before coding a full game, identify a game loop that can be explained in one sentence, played in under 60 seconds, has an intrinsic social comparison/share mechanic, and is meaningfully distinct from recent Devvit daily-word/quiz/estimation clones.",
-    "phase_1": "Build only a local/playtest interaction loop and test whether repeated human plays occur voluntarily; no Railway service is required.",
-    "phase_2": "Only pursue public Devvit review if the loop has credible replay/retention behavior and a compliant path to distribution inside existing communities."
+    "phase_0_distribution": "Before designing a game, identify at least one plausible distribution asset: an existing subreddit whose moderators/users have an obvious reason to install/play it, an attainable Reddit featuring route, or an interaction that spreads through normal Reddit participation rather than promotional posts.",
+    "phase_0_mechanic": "Only after distribution survives, identify a one-sentence, sub-60-second interaction with essentially zero tutorial burden and a community/social consequence. Avoid Wordle, generic quiz, estimation and leaderboard-only clones.",
+    "phase_1": "Build only a local/playtest interaction loop. No Railway production service. Measure voluntary second play, next-day intent and whether users want to compare/contribute without being prompted.",
+    "phase_2": "Pursue Devvit review only if both distribution and retention gates survive."
   },
   "kill": [
-    "No concept survives competitive scan without being a near-clone of existing daily games.",
-    "The game requires external acquisition as its primary distribution route, eliminating the platform-native advantage.",
-    "Playtest shows novelty but no voluntary replay or social interaction.",
-    "Program-specific Reddit enrollment or approval blocks Developer Funds and production payments despite Spain being generally supported.",
-    "Expected maintenance/moderation burden destroys the low-touch economics."
+    "No credible pre-build distribution asset is found.",
+    "Primary acquisition would be developer self-promotion or repeated cross-posting.",
+    "The concept is essentially an existing daily puzzle with a leaderboard attached.",
+    "Playtest shows novelty but no voluntary replay, contribution or social interaction.",
+    "Program-specific enrollment or approval blocks the expected monetization route.",
+    "Expected maintenance/moderation burden destroys low-touch economics."
   ],
   "persist": [
-    "A one-minute loop produces voluntary replay or sharing in playtest.",
-    "At least one realistic subreddit/community distribution route exists without paid acquisition.",
+    "A specific community or featuring path exists before build.",
+    "The interaction is understandable from the feed without a tutorial.",
+    "Community state, contribution or challenge creates a reason to return independent of prizes.",
     "The product can monetize via Developer Funds, Reddit payments, or both."
   ],
   "scale": [
-    "Organic daily qualified engagers grow across multiple communities.",
-    "Retention is stable enough to qualify for recurring Developer Funds economics.",
-    "Gold purchases or other approved in-app transactions produce positive net revenue."
+    "Organic qualified engagers grow across installations without manual promotion.",
+    "Retention is stable enough for recurring Developer Funds economics.",
+    "Approved Gold purchases or other in-app transactions produce positive net revenue."
   ],
   "capital_policy": {
     "current_real_budget": 0,
     "max_prevalidation_build_hours": 4,
-    "rule": "Do not create a production service until concept uniqueness, program-specific owner eligibility, distribution route and replay loop survive falsification."
+    "rule": "Distribution is a prerequisite, not a post-build task. Spend zero production capital until a concrete route to users exists."
   }
 }
