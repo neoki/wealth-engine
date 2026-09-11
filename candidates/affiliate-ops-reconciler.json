@@ -1,0 +1,47 @@
+{
+  "id": "affiliate-ops-reconciler",
+  "status": "validation",
+  "discovered_at": "2026-09-11",
+  "origin": "money-hunter",
+  "category": "commerce-operations",
+  "title": "Affiliate Ops Reconciler",
+  "one_liner": "Upload Shopify/affiliate exports and get a reconciled creator payout ledger with tiered commissions, promo-code overlap handling, anomalies and payment-ready totals.",
+  "buyer": "DTC Shopify brands with roughly 20-100 active creators that have outgrown spreadsheets but do not want enterprise affiliate software or a dedicated marketing-ops hire.",
+  "pain": {
+    "description": "Monthly reconciliation of creator commissions, custom tiers, promo-code overlaps and payouts becomes manual and error-prone as affiliate programs grow.",
+    "evidence": [
+      {
+        "date": "2026-09-11",
+        "source": "Reddit r/smallbusinessUS",
+        "signal": "A DTC skincare brand at about $300k/year with 35 creators says its Shopify plugin + large spreadsheet setup is becoming unmanageable and is actively evaluating affiliate-management software because reconciliation and payouts consume substantial team time."
+      },
+      {
+        "date": "2026-05-04",
+        "source": "Reddit r/shopify",
+        "signal": "A merchant reports a concrete creator-code/subscription-discount collision: creator commission should remain while customer discounts should not stack, illustrating reconciliation logic not handled cleanly by default tooling."
+      }
+    ]
+  },
+  "product_shape": {
+    "v0": "CSV/XLSX in -> normalized transactions -> deterministic commission rules -> overlap exceptions -> anomaly report -> creator payout ledger out.",
+    "not_yet": [
+      "full affiliate CRM",
+      "creator discovery marketplace",
+      "enterprise attribution suite"
+    ]
+  },
+  "distribution": {
+    "primary": "Shopify App Store if validation succeeds",
+    "secondary": "Search intent around affiliate commission reconciliation, creator payout spreadsheets and discount-code overlap",
+    "constraint": "Do not treat a Railway URL as distribution. No public launch until there is an actual acquisition route."
+  },
+  "monetization_hypotheses": [
+    "$29-$49 one-off reconciliation for a historical payout period",
+    "$39-$99/month for recurring reconciliation depending on creator/order volume"
+  ],
+  "falsification": "Obtain evidence from at least 5 independent merchants/threads/reviews that manual reconciliation, tier logic or payout exceptions are painful enough to seek a tool, and confirm existing products do not already solve the narrow workflow simply at low cost.",
+  "kill": "Kill or radically reframe if the next evidence pass shows the pain is rare, already solved cleanly by low-cost incumbents, or requires deep attribution infrastructure before value can be delivered.",
+  "persist": "Persist if multiple merchants independently describe spreadsheet-heavy reconciliation or discount/commission edge cases and there is a plausible marketplace/search acquisition channel.",
+  "scale": "Only build a Shopify-native integration after a file-based reconciliation prototype proves people will use or pay for the output.",
+  "terminal_metric": "net-capital-generated"
+}
