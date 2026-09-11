@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "check": "node --check server.js && node --check pages.js && node --check margin-data.js && node --check opportunities.js && node --check source-checks.js && node --check scripts/check-sources.mjs"
+    "check": "node --check server.js && node --check pages.js && node --check margin-data.js && node --check opportunities.js && node --check source-checks.js && node --check society-engine.js && node --check scripts/check-sources.mjs && node scripts/check-society.mjs"
   },
   "engines": {
     "node": ">=20"
