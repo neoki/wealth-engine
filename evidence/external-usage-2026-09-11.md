@@ -11,18 +11,27 @@ This file records externally observable usage signals separately from internal c
 
 ## Other useful signals
 
-- A Windows Chrome browser requested `/offers/voice-pricing-intelligence`, then `/api/opportunities`, then `/mcp`. The offer URL returned 404 at the time while `/api/opportunities` returned 200. Origin is not attributable, so this is a **possible human exploration signal**, not counted as confirmed external demand.
-- `GolemreachTrustBot/0.1` requested `/.well-known/agent-card.json` and `/.well-known/agent.json`; both returned 404 at the time. This showed a concrete discovery compatibility gap.
-- Known liveness traffic from `SentinelOracle/0.1` and `mcpbeat/0.1` must be excluded from meaningful-use counts.
+- After the agent-card fix deployed, `SaSameAgentAudit/0.1` requested `/.well-known/agent-card.json` and received HTTP 200. This is direct evidence that the newly added discovery surface is being found by an external agent-audit crawler.
+- `GolemreachTrustBot/0.1` subsequently requested `/.well-known/agent-card.json` and also received HTTP 200.
+- `EndpointAudit/0.1` completed a coherent three-request MCP sequence `200 → 202 → 200`. It is explicitly an audit bot, so this counts as protocol/discoverability evidence, not product demand.
+- Known liveness traffic from `SentinelOracle/0.1` and `mcpbeat/0.1` repeatedly completed MCP liveness sequences and must be excluded from meaningful-use counts.
+- A Windows Chrome browser requested `/offers/mcp-discovery-audit` and received HTTP 200 at approximately 2026-09-11 01:48 UTC. No paid-intent request followed in the observed window, so this is a **human-looking offer-view signal**, not commercial validation.
+- A generic Node client repeatedly completed MCP initialize-style request sequences. Because it is unattributed, it is not counted as a distinct external user.
 
 ## Remediation triggered by this evidence
 
-Commit `e096670477894fa486765ea41fd51e433adaf9d4` adds:
+Commit `e096670477894fa486765ea41fd51e433adaf9d4` added:
 
 1. `/.well-known/agent-card.json`
 2. `/.well-known/agent.json`
 3. a real `/offers/voice-pricing-intelligence` landing route
 4. voice-offer exposure in machine-readable capabilities
+
+Commit `f1e238c6c3a9f13240278361de5e9dde36f79e2a` then tightened MCP transport semantics and attribution:
+
+1. `GET /mcp` now returns HTTP 405 with `Allow: POST, OPTIONS` instead of a generic 404 for the stateless Streamable HTTP endpoint.
+2. Only POST traffic to `/mcp` is classified as MCP usage; GET probes are classified by user-agent instead.
+3. audit/liveness user-agent patterns are separated from human-looking/browser traffic.
 
 ## Interpretation policy
 
