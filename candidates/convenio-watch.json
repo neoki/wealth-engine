@@ -5,29 +5,31 @@
   "thesis": "Spanish labor advisory firms need same-day, vendor-neutral monitoring of collective-agreement publications across BOE, autonomous-community journals and provincial bulletins, mapped to the convention codes and client companies they already manage.",
   "buyer": "labor advisory firms, payroll bureaus and multi-company HR teams",
   "problem": "Agreement changes are published across different official gazettes; existing payroll suites validate demand for alerts but often tie the feature to their own ecosystem or merely announce that a document changed.",
-  "wedge": "Customer supplies the REGCON agreement codes already used in payroll. The service watches official gazettes directly, matches new publications to those codes, summarizes what changed, states effective/retroactive dates, and identifies the customer's affected companies. REGCON is used as a secondary source/fallback, not the only same-day source.",
+  "wedge": "Start from the agreement codes already known by payroll/advisory teams when available. For low-friction onboarding, propose likely company/workplace-to-agreement mappings from public evidence, but never represent those proposals as authoritative until the adviser confirms them. The service watches official gazettes directly, matches new publications to confirmed agreements, summarizes what changed, states effective/retroactive dates, and identifies affected companies.",
   "ingestionStrategy": {
     "principle": "Prefer structured official sources before document conversion. Use BOE open-data APIs and DOG RSS/structured feeds for discovery and metadata; fetch the authoritative linked document only when content extraction is required.",
     "markitdownRole": "Use Microsoft MarkItDown as a low-cost normalization fallback for PDF/Office/HTML/XML and other source documents into LLM-friendly Markdown. Do not depend on it for discovery and do not assume PDF layout fidelity is perfect.",
-    "pipeline": "official API/RSS/index -> candidate publication -> authoritative document -> Markdown normalization -> rule/LLM extraction -> historical diff -> impact mapping -> human-review gate"
+    "pipeline": "official API/RSS/index -> candidate publication -> authoritative document -> Markdown normalization when needed -> rule/LLM extraction -> historical diff -> impact mapping -> human-review gate"
   },
   "dataMoat": {
-    "discovery": "Galicia's public trade-union election Actas search exposes company/workplace records together with the collective agreement used for that workplace. The public UI currently contains thousands of records and supports filters including NIF, company, province and agreement.",
-    "implication": "This can bootstrap a company/workplace -> likely collective-agreement graph instead of requiring every prospect to manually supply all REGCON codes. REGCON itself exposes public consultation, text search and an agreement-by-NIF help path, providing a second official mapping surface.",
-    "productEffect": "Potential zero-setup demo: prospect provides a company name/NIF or client-company list; the engine proposes likely agreements from public evidence, marks confidence/provenance, and asks the adviser only to confirm exceptions. This changes onboarding from data entry to verification.",
-    "safety": "Treat inferred mappings as leads, never authoritative payroll instructions. Preserve source URL/date and require adviser confirmation before monitoring or impact actions. Do not collect employee-level data from election records."
+    "discovery": "Galicia's public trade-union election records can expose company/workplace records together with the collective agreement recorded for that workplace. REGCON also exposes public consultation, text search and a search-by-NIF aid that returns REGCON procedures associated with a company's NIF.",
+    "limitations": "Neither source is a complete authoritative company-to-sector-agreement resolver. Union-election records inherently cover workplaces involved in electoral records and may be stale or incomplete. REGCON search by NIF identifies procedures associated with that NIF; it must not be interpreted as proving the sectoral agreement applicable to an arbitrary company.",
+    "implication": "Treat company/workplace -> agreement as a probabilistic graph built from multiple public evidence sources and customer confirmation. Public evidence can reduce onboarding friction and create useful prior probabilities, but confirmed payroll/adviser mappings remain the ground truth for alerts.",
+    "productEffect": "Potential low-setup demo: prospect provides company names/NIFs; the engine returns candidate agreements with provenance, evidence date and confidence, and explicitly asks the adviser to confirm or correct them. Every correction becomes high-value training/evidence data for the mapping graph.",
+    "safety": "Never turn inferred mappings into payroll instructions. Preserve source URL/date, distinguish observed evidence from inference, require adviser confirmation before activating monitoring or impact actions, and avoid employee-level personal data."
   },
   "mvp": {
     "scope": "Galicia first: BOE + DOG + BOP A Coruna/Lugo/Ourense/Pontevedra, then national expansion",
-    "input": "Preferred: CSV/list of REGCON agreement codes and internal client/company labels. Experimental low-friction path: company name/NIF list -> public-source agreement suggestions -> adviser confirmation. No employee personal data required.",
+    "input": "Preferred: CSV/list of known REGCON agreement codes and internal client/company labels. Experimental low-friction path: company name/NIF list -> public-source candidate agreements -> adviser confirmation. No employee personal data required.",
     "output": [
-      "daily digest only when a watched agreement changes",
+      "daily digest only when a confirmed watched agreement changes",
       "official source link",
       "change type: new text / salary review / tables / correction / extension / other",
       "effective date and retroactivity flags where stated",
       "plain-language summary of material changes",
       "affected client/company labels",
-      "human-review flag for ambiguous material"
+      "human-review flag for ambiguous material",
+      "mapping provenance and confidence when company-to-agreement association was inferred"
     ]
   },
   "positioning": "Not another convenio database. A software-independent early-warning and impact layer between official bulletins and the advisory firm's payroll workflow.",
@@ -36,16 +38,29 @@
     "advisor": "EUR 79/month up to 50 watched agreement codes",
     "pro": "EUR 149/month up to 200 watched agreement codes"
   },
-  "validationExperiment": "Run a shadow pilot against real Galicia publications. Build a small corpus from current BOE/DOG/BOP items, normalize relevant documents, and score whether the system can reliably identify collective-agreement changes, salary tables, effective dates and retroactivity. Separately test whether public company->agreement evidence can correctly prefill agreement mappings for a sample of companies. In parallel, offer a 14-day concierge pilot to qualified labor advisory firms.",
-  "successSignal": "At least 2 qualified firms agree to pay after pilot or one prepays EUR 79 for the first month, plus extraction precision high enough that human review is exception handling rather than full re-reading.",
+  "validationExperiment": "Run a shadow pilot against real Galicia publications. First build a gold corpus of agreement-change publications and score extraction of agreement identity, change type, salary tables, effective dates, retroactivity and deadlines. Separately build a mapping benchmark of real Galicia companies/workplaces whose applicable agreement is independently known, then test each public evidence source alone and in combination. Record coverage, precision, evidence age and abstention rate. In parallel, offer a 14-day concierge pilot to qualified labor advisory firms.",
+  "mappingValidationTargets": {
+    "primaryMetric": "precision among mappings the system is willing to propose",
+    "targetPrecision": ">=95% on high-confidence proposals after adviser-confirmed benchmarking",
+    "secondaryMetrics": [
+      "coverage: fraction of benchmark companies receiving any useful candidate",
+      "top1 accuracy",
+      "top3 recall",
+      "abstention rate",
+      "median age of supporting evidence",
+      "correction rate by advisers"
+    ],
+    "decisionRule": "Optimize precision before coverage. It is acceptable to say 'unknown' for many companies during MVP; confidently proposing the wrong convenio is worse than asking the adviser."
+  },
+  "successSignal": "At least 2 qualified firms agree to pay after pilot or one prepays EUR 79 for the first month, plus extraction precision high enough that human review is exception handling rather than full re-reading. Public prefill is a bonus wedge, not a prerequisite for product viability.",
   "killCondition": "No qualified advisory firm agrees to provide/confirm its watched agreement list or pay after 10 qualified conversations, or extraction remains too unreliable to beat manual monitoring economically.",
   "promotionCondition": "At least 3 independent paying advisory firms plus evidence that alerts lead to a recurring operational action.",
   "evidenceNotes": [
     "BOE exposes open-data APIs including BOE daily summaries.",
     "DOG information is available through reusable/open formats including RSS feeds.",
-    "REGCON exposes public consultation, text search and an agreement-by-NIF help path.",
-    "Galicia's public union-election Actas search exposes workplace/company and collective-agreement associations across thousands of records, creating a possible onboarding and data-moat asset.",
-    "Microsoft MarkItDown is explicitly designed to convert documents to Markdown for text-analysis pipelines and supports PDF, Office, HTML, XML and other formats.",
+    "REGCON exposes public consultation, text search and a search-by-NIF aid; the latter returns REGCON procedures associated with the entered NIF and must not be overinterpreted as a universal applicable-agreement lookup.",
+    "Galicia's union-election records can provide valuable workplace/company-to-agreement observations, but they are a partial observational dataset rather than a complete current census.",
+    "Microsoft MarkItDown is designed to convert documents to Markdown for text-analysis pipelines and supports PDF, Office, HTML, XML and other formats.",
     "MarkItDown PDF conversion should be treated as normalization, not guaranteed high-fidelity document reconstruction; ambiguous extractions require human review.",
     "Commercial payroll suites already market collective-agreement update/alert functionality, validating demand for the workflow."
   ]
