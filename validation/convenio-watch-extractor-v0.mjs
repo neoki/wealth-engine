@@ -119,7 +119,7 @@ function parseDeadline(text) {
 
 function detectChangeTypes(text) {
   const types = new Set();
-  if (/actualizaci[oó]n de (?:las )?tablas salariales|actualizar (?:las )?tablas salariales|nuevas tablas/i.test(text)) types.add('salary_tables');
+  if (/actualizaci[oó]n de (?:las )?tablas salariales|actualizar (?:las )?tablas salariales|nuevas tablas|tablas salariales[^.!?]{0,180}(?:se )?incrementar[aá]n?/i.test(text)) types.add('salary_tables');
   if (/revisi[oó]n salarial|incremento salarial|subida salarial|porcentaje.*salari/i.test(text)) types.add('salary_review');
   if (/salario m[ií]nimo interprofesional|\bSMI\b/i.test(text)) types.add('smi_trigger');
   if (/atrasos/i.test(text)) types.add('arrears');
@@ -184,11 +184,14 @@ export function extractOperationalEvent({ text, sourceUrl = null, sourceId = nul
   };
 }
 
-export async function extractFromBoeUrl(url) {
+export async function fetchBoeText(url) {
   const res = await fetch(url, { headers: { 'user-agent': 'wealth-engine-convenio-watch/0.1' } });
   if (!res.ok) throw new Error(`BOE fetch failed: ${res.status} ${res.statusText}`);
-  const html = await res.text();
-  const text = htmlToText(html);
+  return htmlToText(await res.text());
+}
+
+export async function extractFromBoeUrl(url) {
+  const text = await fetchBoeText(url);
   return extractOperationalEvent({ text, sourceUrl: url });
 }
 
