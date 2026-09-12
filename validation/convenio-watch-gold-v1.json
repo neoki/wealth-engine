@@ -57,6 +57,30 @@
         "BOE states a final salary-review percentage of 3.13% for the cited functional levels."
       ],
       "reviewNotes": "Important counterexample to simplistic percentage extraction: the operative change is triggered by an SMI-linked guarantee clause and affects specified levels, so the system must capture scope and trigger."
+    },
+    {
+      "sourceId": "BOE-A-2026-18631",
+      "sourceUrl": "https://www.boe.es/eli/es/res/2026/08/25/(11)",
+      "publicationDate": "2026-09-04",
+      "agreementName": "Convenio colectivo nacional para las empresas dedicadas a los servicios de campo para actividades de reposición y servicios de marketing operacional 2026-2029",
+      "agreementCode": "99016925012009",
+      "changeTypes": ["new_agreement", "salary_tables", "retroactive_economic_effect", "company_agreement_adaptation", "ipc_contingent_payment"],
+      "effectiveFrom": "2026-01-01",
+      "retroactive": true,
+      "deadline": null,
+      "requiredActions": [
+        "Identify client companies within the national functional scope for field replenishment and operational-marketing services and review applicability with the adviser.",
+        "Review economic/payroll effects from 2026-01-01 because the agreement states economic effect from that date despite publication on 2026-09-04, subject to provisions with their own specific effects.",
+        "For companies with their own agreements, review adaptation from publication date in matters without statutory priority of application, especially salary structure and maximum annual working time.",
+        "Load the 2026 salary tables and retain the future conditional rule: if final 2026 CPI exceeds 3.5%, up to 3.75%, a non-consolidating compensatory payment equal to the difference is due in the payroll following publication of final 2026 CPI."
+      ],
+      "evidence": [
+        "BOE identifies agreement code 99016925012009 and national scope.",
+        "Article 4 states validity from 2026-01-01 through 2029-12-31 and economic effects from 2026-01-01 regardless of publication date, except where specific effects are stated.",
+        "The agreement states that company agreements in force at publication must adapt from publication date in matters where they lack priority of application, especially salary structure and maximum annual working time.",
+        "The published salary rule sets a 3.5% increase for 2026 and a non-consolidating compensatory payment if final 2026 CPI is above 3.5%, capped at 3.75%, payable in the payroll following publication of final CPI."
+      ],
+      "reviewNotes": "High-value current example: published eight months after economic effect begins, introduces a new sector agreement, can require review of existing company agreements, and creates a future event-triggered payroll obligation. This tests temporal rules and interactions between agreements, not merely table extraction."
     }
   ],
   "evaluationRules": {
