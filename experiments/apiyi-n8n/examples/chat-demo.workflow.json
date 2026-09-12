@@ -1,0 +1,32 @@
+{
+  "name": "APIYI minimal chat demo",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "When clicking ‘Execute workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [260, 300]
+    },
+    {
+      "parameters": {
+        "operation": "chat",
+        "chatModel": "gemini-2.5-pro",
+        "prompt": "Explain in one sentence what an n8n community node is."
+      },
+      "id": "apiyi-node",
+      "name": "APIYI",
+      "type": "n8n-nodes-apiyi-wealth-engine.apiyi",
+      "typeVersion": 1,
+      "position": [520, 300]
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [[{"node": "APIYI", "type": "main", "index": 0}]]
+    }
+  },
+  "active": false,
+  "settings": {}
+}
