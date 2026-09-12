@@ -1,4 +1,4 @@
-import { extractFromBoeUrl } from './convenio-watch-extractor-v1.mjs';
+import { extractFromBoeUrl } from './convenio-watch-extractor-v2.mjs';
 
 const CASES = [
   {
@@ -74,9 +74,7 @@ function checks(result, expect) {
   eq('retroactive', result.retroactive, expect.retroactive);
   if ('deadlineType' in expect) eq('deadline.type', result.deadline?.type ?? null, expect.deadlineType);
   if ('deadlineDate' in expect) eq('deadline.resolvedCalendarDate', result.deadline?.resolvedCalendarDate ?? null, expect.deadlineDate);
-  for (const t of expect.changeTypesAll ?? []) {
-    c.push({ name: `changeTypes includes ${t}`, ok: result.changeTypes.includes(t), actual: result.changeTypes, expected: t });
-  }
+  for (const t of expect.changeTypesAll ?? []) c.push({ name: `changeTypes includes ${t}`, ok: result.changeTypes.includes(t), actual: result.changeTypes, expected: t });
   if (expect.obligation) {
     const o = result.obligations?.[0] ?? null;
     eq('obligation.type', o?.type ?? null, expect.obligation.type);
