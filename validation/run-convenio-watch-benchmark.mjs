@@ -1,4 +1,4 @@
-import { extractFromBoeUrl } from './convenio-watch-extractor-v0.mjs';
+import { extractFromBoeUrl } from './convenio-watch-extractor-v1.mjs';
 
 const CASES = [
   {
@@ -40,6 +40,27 @@ const CASES = [
       deadlineDate: null,
       changeTypesAll: ['salary_tables', 'smi_trigger', 'arrears']
     }
+  },
+  {
+    id: 'BOE-A-2026-18631',
+    url: 'https://www.boe.es/eli/es/res/2026/08/25/(11)',
+    expect: {
+      sourceId: 'BOE-A-2026-18631',
+      publicationDate: '2026-09-04',
+      agreementCode: '99016925012009',
+      effectiveFrom: '2026-01-01',
+      retroactive: true,
+      changeTypesAll: ['new_agreement', 'salary_review', 'ipc_contingent_payment'],
+      obligation: {
+        type: 'conditional_payment',
+        metric: 'IPC',
+        thresholdPercent: 3.5,
+        capPercent: 3.75,
+        action: 'pay_compensatory_amount',
+        deadlineType: 'event_relative',
+        status: 'latent'
+      }
+    }
   }
 ];
 
@@ -55,6 +76,16 @@ function checks(result, expect) {
   if ('deadlineDate' in expect) eq('deadline.resolvedCalendarDate', result.deadline?.resolvedCalendarDate ?? null, expect.deadlineDate);
   for (const t of expect.changeTypesAll ?? []) {
     c.push({ name: `changeTypes includes ${t}`, ok: result.changeTypes.includes(t), actual: result.changeTypes, expected: t });
+  }
+  if (expect.obligation) {
+    const o = result.obligations?.[0] ?? null;
+    eq('obligation.type', o?.type ?? null, expect.obligation.type);
+    eq('obligation.metric', o?.condition?.metric ?? null, expect.obligation.metric);
+    eq('obligation.thresholdPercent', o?.condition?.thresholdPercent ?? null, expect.obligation.thresholdPercent);
+    eq('obligation.capPercent', o?.condition?.capPercent ?? null, expect.obligation.capPercent);
+    eq('obligation.action', o?.action ?? null, expect.obligation.action);
+    eq('obligation.deadline.type', o?.deadline?.type ?? null, expect.obligation.deadlineType);
+    eq('obligation.status', o?.status ?? null, expect.obligation.status);
   }
   return c;
 }
