@@ -1,11 +1,16 @@
 {
   "id": "convenio-watch",
-  "status": "candidate_not_active",
+  "status": "active_validation",
   "category": "traditional_b2b",
   "thesis": "Spanish labor advisory firms need same-day, vendor-neutral monitoring of collective-agreement publications across BOE, autonomous-community journals and provincial bulletins, mapped to the convention codes and client companies they already manage.",
   "buyer": "labor advisory firms, payroll bureaus and multi-company HR teams",
   "problem": "Agreement changes are published across different official gazettes; existing payroll suites validate demand for alerts but often tie the feature to their own ecosystem or merely announce that a document changed.",
   "wedge": "Customer supplies the REGCON agreement codes already used in payroll. The service watches official gazettes directly, matches new publications to those codes, summarizes what changed, states effective/retroactive dates, and identifies the customer's affected companies. REGCON is used as a secondary source/fallback, not the only same-day source.",
+  "ingestionStrategy": {
+    "principle": "Prefer structured official sources before document conversion. Use BOE open-data APIs and DOG RSS/structured feeds for discovery and metadata; fetch the authoritative linked document only when content extraction is required.",
+    "markitdownRole": "Use Microsoft MarkItDown as a low-cost normalization fallback for PDF/Office/HTML/XML and other source documents into LLM-friendly Markdown. Do not depend on it for discovery and do not assume PDF layout fidelity is perfect.",
+    "pipeline": "official API/RSS/index -> candidate publication -> authoritative document -> Markdown normalization -> rule/LLM extraction -> historical diff -> impact mapping -> human-review gate"
+  },
   "mvp": {
     "scope": "Galicia first: BOE + DOG + BOP A Coruna/Lugo/Ourense/Pontevedra, then national expansion",
     "input": "CSV/list of REGCON agreement codes and internal client/company labels; no employee personal data required",
@@ -25,14 +30,15 @@
     "advisor": "EUR 79/month up to 50 watched agreement codes",
     "pro": "EUR 149/month up to 200 watched agreement codes"
   },
-  "sellBeforeBuildExperiment": "Offer a 14-day concierge pilot to 5 labor advisory firms. Ask for 5-20 REGCON codes; manually/semiautomatically monitor and deliver actionable alerts. Success signal: at least 2 firms agree to pay after pilot or one prepays EUR 79 for the first month.",
-  "killCondition": "No qualified advisory firm agrees to provide its watched agreement-code list or pay after 10 qualified conversations.",
+  "validationExperiment": "Run a shadow pilot against real Galicia publications. Build a small corpus from current BOE/DOG/BOP items, normalize relevant documents, and score whether the system can reliably identify collective-agreement changes, salary tables, effective dates and retroactivity. In parallel, offer a 14-day concierge pilot to qualified labor advisory firms.",
+  "successSignal": "At least 2 qualified firms agree to pay after pilot or one prepays EUR 79 for the first month, plus extraction precision high enough that human review is exception handling rather than full re-reading.",
+  "killCondition": "No qualified advisory firm agrees to provide its watched agreement-code list or pay after 10 qualified conversations, or extraction remains too unreliable to beat manual monitoring economically.",
   "promotionCondition": "At least 3 independent paying advisory firms plus evidence that alerts lead to a recurring operational action.",
-  "whyNotActive": "The experiment portfolio currently has six active slots. This candidate enters the ranked backlog and should replace a weaker experiment rather than silently exceeding the cap.",
   "evidenceNotes": [
-    "Spanish law requires publication in BOE, autonomous-community or provincial official gazette depending on territorial scope.",
-    "REGCON centralizes public agreement data, while competent authorities can remit publication links to the central database within eight working days after gazette publication.",
-    "Commercial payroll suites such as Sage, TeamSystem Nominasol, a3 and CAILAB already market collective-agreement update/alert functionality, validating willingness to pay for the workflow.",
-    "A current independent provider exposes over 13,000 REGCON agreements as structured data/API, showing that raw data aggregation itself is already competitive; the differentiation must be impact and workflow, not catalog access."
+    "BOE exposes open-data APIs including BOE daily summaries.",
+    "DOG information is available through reusable/open formats including RSS feeds.",
+    "Microsoft MarkItDown is explicitly designed to convert documents to Markdown for text-analysis pipelines and supports PDF, Office, HTML, XML and other formats.",
+    "MarkItDown PDF conversion should be treated as normalization, not guaranteed high-fidelity document reconstruction; ambiguous extractions require human review.",
+    "Commercial payroll suites already market collective-agreement update/alert functionality, validating demand for the workflow."
   ]
 }
