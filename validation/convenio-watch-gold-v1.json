@@ -1,0 +1,70 @@
+{
+  "id": "convenio-watch-gold-v1",
+  "purpose": "Gold examples for validating extraction of operational events from authoritative collective-agreement publications. These examples are intentionally event-centric rather than summary-centric.",
+  "schemaVersion": 1,
+  "criticalFields": [
+    "sourceId",
+    "publicationDate",
+    "agreementCode",
+    "agreementName",
+    "changeTypes",
+    "effectiveFrom",
+    "retroactive",
+    "deadline",
+    "requiredActions",
+    "evidence"
+  ],
+  "examples": [
+    {
+      "sourceId": "BOE-A-2026-6383",
+      "sourceUrl": "https://www.boe.es/eli/es/res/2026/03/06/(5)",
+      "publicationDate": "2026-03-18",
+      "agreementName": "Convenio colectivo general de trabajo de la industria textil y de la confección 2024-2026",
+      "agreementCode": null,
+      "changeTypes": ["salary_review", "salary_tables", "payment_deadline"],
+      "effectiveFrom": "2026-01-01",
+      "retroactive": true,
+      "deadline": "2026-04-30",
+      "requiredActions": [
+        "Apply a 3.3% salary-table increase with effect from 2026-01-01 to companies covered by the agreement.",
+        "Pay the agreed increases before 2026-04-30 unless an applicable salary-increase opt-out/inaplicacion has been requested and agreed or approved.",
+        "Flag late payment after 2026-04-30 as carrying a stated 10% late-payment surcharge/mora risk, subject to professional review."
+      ],
+      "evidence": [
+        "BOE states that the 2025 salary tables are increased by 3.3% with effects from 2026-01-01.",
+        "BOE states that affected companies must make the increases effective before 2026-04-30 and that later payment accrues a stated 10% mora surcharge, with the stated exception for approved/agreed inaplicacion."
+      ],
+      "reviewNotes": "High-value example because publication occurs after the effective date and contains both a retroactive payroll consequence and an explicit operational deadline."
+    },
+    {
+      "sourceId": "BOE-A-2026-6736",
+      "sourceUrl": "https://www.boe.es/eli/es/res/2026/03/16/(2)",
+      "publicationDate": "2026-03-23",
+      "agreementName": "X Convenio colectivo de Ilunion Outsourcing, SA",
+      "agreementCode": "90012072011999",
+      "changeTypes": ["salary_review", "salary_tables", "smi_trigger"],
+      "effectiveFrom": "2026-01-01",
+      "retroactive": true,
+      "deadline": null,
+      "requiredActions": [
+        "Update 2026 salary tables for the affected functional levels according to the published annex.",
+        "Review payroll from 2026-01-01 because the published update applies to the period beginning on that date.",
+        "Preserve the causal trigger: the update is linked to the 2026 SMI and the agreement's salary-guarantee clause, not a generic annual uplift."
+      ],
+      "evidence": [
+        "BOE identifies agreement code 90012072011999.",
+        "BOE states that the 2026 SMI has effects from 2026-01-01 and updates the agreement salary tables for 2026 under the salary-guarantee clause.",
+        "BOE states a final salary-review percentage of 3.13% for the cited functional levels."
+      ],
+      "reviewNotes": "Important counterexample to simplistic percentage extraction: the operative change is triggered by an SMI-linked guarantee clause and affects specified levels, so the system must capture scope and trigger."
+    }
+  ],
+  "evaluationRules": {
+    "criticalFieldPrecisionTarget": 0.95,
+    "dateTolerance": "exact",
+    "agreementCodeRule": "Never invent a code. Null is preferable when the authoritative text used by the extractor does not expose one.",
+    "deadlineRule": "Distinguish explicit legal/contractual payment deadlines from inferred operational recommendations.",
+    "retroactivityRule": "Mark retroactive=true when publication occurs after the stated effective date and payroll/financial effects apply from that earlier date.",
+    "actionRule": "Actions must be traceable to source facts and phrased for professional review; do not convert extracted text into autonomous payroll execution."
+  }
+}
