@@ -1,0 +1,64 @@
+{
+  "id": "convenio-watch-temporal-cases-v1",
+  "purpose": "Benchmark temporal reasoning that cannot be represented safely as a guessed calendar date. The engine must preserve event-relative deadlines and resolve them only when payroll/calendar context is available.",
+  "cases": [
+    {
+      "sourceId": "BOE-A-2026-9024",
+      "sourceUrl": "https://www.boe.es/eli/es/res/2026/04/13/(3)",
+      "publicationDate": "2026-04-24",
+      "agreementName": "XIX Convenio colectivo estatal de empresas de consultoria, tecnologias de la informacion y estudios de mercado y de la opinion publica",
+      "agreementCode": "99001355011983",
+      "trigger": {
+        "type": "external_rule_activation",
+        "event": "Publication of Real Decreto 126/2026 setting SMI for 2026",
+        "triggerDate": "2026-02-18"
+      },
+      "effects": [
+        {
+          "type": "salary_table_update",
+          "effectiveFrom": "2026-01-01",
+          "retroactive": true,
+          "scope": "2026 salary tables / affected professional levels"
+        },
+        {
+          "type": "future_salary_table_effect",
+          "effectiveFrom": "2027-01-01",
+          "retroactive": false,
+          "scope": "2027 salary tables"
+        }
+      ],
+      "obligations": [
+        {
+          "action": "Apply the updated salary tables and pay any arrears derived from the SMI-triggered update.",
+          "deadlineType": "event_relative",
+          "deadlineExpression": "no later than the payroll following the month in which the act is published in BOE",
+          "anchorEvent": "BOE publication",
+          "anchorDate": "2026-04-24",
+          "resolvedCalendarDate": null,
+          "resolutionReason": "The authoritative text defines the deadline by payroll occurrence, not by a fixed calendar day. Do not invent a date without the employer's payroll calendar."
+        }
+      ],
+      "requiredExtraction": [
+        "agreement identity and code",
+        "SMI publication as causal trigger",
+        "2026 economic effect from 2026-01-01",
+        "2027 economic effect from 2027-01-01",
+        "arrears obligation",
+        "event-relative payroll deadline",
+        "distinction between source-stated deadline and unresolved calendar date"
+      ],
+      "failureModes": [
+        "Inventing 2026-05-31 or any other fixed deadline from 'nomina siguiente'",
+        "Missing arrears because the publication occurs after the economic effective date",
+        "Treating the update as a generic annual percentage increase instead of an SMI-triggered guarantee",
+        "Applying the update to all levels without preserving the source's affected-level scope"
+      ]
+    }
+  ],
+  "temporalModel": {
+    "deadlineTypes": ["fixed_date", "event_relative", "conditional_future_event", "periodic", "none_stated"],
+    "principle": "Store the legal/contractual temporal expression losslessly before resolving it into an operational task date.",
+    "resolutionRule": "Resolve to a calendar deadline only when every required anchor is known. Otherwise preserve the expression and request/consume the missing operational context.",
+    "productImplication": "A useful alert can be issued before a fixed task date is knowable: the adviser should see the obligation immediately, while the system keeps the deadline unresolved rather than fabricating precision."
+  }
+}
