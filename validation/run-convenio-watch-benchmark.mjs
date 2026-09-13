@@ -73,6 +73,18 @@ const CASES = [
       retroactive: true,
       changeTypesAll: ['new_agreement']
     }
+  },
+  {
+    id: 'BOE-A-2026-8569',
+    url: 'https://www.boe.es/eli/es/res/2026/04/08/(5)',
+    expect: {
+      sourceId: 'BOE-A-2026-8569',
+      publicationDate: '2026-04-18',
+      agreementCode: '99004615011982',
+      effectiveFrom: '2026-01-01',
+      retroactive: true,
+      changeTypesAll: ['new_agreement']
+    }
   }
 ];
 
