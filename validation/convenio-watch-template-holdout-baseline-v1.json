@@ -1,0 +1,11 @@
+{
+  "holdout": "validation/convenio-watch-template-holdout-v1.json",
+  "extractorCommit": "f502263861e5af9efa30c68389c7dc2118ffc3de",
+  "evaluated": "2026-09-13",
+  "expectedTemplates": 4,
+  "detectedExpectedTemplates": 0,
+  "falsePositiveOnNegative": false,
+  "templateRecall": 0.0,
+  "negativePrecision": 1.0,
+  "note": "Baseline frozen before tuning. Existing v3 only recognizes official-complaint resolution and request-resolution families, so none of these four unseen procedural duties are currently represented. This is intentionally a hard holdout, not a claim about overall legal-obligation recall."
+}
