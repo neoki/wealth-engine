@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'validation/convenio-watch-*.mjs'
-      - 'validation/run-convenio-watch-benchmark.mjs'
+      - 'validation/run-convenio-watch-*.mjs'
       - 'package.json'
   workflow_dispatch:
 
@@ -19,4 +19,5 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: npm run check:convenio-model
       - run: npm run check:convenio
