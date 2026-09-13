@@ -27,6 +27,7 @@ jobs:
       - run: npm run check:convenio-portfolio
       - run: npm run check:convenio-template
       - run: npm run check:convenio-template-extraction
+      - run: npm run check:convenio-template-holdout
       - run: npm run check:convenio-real-portfolio
       - run: npm run check:convenio-e2e
       - run: npm run check:convenio-batch
