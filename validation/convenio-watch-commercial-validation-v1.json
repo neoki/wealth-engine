@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "asOf": "2026-09-13",
+  "experiment": "convenio-watch-commercial-validation",
+  "economicTruth": {
+    "revenueEur": 0,
+    "paidCustomers": 0,
+    "pilotsStarted": 0,
+    "portfolioShares": 0,
+    "willingToPay79": 0
+  },
+  "funnel": [
+    "qualified",
+    "contacted",
+    "replied",
+    "portfolio_shared",
+    "pilot_started",
+    "willing_to_pay_79",
+    "paid"
+  ],
+  "leadStates": [
+    {"leadId":"urbagestores-madrid","state":"qualified","contactedAt":null,"result":null},
+    {"leadId":"accofin-terrassa","state":"qualified","contactedAt":null,"result":null},
+    {"leadId":"jenasa-madrid","state":"qualified","contactedAt":null,"result":null},
+    {"leadId":"dbgest-valencia","state":"qualified","contactedAt":null,"result":null},
+    {"leadId":"mcr-gava","state":"qualified","contactedAt":null,"result":null},
+    {"leadId":"yaten-assessors","state":"qualified","contactedAt":null,"result":null},
+    {"leadId":"tribtualey-valencia","state":"qualified","contactedAt":null,"result":null},
+    {"leadId":"catala-reinon-barcelona","state":"qualified","contactedAt":null,"result":null}
+  ],
+  "decisionRules": {
+    "continue": ">=2 portfolio_shared OR >=1 willing_to_pay_79 after first 8 contacted leads",
+    "expandBatch": ">=1 pilot_started",
+    "reworkOffer": "0 portfolio_shared after 8 genuine contacts with confirmed delivery",
+    "strongValidation": ">=3 independent paid firms"
+  },
+  "principle": "A lead list, page view, crawler, commit or deployment is not market traction. Only external behavior advances the funnel."
+}
