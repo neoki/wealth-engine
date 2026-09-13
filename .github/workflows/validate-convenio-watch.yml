@@ -3,6 +3,7 @@ name: Validate Convenio Watch
 on:
   push:
     paths:
+      - '.github/workflows/validate-convenio-watch.yml'
       - 'validation/convenio-watch-*.mjs'
       - 'validation/run-convenio-watch-*.mjs'
       - 'package.json'
