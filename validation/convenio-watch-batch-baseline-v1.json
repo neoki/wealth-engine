@@ -1,0 +1,13 @@
+{
+  "recorded": "2026-09-13",
+  "batch": "validation/convenio-watch-batch-v1.json",
+  "frozenAgainstExtractorCommit": "898fd0429cb8e472d909ec12642bd0b3b2be0906",
+  "workflowRun": 34752111190,
+  "documents": 5,
+  "documentsWithObligations": 0,
+  "documentYield": 0,
+  "obligations": 0,
+  "portfolioItems": 0,
+  "actionableItems": 0,
+  "note": "Untouched first run. Metadata/source identity succeeded for all five documents; canonical operational obligation yield was zero before any tuning against this batch."
+}
