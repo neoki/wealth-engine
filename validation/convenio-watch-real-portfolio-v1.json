@@ -1,0 +1,111 @@
+{
+  "id": "convenio-watch-real-portfolio-v1",
+  "purpose": "Operational portfolio fixture built only from authoritative BOE obligations already validated in Convenio Watch. It tests whether the portfolio engine produces a useful daily queue without inventing calendar precision.",
+  "asOf": "2026-09-13",
+  "upcomingDays": 30,
+  "context": {
+    "events": {
+      "boe_publication_consulting_2026": {
+        "occurredAt": "2026-04-24T00:00:00Z"
+      }
+    }
+  },
+  "obligations": [
+    {
+      "obligationId": "BOE-A-2026-6383:textile-2026-arrears",
+      "sourceId": "BOE-A-2026-6383",
+      "sourceUrl": "https://www.boe.es/eli/es/res/2026/03/06/(5)",
+      "agreementName": "Convenio colectivo general de trabajo de la industria textil y de la confección 2024-2026",
+      "type": "payment",
+      "action": "pay_2026_salary_increases",
+      "status": "active",
+      "deadline": {
+        "type": "fixed_date",
+        "resolvedCalendarDate": "2026-04-30"
+      },
+      "evidenceNote": "BOE states affected companies must make the 2026 increases effective before 2026-04-30, subject to the stated inaplicacion exception."
+    },
+    {
+      "obligationId": "BOE-A-2026-18419:advertising-extraordinary-payment",
+      "sourceId": "BOE-A-2026-18419",
+      "sourceUrl": "https://www.boe.es/eli/es/res/2026/07/30/(11)",
+      "agreementName": "Convenio colectivo estatal para las empresas de publicidad",
+      "type": "payment_schedule",
+      "action": "pay_extraordinary_2_1_percent_differential",
+      "status": "active",
+      "installments": [
+        {
+          "sequence": 1,
+          "deadline": {
+            "type": "calendar_window",
+            "startDate": "2026-10-01",
+            "endDate": "2026-12-31"
+          }
+        },
+        {
+          "sequence": 2,
+          "deadline": {
+            "type": "fixed_date",
+            "resolvedCalendarDate": "2027-04-01",
+            "exclusive": true
+          }
+        },
+        {
+          "sequence": 3,
+          "deadline": {
+            "type": "fixed_date",
+            "resolvedCalendarDate": "2027-10-01",
+            "exclusive": true
+          }
+        }
+      ],
+      "evidenceNote": "BOE requires three equal non-consolidating payments: within Q4 2026, before 2027-04-01, and before 2027-10-01."
+    },
+    {
+      "obligationId": "BOE-A-2026-9024:consulting-smi-arrears",
+      "sourceId": "BOE-A-2026-9024",
+      "sourceUrl": "https://www.boe.es/eli/es/res/2026/04/13/(3)",
+      "agreementName": "XIX Convenio colectivo estatal de empresas de consultoría, tecnologías de la información y estudios de mercado y de la opinión pública",
+      "type": "payment",
+      "action": "pay_smi_triggered_arrears",
+      "status": "triggered",
+      "deadline": {
+        "type": "event_relative",
+        "anchorEvent": "boe_publication_consulting_2026"
+      },
+      "evidenceNote": "BOE states arrears must be paid no later than the payroll following the month of BOE publication. The employer payroll calendar is required to resolve a calendar date safely."
+    },
+    {
+      "obligationId": "BOE-A-2026-18631:ipc-2026-compensation",
+      "sourceId": "BOE-A-2026-18631",
+      "sourceUrl": "https://www.boe.es/eli/es/res/2026/08/25/(11)",
+      "agreementName": "Convenio colectivo nacional para empresas de servicios de campo para actividades de reposición y servicios de marketing operacional 2026-2029",
+      "type": "conditional_payment",
+      "action": "pay_ipc_2026_compensation_if_threshold_met",
+      "status": "latent",
+      "condition": {
+        "metric": "final_2026_cpi",
+        "operator": ">",
+        "threshold": 3.5,
+        "cap": 3.75
+      },
+      "deadline": {
+        "type": "conditional_future_event",
+        "anchorEvent": "final_2026_cpi_publication"
+      },
+      "evidenceNote": "If final 2026 CPI exceeds 3.5%, capped at 3.75%, the agreement creates a non-consolidating compensatory payment in the payroll following publication of final CPI."
+    }
+  ],
+  "expected": {
+    "totalObligations": 4,
+    "totalPortfolioItems": 6,
+    "counts": {
+      "overdue": 1,
+      "needs_context": 1,
+      "waiting_event": 1,
+      "future": 3
+    },
+    "attentionCount": 2,
+    "highestPrioritySourceId": "BOE-A-2026-6383"
+  }
+}
