@@ -1,0 +1,55 @@
+{
+  "purpose": "First frozen holdout for event-driven obligation-template extraction. Selected before adding any detector for these patterns. Cases deliberately mix true operational templates with a negative duration-only clause.",
+  "created": "2026-09-13",
+  "frozenExtractor": "validation/convenio-watch-extractor-v3.mjs@f502263861e5af9efa30c68389c7dc2118ffc3de",
+  "cases": [
+    {
+      "id": "security-redaction-commission",
+      "sourceId": "BOE-A-2026-8569",
+      "url": "https://www.boe.es/eli/es/res/2026/04/08/(5)",
+      "label": "template",
+      "trigger": "explicit_request_received",
+      "action": "constitute_redaction_commission",
+      "deadline": {"value": 15, "unit": "days"},
+      "evidence": "La Comisión de Redacción del Convenio se constituirá en el plazo máximo de 15 días tras la solicitud expresa de cualquiera de las partes firmantes del Convenio Colectivo."
+    },
+    {
+      "id": "security-harassment-commission-meeting",
+      "sourceId": "BOE-A-2026-8569",
+      "url": "https://www.boe.es/eli/es/res/2026/04/08/(5)",
+      "label": "template",
+      "trigger": "harassment_report_received",
+      "action": "convene_harassment_commission",
+      "deadline": {"value": 5, "unit": "business_days"},
+      "evidence": "La comisión se reunirá a la mayor brevedad desde la fecha de recepción de una queja, denuncia o conocimiento de un comportamiento inadecuado y, en ningún caso, en un plazo superior a 5 días laborables."
+    },
+    {
+      "id": "security-harassment-report",
+      "sourceId": "BOE-A-2026-8569",
+      "url": "https://www.boe.es/eli/es/res/2026/04/08/(5)",
+      "label": "template",
+      "trigger": "harassment_report_filed",
+      "action": "issue_harassment_report",
+      "deadline": {"value": 20, "unit": "business_days"},
+      "evidence": "En el plazo máximo de 20 días hábiles desde la denuncia, la comisión debe emitir un informe."
+    },
+    {
+      "id": "security-harassment-final-resolution",
+      "sourceId": "BOE-A-2026-8569",
+      "url": "https://www.boe.es/eli/es/res/2026/04/08/(5)",
+      "label": "template",
+      "trigger": "harassment_report_filed",
+      "action": "complete_harassment_procedure",
+      "deadline": {"value": 30, "unit": "business_days"},
+      "evidence": "La resolución final del procedimiento deberá realizarse en el plazo máximo de 30 días hábiles desde que se interpuso la denuncia."
+    },
+    {
+      "id": "security-fixed-discontinuous-inactivity",
+      "sourceId": "BOE-A-2026-8569",
+      "url": "https://www.boe.es/eli/es/res/2026/04/08/(5)",
+      "label": "negative",
+      "reason": "A maximum permitted state duration is not itself an action that should materialize a task.",
+      "evidence": "El plazo máximo de inactividad entre subcontratas será de tres meses."
+    }
+  ]
+}
