@@ -30,6 +30,45 @@ const template = source.obligationTemplates[0];
 const templateErrors = validateObligationTemplate(template);
 if (templateErrors.length) throw new Error(`invalid template: ${templateErrors.join('; ')}`);
 
+// Two different normative clauses can impose the same semantic rule. They must
+// not collapse onto one templateId merely because trigger/action/deadline match.
+const collisionProbe = canonicalizeObligationTemplates({
+  sourceId: 'BOE-A-TEST-COLLISION',
+  sourceUrl: 'https://example.invalid/source',
+  obligationTemplates: [
+    {
+      trigger: { eventType: 'request_received' },
+      instance: { type: 'request_resolution_duty', action: 'resolve_request', deadline: { type: 'event_relative', anchorEvent: 'request_received', offset: { value: 1, unit: 'months' } } },
+      evidence: ['Artículo 10. Resolver la solicitud en el plazo de un mes desde su recepción.']
+    },
+    {
+      trigger: { eventType: 'request_received' },
+      instance: { type: 'request_resolution_duty', action: 'resolve_request', deadline: { type: 'event_relative', anchorEvent: 'request_received', offset: { value: 1, unit: 'months' } } },
+      evidence: ['Artículo 20. Resolver la solicitud en el plazo de un mes desde su recepción.']
+    }
+  ]
+});
+if (collisionProbe.obligationTemplates.length !== 2) throw new Error('distinct normative clauses were deduplicated');
+if (collisionProbe.obligationTemplates[0].templateId === collisionProbe.obligationTemplates[1].templateId) throw new Error('distinct normative clauses collided on templateId');
+
+const whitespaceProbe = canonicalizeObligationTemplates({
+  sourceId: 'BOE-A-TEST-STABILITY',
+  sourceUrl: 'https://example.invalid/source',
+  obligationTemplates: [
+    {
+      trigger: { eventType: 'request_received' },
+      instance: { type: 'request_resolution_duty', action: 'resolve_request', deadline: { type: 'event_relative', anchorEvent: 'request_received', offset: { value: 1, unit: 'months' } } },
+      evidence: ['Resolver   la solicitud\n en el plazo de un mes.']
+    },
+    {
+      trigger: { eventType: 'request_received' },
+      instance: { type: 'request_resolution_duty', action: 'resolve_request', deadline: { type: 'event_relative', anchorEvent: 'request_received', offset: { value: 1, unit: 'months' } } },
+      evidence: ['Resolver la solicitud en el plazo de un mes.']
+    }
+  ]
+});
+if (whitespaceProbe.obligationTemplates.length !== 1) throw new Error('whitespace-only evidence changes churned template identity');
+
 const event1 = {
   eventId: 'goldcar-complaint-2026-09-10-A',
   eventType: 'official_complaint_received',
@@ -83,6 +122,10 @@ console.log(JSON.stringify({
   ok: true,
   sourceId: source.sourceId,
   templateId: template.templateId,
+  identityRegression: {
+    distinctClauses: collisionProbe.obligationTemplates.length,
+    whitespaceStable: whitespaceProbe.obligationTemplates.length === 1
+  },
   instances: second.obligations.map(item => ({
     obligationId: item.obligationId,
     triggerEventId: item.triggerEventId,
