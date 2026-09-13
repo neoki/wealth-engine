@@ -1,5 +1,6 @@
 import { extractFromBoeUrl as extractV2 } from './convenio-watch-extractor-v2.mjs';
 import { fetchBoeText } from './convenio-watch-extractor-v0.mjs';
+import { canonicalizeObligations } from './convenio-watch-obligation-model.mjs';
 
 const MONTHS = {
   enero:'01', febrero:'02', marzo:'03', abril:'04', mayo:'05', junio:'06',
@@ -69,7 +70,7 @@ export async function extractFromBoeUrl(url) {
   const obligations = [...(base.obligations ?? [])];
   const installment = extractInstallmentObligation(text);
   if (installment) obligations.push(installment);
-  return { ...base, obligations };
+  return canonicalizeObligations({ ...base, obligations });
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
