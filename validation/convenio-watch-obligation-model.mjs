@@ -9,7 +9,18 @@ function stable(value) {
 }
 
 function identityPayload(obligation) {
-  const { obligationId, sourceId, sourceUrl, evidence, ...semantic } = obligation;
+  const {
+    obligationId,
+    sourceId,
+    sourceUrl,
+    evidence,
+    status,
+    lifecycleHistory,
+    appliedTriggerIds,
+    lastEvaluatedAt,
+    deadlineState,
+    ...semantic
+  } = obligation;
   return stable(semantic);
 }
 
