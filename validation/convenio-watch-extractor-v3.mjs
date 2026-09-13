@@ -9,6 +9,7 @@ const SPANISH_NUMBERS = { un:1, una:1, uno:1, dos:2, tres:3, cuatro:4, cinco:5, 
 function isoDate(raw) { if (!raw) return null; const cleaned=raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); const m=cleaned.match(/(\d{1,2})\s+de\s+([a-z]+)\s+(?:de|del)\s+(\d{4})/); return (!m||!MONTHS[m[2]])?null:`${m[3]}-${MONTHS[m[2]]}-${String(Number(m[1])).padStart(2,'0')}`; }
 function addMonths(iso, months) { if(!iso||!Number.isFinite(months)) return null; const d=new Date(`${iso}T00:00:00Z`); if(Number.isNaN(d.getTime())) return null; const day=d.getUTCDate(); d.setUTCDate(1); d.setUTCMonth(d.getUTCMonth()+months); const lastDay=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth()+1,0)).getUTCDate(); d.setUTCDate(Math.min(day,lastDay)); return d.toISOString().slice(0,10); }
 function numberValue(raw) { const cleaned=String(raw).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); return /^\d+$/.test(cleaned)?Number(cleaned):(SPANISH_NUMBERS[cleaned]??null); }
+function normalizedUnit(raw){const cleaned=String(raw).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');if(cleaned.startsWith('dia'))return'days';if(cleaned.startsWith('semana'))return'weeks';if(cleaned.startsWith('mes'))return'months';if(cleaned.startsWith('ano'))return'years';return null;}
 function quarterWindow(q,year){const starts={1:'01-01',2:'04-01',3:'07-01',4:'10-01'},ends={1:'03-31',2:'06-30',3:'09-30',4:'12-31'};return{type:'calendar_window',startDate:`${year}-${starts[q]}`,endDate:`${year}-${ends[q]}`,resolvedCalendarDate:null};}
 
 function extractInstallmentObligation(text){const intro=text.match(/(?:importe|pago) extraordinario[\s\S]{0,900}?en\s+(\w+)\s+pagos?\s+no\s+consolidables?[\s\S]{0,250}?calendario\s*:/i);if(!intro)return null;const segment=text.slice(intro.index??0,(intro.index??0)+1800),installments=[];for(const m of segment.matchAll(/(?:primer|segundo|tercer|cuarto|quinto)\s+pago\s*:\s*dentro\s+del\s+(primer|segundo|tercer|cuarto)\s+trimestre\s+de\s+(20\d{2})/gi)){const q={primer:1,segundo:2,tercer:3,cuarto:4}[m[1].toLowerCase()];installments.push({sequence:installments.length+1,deadline:quarterWindow(q,Number(m[2]))});}for(const m of segment.matchAll(/(?:primer|segundo|tercer|cuarto|quinto)\s+pago\s*:\s*antes\s+del\s+(\d{1,2}\s+de\s+[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+\s+(?:de|del)\s+20\d{2})/gi)){installments.push({sequence:installments.length+1,deadline:{type:'fixed_date',resolvedCalendarDate:isoDate(m[1]),exclusive:true}});}installments.sort((a,b)=>(a.deadline.resolvedCalendarDate??a.deadline.startDate??'').localeCompare(b.deadline.resolvedCalendarDate??b.deadline.startDate??''));installments.forEach((x,i)=>{x.sequence=i+1;});if(installments.length<2)return null;return{type:'extraordinary_payment_schedule',action:'pay_extraordinary_amount',consolidable:/(?:pagos?|cantidades)[^.!?]{0,220}?no\s+(?:tendr[aá]n\s+car[aá]cter\s+)?consolidable|no\s+consolidables/i.test(segment)?false:null,installments,status:'active'};}
@@ -26,6 +27,16 @@ function extractProceduralTemplates(text){
   for(const m of text.matchAll(complaintRe)){
     const days=numberValue(m[1]); if(!days) continue;
     templates.push({trigger:{eventType:'official_complaint_received'},instance:{type:'complaint_resolution_duty',action:'resolve_informational_file',description:'Resolver el expediente informativo tras conocimiento oficial de una denuncia',deadline:{type:'event_relative',anchorEvent:'official_complaint_received',offset:{value:days,unit:'days'}}},evidence:[m[0].replace(/\s+/g,' ').trim()]});
+  }
+
+  // A second family covers explicit duties to resolve a submitted request within a
+  // stated period. It intentionally requires both the resolution verb and an
+  // unambiguous "desde la solicitud" anchor rather than matching generic mentions
+  // of requests or administrative time limits.
+  const requestResolutionRe=/(?:resolviendo|resolver[aá])\s+en\s+el\s+plazo\s+de\s+(\d{1,3}|[a-záéíóú]+)\s+(d[ií]as?|semanas?|mes(?:es)?|a[nñ]os?)\s+desde\s+(?:la\s+fecha\s+de\s+)?(?:presentaci[oó]n\s+de\s+)?la\s+solicitud/gi;
+  for(const m of text.matchAll(requestResolutionRe)){
+    const value=numberValue(m[1]),unit=normalizedUnit(m[2]); if(!value||!unit) continue;
+    templates.push({trigger:{eventType:'request_submitted'},instance:{type:'request_resolution_duty',action:'resolve_request',description:'Resolver una solicitud dentro del plazo normativo',deadline:{type:'event_relative',anchorEvent:'request_submitted',offset:{value,unit}}},evidence:[m[0].replace(/\s+/g,' ').trim()]});
   }
   return templates;
 }
