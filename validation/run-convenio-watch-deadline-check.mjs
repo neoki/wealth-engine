@@ -58,6 +58,32 @@ if (relativeResolved.state !== 'future' || relativeResolved.dueDate !== '2026-05
   throw new Error(`relative deadline context resolution failed: ${JSON.stringify(relativeResolved)}`);
 }
 
+const relativeSixMonths = evaluateDeadline({
+  type: 'event_relative',
+  anchorEvent: 'entry_into_force_current_plan',
+  offset: { value: 6, unit: 'months' }
+}, '2026-09-13', {
+  events: {
+    entry_into_force_current_plan: { occurredAt: '2026-09-04T00:00:00Z' }
+  }
+});
+if (relativeSixMonths.state !== 'future' || relativeSixMonths.dueDate !== '2027-03-04') {
+  throw new Error(`relative month offset failed: ${JSON.stringify(relativeSixMonths)}`);
+}
+
+const monthEndClamp = evaluateDeadline({
+  type: 'event_relative',
+  anchorEvent: 'month_end_anchor',
+  offset: { value: 1, unit: 'months' }
+}, '2026-01-31', {
+  events: {
+    month_end_anchor: { occurredAt: '2026-01-31T00:00:00Z' }
+  }
+});
+if (monthEndClamp.dueDate !== '2026-02-28') {
+  throw new Error(`relative month-end clamp failed: ${JSON.stringify(monthEndClamp)}`);
+}
+
 const active = {
   obligationId: 'BOE-A-TEST:due',
   type: 'payment',
@@ -85,6 +111,8 @@ console.log(JSON.stringify({
   ok: true,
   exclusiveDeadline: fixedExclusive,
   missingContextPreserved: relativeNeedsContext.state,
+  monthOffsetDeadline: relativeSixMonths.dueDate,
+  monthEndClamp: monthEndClamp.dueDate,
   obligationStatus: dueResult.obligation.status,
   installmentStates: installments.map(({ sequence, state, dueDate }) => ({ sequence, state, dueDate }))
 }, null, 2));
