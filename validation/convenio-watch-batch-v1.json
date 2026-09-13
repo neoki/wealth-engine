@@ -1,0 +1,12 @@
+{
+  "purpose": "Fresh operational-yield batch selected before inspecting extractor-v3 behavior. Measures BOE document -> canonical obligation -> portfolio coverage without tuning rules to these cases.",
+  "created": "2026-09-13",
+  "extractorCommit": "898fd0429cb8e472d909ec12642bd0b3b2be0906",
+  "cases": [
+    {"sourceId":"BOE-A-2026-18627","url":"https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-18627","label":"Carrefour commission act"},
+    {"sourceId":"BOE-A-2026-18628","url":"https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-18628","label":"Eurowings pilots agreement"},
+    {"sourceId":"BOE-A-2026-18629","url":"https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-18629","label":"Goldcar amendment"},
+    {"sourceId":"BOE-A-2026-18630","url":"https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-18630","label":"Hospitality ALEH VI amendment"},
+    {"sourceId":"BOE-A-2026-18632","url":"https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-18632","label":"Naturgy IV agreement"}
+  ]
+}
