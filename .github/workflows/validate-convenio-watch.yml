@@ -28,4 +28,5 @@ jobs:
       - run: npm run check:convenio-real-portfolio
       - run: npm run check:convenio-e2e
       - run: npm run check:convenio-batch
+      - run: npm run check:convenio-implementation
       - run: npm run check:convenio
