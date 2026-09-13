@@ -10,9 +10,21 @@ function stable(value) {
   return value;
 }
 
+function normalizedEvidence(evidence) {
+  if (!Array.isArray(evidence)) return [];
+  return evidence
+    .map(item => String(item).replace(/\s+/g, ' ').trim())
+    .filter(Boolean)
+    .sort();
+}
+
 function templateSemantic(template) {
   const { templateId, sourceId, sourceUrl, evidence, ...semantic } = template;
-  return stable(semantic);
+  // For latent rules, the normative clause is part of identity. Two different
+  // clauses in the same source may legitimately share trigger/action/deadline.
+  // Normalize whitespace so harmless extraction formatting does not churn IDs.
+  const evidenceKey = normalizedEvidence(evidence);
+  return stable(evidenceKey.length ? { ...semantic, evidenceKey } : semantic);
 }
 
 export function obligationTemplateId(sourceId, template) {
