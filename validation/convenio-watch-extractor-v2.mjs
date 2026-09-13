@@ -22,6 +22,13 @@ function enrich(base, fullText) {
     const m = text.match(/(?:vigencia|efectos? econ[oó]micos?)[^.!?]{0,180}?(?:desde\s+(?:el\s+)?|retrotra[ií]d[oa]s?\s+(?:al|a\s+el)\s+)(\d{1,2}(?:\s*[.ºª°]+)?\s+de\s+[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+\s+(?:de|del)\s+\d{4})/i);
     effectiveFrom = date(m?.[1]);
   }
+  if (!effectiveFrom) {
+    const m = text.match(/entrar[aá]?\s+en\s+vigor[^.!?]{0,100}?(?:el\s+d[ií]a\s+|el\s+)?(\d{1,2}(?:\s*[.ºª°]+)?\s+de\s+[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+\s+(?:de|del)\s+\d{4})/i);
+    effectiveFrom = date(m?.[1]);
+  }
+  if (!effectiveFrom && base.publicationDate && /entra(?:r[aá])?\s+en\s+vigor[^.!?]{0,100}?desde\s+la\s+fecha\s+de\s+(?:su\s+)?publicaci[oó]n/i.test(text)) {
+    effectiveFrom = base.publicationDate;
+  }
 
   const types = new Set(base.changeTypes ?? []);
   if (/incrementos? salariales?|revisi[oó]n salarial|subida salarial/i.test(text)) types.add('salary_review');
