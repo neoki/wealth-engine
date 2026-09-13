@@ -111,8 +111,10 @@ function extractImplementationDuties(text, base) {
   const planEntryDate = publicationStartsCurrentText(text) ? base.publicationDate : null;
   const numberPattern = '(?:\\d{1,2}|un|una|uno|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|trece|catorce|quince|diecis[eé]is|diecisiete|dieciocho|diecinueve|veinte|veinticuatro)';
   const re = new RegExp(`([^\\n.]{18,520}?)\\s+en\\s+(?:un\\s+)?(?:m[aá]ximo\\s+de|plazo\\s+de)\\s+(${numberPattern})\\s+mes(?:es)?\\s+(?:a\\s+contar\\s+)?desde\\s+(la\\s+firma\\s+del\\s+presente\\s+acuerdo|la\\s+entrada\\s+en\\s+vigor\\s+del\\s+presente\\s+plan)`, 'gi');
+  // Avoid treating common abbreviations inside a duty description as sentence boundaries.
+  const scanText = text.replace(/\betc\.\s*(?=[),])/gi, 'etc');
 
-  for (const m of text.matchAll(re)) {
+  for (const m of scanText.matchAll(re)) {
     const months = numberValue(m[2]);
     if (!months) continue;
     const anchorText = m[3].toLowerCase();
