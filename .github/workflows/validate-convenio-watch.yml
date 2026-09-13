@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/validate-convenio-watch.yml'
       - 'validation/convenio-watch-*.mjs'
+      - 'validation/convenio-watch-*.json'
       - 'validation/run-convenio-watch-*.mjs'
       - 'package.json'
   workflow_dispatch:
@@ -24,4 +25,5 @@ jobs:
       - run: npm run check:convenio-lifecycle
       - run: npm run check:convenio-deadline
       - run: npm run check:convenio-portfolio
+      - run: npm run check:convenio-real-portfolio
       - run: npm run check:convenio
