@@ -1,4 +1,4 @@
-import { canonicalizeObligations, validateObligationEvent } from './convenio-watch-obligation-model.mjs';
+import { canonicalizeObligations, obligationId, validateObligationEvent } from './convenio-watch-obligation-model.mjs';
 
 const fixture = {
   sourceId: 'BOE-A-TEST-1',
@@ -37,4 +37,22 @@ if (!first.obligations.every(o => o.sourceId === fixture.sourceId && o.sourceUrl
 const duplicated = canonicalizeObligations({ ...fixture, obligations: [fixture.obligations[0], fixture.obligations[0]] });
 if (duplicated.obligations.length !== 1) throw new Error('duplicate semantic obligation was not removed');
 
-console.log(JSON.stringify({ ok: true, obligationIds: first.obligations.map(o => o.obligationId) }, null, 2));
+const canonical = first.obligations[0];
+const mutated = {
+  ...canonical,
+  status: 'due',
+  lifecycleHistory: [{ from: 'latent', to: 'triggered' }, { from: 'triggered', to: 'due' }],
+  appliedTriggerIds: ['INE-IPC-2026-FINAL'],
+  lastEvaluatedAt: '2027-02-01T00:00:00Z',
+  deadlineState: { state: 'due', dueDate: '2027-02-01' }
+};
+const mutatedId = obligationId(fixture.sourceId, mutated);
+if (mutatedId !== canonical.obligationId) {
+  throw new Error(`lifecycle mutation changed obligation identity: ${canonical.obligationId} -> ${mutatedId}`);
+}
+
+console.log(JSON.stringify({
+  ok: true,
+  obligationIds: first.obligations.map(o => o.obligationId),
+  identityStableAcrossLifecycle: true
+}, null, 2));
