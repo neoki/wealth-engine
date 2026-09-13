@@ -1,0 +1,37 @@
+{
+  "purpose": "Blind-ish holdout set selected after extractor v2 was frozen. Do not tune extractor rules against these cases before recording the first-run result.",
+  "frozenExtractor": "validation/convenio-watch-extractor-v2.mjs@7627b59e620c470eff19cc1e9d7153c03d679cb2",
+  "created": "2026-09-13",
+  "cases": [
+    {
+      "id": "BOE-A-2026-9023",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-9023",
+      "reason": "Partial agreement; salary tables; SMI wording; multi-region sector agreement.",
+      "expect": {"sourceId":"BOE-A-2026-9023","publicationDate":"2026-04-24","agreementCode":"99003385011981"}
+    },
+    {
+      "id": "BOE-A-2026-6731",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-6731",
+      "reason": "Company agreement with updated 2026 salary tables.",
+      "expect": {"sourceId":"BOE-A-2026-6731","publicationDate":"2026-03-23","agreementCode":"90101772012014"}
+    },
+    {
+      "id": "BOE-A-2026-3873",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-3873",
+      "reason": "State-wide industrial agreement; revision and salary increase.",
+      "expect": {"sourceId":"BOE-A-2026-3873","publicationDate":"2026-02-19","agreementCode":"99002255011981"}
+    },
+    {
+      "id": "BOE-A-2026-8008",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-8008",
+      "reason": "Explicit adaptation of salary tables to 2026 SMI.",
+      "expect": {"sourceId":"BOE-A-2026-8008","publicationDate":"2026-04-09","agreementCode":"90007282011991"}
+    },
+    {
+      "id": "BOE-A-2026-5850",
+      "url": "https://www.boe.es/eli/es/res/2026/03/02/(3)",
+      "reason": "Full company agreement with economic effects predating publication; tests retroactivity on a non-table-only document.",
+      "expect": {"sourceId":"BOE-A-2026-5850","publicationDate":"2026-03-12","effectiveFrom":"2025-01-01","retroactive":true}
+    }
+  ]
+}
