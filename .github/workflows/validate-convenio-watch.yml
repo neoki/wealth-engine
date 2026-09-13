@@ -22,4 +22,6 @@ jobs:
       - run: npm ci
       - run: npm run check:convenio-model
       - run: npm run check:convenio-lifecycle
+      - run: npm run check:convenio-deadline
+      - run: npm run check:convenio-portfolio
       - run: npm run check:convenio
