@@ -1,0 +1,25 @@
+{
+  "recorded": "2026-09-13",
+  "holdout": "validation/convenio-watch-holdout-v1.json",
+  "extractorBlobSha": "7627b59e620c470eff19cc1e9d7153c03d679cb2",
+  "score": 0.875,
+  "passed": 14,
+  "total": 16,
+  "method": "Deterministic trace of the frozen extractor against the official BOE HTML/text for the five frozen holdout documents. Direct runtime network access was unavailable in the automation container, so the unchanged extractor regexes were evaluated against the official source text retrieved independently before any rule changes.",
+  "results": [
+    {"id":"BOE-A-2026-9023","passed":3,"total":3},
+    {"id":"BOE-A-2026-6731","passed":3,"total":3},
+    {"id":"BOE-A-2026-3873","passed":3,"total":3},
+    {"id":"BOE-A-2026-8008","passed":3,"total":3},
+    {
+      "id":"BOE-A-2026-5850",
+      "passed":2,
+      "total":4,
+      "failures":[
+        {"field":"effectiveFrom","expected":"2025-01-01","actual":null,"cause":"The source uses 'efectos económicos ... quedarán retrotraídos al 1.º de enero de 2025'; v2 only recognises desde-style effect expressions."},
+        {"field":"retroactive","expected":true,"actual":false,"cause":"Derived from missing effectiveFrom."}
+      ]
+    }
+  ],
+  "rule": "This file is immutable evidence of the first untouched holdout result. Future extractor changes must not rewrite this baseline."
+}
