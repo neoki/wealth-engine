@@ -1,0 +1,37 @@
+{
+  "purpose": "Second holdout selected after the v1 retroactivity fix. Freeze before any further extractor tuning. Includes full agreements, territorial remuneration agreements, and a recent multi-payment agreement.",
+  "frozenExtractor": "validation/convenio-watch-extractor-v2.mjs@9a78bdfc2009c8adfbdd667f4f9784e507cf11ca",
+  "created": "2026-09-13",
+  "cases": [
+    {
+      "id": "BOE-A-2026-18419",
+      "url": "https://www.boe.es/eli/es/res/2026/07/30/(11)",
+      "reason": "Recent advertising-sector agreement with retroactive general effects plus three separate extraordinary-payment windows.",
+      "expect": {"sourceId":"BOE-A-2026-18419","publicationDate":"2026-09-01","agreementCode":"99004225011981","effectiveFrom":"2026-01-01","retroactive":true}
+    },
+    {
+      "id": "BOE-A-2026-8569",
+      "url": "https://www.boe.es/eli/es/res/2026/04/08/(5)",
+      "reason": "Long full security-sector agreement; effective date is expressed as 'entrará en vigor' rather than the patterns used during development.",
+      "expect": {"sourceId":"BOE-A-2026-8569","publicationDate":"2026-04-18","agreementCode":"99004615011982","effectiveFrom":"2026-01-01","retroactive":true}
+    },
+    {
+      "id": "BOE-A-2026-4641",
+      "url": "https://www.boe.es/eli/es/res/2026/02/16/(1)",
+      "reason": "Long social-intervention agreement; bare 'código <number>' wording and multi-year salary increments.",
+      "expect": {"sourceId":"BOE-A-2026-4641","publicationDate":"2026-02-27","agreementCode":"99100155012015","effectiveFrom":"2026-01-01","retroactive":true}
+    },
+    {
+      "id": "BOE-A-2026-7279",
+      "url": "https://www.boe.es/eli/es/res/2026/03/16/(7)",
+      "reason": "One national publication incorporates three territorial remuneration agreements with different conditional structures; no single global effective date is asserted in the holdout.",
+      "expect": {"sourceId":"BOE-A-2026-7279","publicationDate":"2026-03-30","agreementCode":"99008725011994"}
+    },
+    {
+      "id": "BOE-A-2026-5694",
+      "url": "https://www.boe.es/eli/es/res/2026/02/25/(7)",
+      "reason": "Long state framework agreement whose general validity begins on publication while salary tables contain earlier periods.",
+      "expect": {"sourceId":"BOE-A-2026-5694","publicationDate":"2026-03-11","agreementCode":"99100055012011","effectiveFrom":"2026-03-11","retroactive":false}
+    }
+  ]
+}
