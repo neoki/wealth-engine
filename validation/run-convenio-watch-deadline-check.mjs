@@ -84,6 +84,37 @@ if (monthEndClamp.dueDate !== '2026-02-28') {
   throw new Error(`relative month-end clamp failed: ${JSON.stringify(monthEndClamp)}`);
 }
 
+const businessDaysWithoutCalendar = evaluateDeadline({
+  type: 'event_relative',
+  anchorEvent: 'complaint_received',
+  offset: { value: 3, unit: 'business_days' }
+}, '2026-09-13', {
+  events: {
+    complaint_received: { occurredAt: '2026-09-11T00:00:00Z' }
+  }
+});
+if (businessDaysWithoutCalendar.state !== 'needs_context' || businessDaysWithoutCalendar.reason !== 'business_calendar_required') {
+  throw new Error(`business-day deadline should require explicit calendar: ${JSON.stringify(businessDaysWithoutCalendar)}`);
+}
+
+const businessDaysWithCalendar = evaluateDeadline({
+  type: 'event_relative',
+  anchorEvent: 'complaint_received',
+  offset: { value: 3, unit: 'business_days' }
+}, '2026-09-13', {
+  events: {
+    complaint_received: { occurredAt: '2026-09-11T00:00:00Z' }
+  },
+  businessCalendar: {
+    type: 'explicit',
+    weekendDays: [0, 6],
+    holidays: ['2026-09-15']
+  }
+});
+if (businessDaysWithCalendar.state !== 'future' || businessDaysWithCalendar.dueDate !== '2026-09-17') {
+  throw new Error(`business-day deadline calendar resolution failed: ${JSON.stringify(businessDaysWithCalendar)}`);
+}
+
 const active = {
   obligationId: 'BOE-A-TEST:due',
   type: 'payment',
@@ -113,6 +144,8 @@ console.log(JSON.stringify({
   missingContextPreserved: relativeNeedsContext.state,
   monthOffsetDeadline: relativeSixMonths.dueDate,
   monthEndClamp: monthEndClamp.dueDate,
+  businessDaysWithoutCalendar: businessDaysWithoutCalendar.state,
+  businessDaysWithCalendar: businessDaysWithCalendar.dueDate,
   obligationStatus: dueResult.obligation.status,
   installmentStates: installments.map(({ sequence, state, dueDate }) => ({ sequence, state, dueDate }))
 }, null, 2));
