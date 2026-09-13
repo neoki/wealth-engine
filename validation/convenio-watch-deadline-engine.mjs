@@ -19,10 +19,41 @@ function previousDate(iso) {
   return new Date(d.getTime() - DAY_MS).toISOString().slice(0, 10);
 }
 
-export function addOffset(iso, offset) {
+function isWeekend(iso, weekendDays = [0, 6]) {
+  const day = new Date(`${iso}T00:00:00Z`).getUTCDay();
+  return weekendDays.includes(day);
+}
+
+function normalizeBusinessCalendar(calendar) {
+  if (!calendar || calendar.type !== 'explicit') return null;
+  const weekendDays = Array.isArray(calendar.weekendDays) && calendar.weekendDays.length
+    ? calendar.weekendDays.map(Number).filter(day => Number.isInteger(day) && day >= 0 && day <= 6)
+    : [0, 6];
+  const holidays = new Set((calendar.holidays ?? []).map(dateOnly).filter(Boolean));
+  return { weekendDays, holidays };
+}
+
+function addBusinessDays(iso, value, calendar) {
+  const normalized = normalizeBusinessCalendar(calendar);
+  if (!normalized) return null;
+  let remaining = value;
+  let current = iso;
+  while (remaining > 0) {
+    const d = new Date(`${current}T00:00:00Z`);
+    d.setUTCDate(d.getUTCDate() + 1);
+    current = d.toISOString().slice(0, 10);
+    if (isWeekend(current, normalized.weekendDays) || normalized.holidays.has(current)) continue;
+    remaining -= 1;
+  }
+  return current;
+}
+
+export function addOffset(iso, offset, options = {}) {
   const value = Number(offset?.value);
   const unit = offset?.unit;
-  if (!Number.isFinite(value) || value < 0 || !['days', 'weeks', 'months', 'years'].includes(unit)) return null;
+  if (!Number.isFinite(value) || value < 0 || !['days', 'weeks', 'months', 'years', 'business_days'].includes(unit)) return null;
+
+  if (unit === 'business_days') return addBusinessDays(iso, value, options.businessCalendar);
 
   const d = new Date(`${iso}T00:00:00Z`);
   if (unit === 'days') d.setUTCDate(d.getUTCDate() + value);
@@ -84,14 +115,26 @@ export function evaluateDeadline(deadline, asOf, context = {}) {
 
     const occurredAt = dateOnly(event.occurredAt);
     if (occurredAt && deadline.offset) {
-      const dueDate = addOffset(occurredAt, deadline.offset);
+      const dueDate = addOffset(occurredAt, deadline.offset, { businessCalendar: context.businessCalendar });
       if (dueDate) {
         return {
           ...evaluateDeadline({ type: 'fixed_date', resolvedCalendarDate: dueDate, exclusive: deadline.exclusive }, today, context),
           anchorEvent: deadline.anchorEvent,
           eventOccurredAt: event.occurredAt,
           offset: deadline.offset,
-          reason: 'event_relative_resolved_from_offset'
+          reason: deadline.offset.unit === 'business_days'
+            ? 'event_relative_resolved_from_business_calendar'
+            : 'event_relative_resolved_from_offset'
+        };
+      }
+      if (deadline.offset.unit === 'business_days') {
+        return {
+          state: 'needs_context',
+          dueDate: null,
+          anchorEvent: deadline.anchorEvent,
+          eventOccurredAt: event.occurredAt,
+          offset: deadline.offset,
+          reason: 'business_calendar_required'
         };
       }
     }
