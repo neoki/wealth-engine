@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "check": "node --check server.js && node --check pages.js && node --check margin-data.js && node --check opportunities.js && node --check source-checks.js && node --check society-engine.js && node --check scripts/check-sources.mjs && node scripts/check-society.mjs && node --check validation/convenio-watch-extractor-v0.mjs && node --check validation/convenio-watch-extractor-v2.mjs && node --check validation/convenio-watch-extractor-v3.mjs && node --check validation/convenio-watch-obligation-model.mjs && node --check validation/run-convenio-watch-model-check.mjs && node validation/run-convenio-watch-model-check.mjs && node --check validation/run-convenio-watch-benchmark.mjs",
+    "check": "node --check server.js && node --check pages.js && node --check margin-data.js && node --check opportunities.js && node --check source-checks.js && node --check society-engine.js && node --check scripts/check-sources.mjs && node scripts/check-society.mjs && node --check validation/convenio-watch-extractor-v0.mjs && node --check validation/convenio-watch-extractor-v2.mjs && node --check validation/convenio-watch-extractor-v3.mjs && node --check validation/convenio-watch-obligation-model.mjs && node --check validation/convenio-watch-obligation-lifecycle.mjs && node --check validation/run-convenio-watch-model-check.mjs && node validation/run-convenio-watch-model-check.mjs && node --check validation/run-convenio-watch-lifecycle-check.mjs && node validation/run-convenio-watch-lifecycle-check.mjs && node --check validation/run-convenio-watch-benchmark.mjs",
     "check:convenio": "node validation/run-convenio-watch-benchmark.mjs",
-    "check:convenio-model": "node validation/run-convenio-watch-model-check.mjs"
+    "check:convenio-model": "node validation/run-convenio-watch-model-check.mjs",
+    "check:convenio-lifecycle": "node validation/run-convenio-watch-lifecycle-check.mjs"
   },
   "engines": {
     "node": ">=20"
