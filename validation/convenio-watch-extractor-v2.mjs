@@ -5,7 +5,12 @@ const MONTHS = { enero:'01', febrero:'02', marzo:'03', abril:'04', mayo:'05', ju
 function num(raw) { return raw ? Number(raw.replace(',', '.')) : null; }
 function date(raw) {
   if (!raw) return null;
-  const m = raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').match(/(\d{1,2})\s+de\s+([a-z]+)\s+(?:de|del)\s+(\d{4})/);
+  const cleaned = raw
+    .replace(/(\d{1,2})\s*[.ºª°]+/g, '$1')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+  const m = cleaned.match(/(\d{1,2})\s+de\s+([a-z]+)\s+(?:de|del)\s+(\d{4})/);
   if (!m || !MONTHS[m[2]]) return null;
   return `${m[3]}-${MONTHS[m[2]]}-${String(Number(m[1])).padStart(2,'0')}`;
 }
@@ -14,7 +19,7 @@ function enrich(base, fullText) {
   const text = fullText || (base.evidence ?? []).join(' ');
   let effectiveFrom = base.effectiveFrom;
   if (!effectiveFrom) {
-    const m = text.match(/(?:vigencia|efectos? econ[oó]micos?)[^.!?]{0,120}?desde\s+(?:el\s+)?(\d{1,2}\s+de\s+[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+\s+(?:de|del)\s+\d{4})/i);
+    const m = text.match(/(?:vigencia|efectos? econ[oó]micos?)[^.!?]{0,180}?(?:desde\s+(?:el\s+)?|retrotra[ií]d[oa]s?\s+(?:al|a\s+el)\s+)(\d{1,2}(?:\s*[.ºª°]+)?\s+de\s+[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+\s+(?:de|del)\s+\d{4})/i);
     effectiveFrom = date(m?.[1]);
   }
 
