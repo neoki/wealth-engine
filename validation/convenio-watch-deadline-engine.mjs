@@ -19,6 +19,25 @@ function previousDate(iso) {
   return new Date(d.getTime() - DAY_MS).toISOString().slice(0, 10);
 }
 
+function addOffset(iso, offset) {
+  const value = Number(offset?.value);
+  const unit = offset?.unit;
+  if (!Number.isFinite(value) || value < 0 || !['days', 'weeks', 'months', 'years'].includes(unit)) return null;
+
+  const d = new Date(`${iso}T00:00:00Z`);
+  if (unit === 'days') d.setUTCDate(d.getUTCDate() + value);
+  if (unit === 'weeks') d.setUTCDate(d.getUTCDate() + (value * 7));
+  if (unit === 'years') d.setUTCFullYear(d.getUTCFullYear() + value);
+  if (unit === 'months') {
+    const day = d.getUTCDate();
+    d.setUTCDate(1);
+    d.setUTCMonth(d.getUTCMonth() + value);
+    const lastDay = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate();
+    d.setUTCDate(Math.min(day, lastDay));
+  }
+  return d.toISOString().slice(0, 10);
+}
+
 export function evaluateDeadline(deadline, asOf, context = {}) {
   const today = dateOnly(asOf);
   if (!today) throw new Error('asOf must contain an ISO calendar date');
@@ -61,6 +80,20 @@ export function evaluateDeadline(deadline, asOf, context = {}) {
         anchorEvent: deadline.anchorEvent,
         reason: 'event_relative_resolved_from_context'
       };
+    }
+
+    const occurredAt = dateOnly(event.occurredAt);
+    if (occurredAt && deadline.offset) {
+      const dueDate = addOffset(occurredAt, deadline.offset);
+      if (dueDate) {
+        return {
+          ...evaluateDeadline({ type: 'fixed_date', resolvedCalendarDate: dueDate, exclusive: deadline.exclusive }, today, context),
+          anchorEvent: deadline.anchorEvent,
+          eventOccurredAt: event.occurredAt,
+          offset: deadline.offset,
+          reason: 'event_relative_resolved_from_offset'
+        };
+      }
     }
 
     return {
