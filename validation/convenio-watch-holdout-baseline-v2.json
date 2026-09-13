@@ -1,0 +1,18 @@
+{
+  "holdout": "validation/convenio-watch-holdout-v2.json",
+  "frozenExtractor": "validation/convenio-watch-extractor-v2.mjs@9a78bdfc2009c8adfbdd667f4f9784e507cf11ca",
+  "recorded": "2026-09-13",
+  "score": 0.9130434783,
+  "passed": 21,
+  "total": 23,
+  "method": "Deterministic trace of the frozen extractor regexes against official BOE HTML/text retrieved before any extractor change. The automation container cannot resolve external DNS, so the Node runner could not fetch BOE directly. Only fields with explicit official ground truth were scored.",
+  "results": [
+    {"id":"BOE-A-2026-18419","passed":5,"total":5},
+    {"id":"BOE-A-2026-8569","passed":3,"total":5,"failures":[{"field":"effectiveFrom","expected":"2026-01-01","actual":null},{"field":"retroactive","expected":true,"actual":false}]},
+    {"id":"BOE-A-2026-4641","passed":5,"total":5},
+    {"id":"BOE-A-2026-7279","passed":3,"total":3},
+    {"id":"BOE-A-2026-5694","passed":5,"total":5}
+  ],
+  "diagnosis": "The security-sector agreement states 'entrará en vigor el día 1 de enero de 2026'. The frozen extractor recognizes 'vigencia/efectos ... desde' and retrotraído wording but not this common legal formulation. This causes both effectiveFrom and derived retroactive to fail.",
+  "unscoredObservation": "BOE-A-2026-18419 contains one extraordinary obligation split into three distinct payment windows (Q4 2026, before 2027-04-01, before 2027-10-01). The current top-level deadline field can represent only one deadline, so future obligation modelling must support multiple scheduled installments rather than collapsing the document to one date. BOE-A-2026-8569 also contains a six-month-from-publication commission deadline and an IPC differential guarantee, exposing additional event-relative/conditional patterns not yet scored."
+}
