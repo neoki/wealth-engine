@@ -1,0 +1,99 @@
+{
+  "generatedAt": "2026-09-13",
+  "purpose": "Primer lote de validación comercial para Convenio Watch. No implica contacto realizado ni tracción. Los leads se seleccionan porque sus webs públicas muestran gestión laboral/nóminas/convenios, que encaja con el comprador hipotético.",
+  "status": "qualified_not_contacted",
+  "product": "Convenio Watch",
+  "offer": {
+    "pilot": "5–20 códigos REGCON, sin cobro automático durante el piloto",
+    "priceHypothesis": "79 EUR/mes si aporta utilidad real a la cartera",
+    "successSignal": "la asesoría facilita una muestra de cartera y acepta usar la cola de obligaciones; señal fuerte si declara disposición a pagar"
+  },
+  "leads": [
+    {
+      "id": "urbagestores-madrid",
+      "name": "Urbagestores",
+      "city": "Madrid",
+      "url": "https://www.urbagestores.es/asesoria-laboral",
+      "publicContact": "asesoria@urbagestores.es",
+      "fitSignals": ["convenios colectivos", "nóminas", "Seguridad Social", "contratación laboral"],
+      "priority": "high",
+      "sourceChecked": "2026-09-13"
+    },
+    {
+      "id": "accofin-terrassa",
+      "name": "AccoFinance",
+      "city": "Terrassa / servicio nacional",
+      "url": "https://accofin.es/es/laboral/",
+      "publicContact": "formulario web",
+      "fitSignals": ["elaboración mensual de nóminas", "asesoramiento en convenios colectivos", "gestión laboral online", "empresas con convenios complejos o multisectoriales"],
+      "priority": "high",
+      "sourceChecked": "2026-09-13"
+    },
+    {
+      "id": "jenasa-madrid",
+      "name": "Grupo Jenasa",
+      "city": "Madrid / Alcorcón / Fuenlabrada",
+      "url": "https://www.jenasa.com/asesoria/laboral/",
+      "publicContact": "formulario / teléfonos públicos",
+      "fitSignals": ["confección de nóminas", "consultas sobre convenios colectivos", "equipo laboral con varios profesionales", "varias oficinas"],
+      "priority": "high",
+      "sourceChecked": "2026-09-13"
+    },
+    {
+      "id": "dbgest-valencia",
+      "name": "dbGest",
+      "city": "Valencia",
+      "url": "https://www.asesoriadbgest.com/asesoria-laboral/gestoria-laboral",
+      "publicContact": "formulario web",
+      "fitSignals": ["gestión completa de empleados", "atención a cambios de normativa y convenios colectivos", "nóminas", "Seguridad Social"],
+      "priority": "high",
+      "sourceChecked": "2026-09-13"
+    },
+    {
+      "id": "mcr-gava",
+      "name": "MCR Gestoría Online",
+      "city": "Gavà / servicio online España",
+      "url": "https://www.mcrgestoriaonline.com/asesoria-laboral-online",
+      "publicContact": "solicitud de propuesta web",
+      "fitSignals": ["nóminas y seguros sociales", "revisión de convenios", "pymes y empresas", "operación online"],
+      "priority": "high",
+      "sourceChecked": "2026-09-13"
+    },
+    {
+      "id": "yaten-assessors",
+      "name": "Yaten Assessors",
+      "city": "España",
+      "url": "https://www.yatenasesor.com/asesoria-gestoria-laboral/",
+      "publicContact": "web pública",
+      "fitSignals": ["administración de nóminas", "asesoramiento en convenios", "Seguridad Social", "cumplimiento normativo"],
+      "priority": "medium_high",
+      "sourceChecked": "2026-09-13"
+    },
+    {
+      "id": "tribtualey-valencia",
+      "name": "TributaLey / NG Asesores",
+      "city": "Valencia",
+      "url": "https://asesoriang.com/asesoria-valencia/laboral/",
+      "publicContact": "teléfono / WhatsApp público",
+      "fitSignals": ["500+ clientes declarados", "nóminas", "convenios colectivos", "inspecciones", "gestión laboral"],
+      "priority": "high",
+      "sourceChecked": "2026-09-13"
+    },
+    {
+      "id": "catala-reinon-barcelona",
+      "name": "Català Reinón",
+      "city": "Barcelona",
+      "url": "https://www.catala-reinon.es/asesoria/asesoria-laboral/",
+      "publicContact": "solicitud de presupuesto / teléfono público",
+      "fitSignals": ["asesoría laboral para empresas y pymes", "nóminas", "Seguridad Social", "respaldo de abogados laboralistas"],
+      "priority": "medium_high",
+      "sourceChecked": "2026-09-13"
+    }
+  ],
+  "notes": [
+    "No contar estos leads como señales de mercado hasta que exista respuesta externa.",
+    "Priorizar contactos que mencionan explícitamente convenios complejos/multisectoriales o seguimiento de cambios normativos.",
+    "Registrar cada futuro contacto con identificador de lead y resultado: no_response, curious, portfolio_shared, pilot_started, willing_to_pay, paid.",
+    "No automatizar envíos ni usar direcciones personales sin autorización y herramienta ya autorizada."
+  ]
+}
