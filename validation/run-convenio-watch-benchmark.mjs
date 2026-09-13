@@ -61,6 +61,18 @@ const CASES = [
         status: 'latent'
       }
     }
+  },
+  {
+    id: 'BOE-A-2026-5850',
+    url: 'https://www.boe.es/eli/es/res/2026/03/02/(3)',
+    expect: {
+      sourceId: 'BOE-A-2026-5850',
+      publicationDate: '2026-03-12',
+      agreementCode: '90014783012004',
+      effectiveFrom: '2025-01-01',
+      retroactive: true,
+      changeTypesAll: ['new_agreement']
+    }
   }
 ];
 
