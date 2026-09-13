@@ -19,7 +19,7 @@ function previousDate(iso) {
   return new Date(d.getTime() - DAY_MS).toISOString().slice(0, 10);
 }
 
-function addOffset(iso, offset) {
+export function addOffset(iso, offset) {
   const value = Number(offset?.value);
   const unit = offset?.unit;
   if (!Number.isFinite(value) || value < 0 || !['days', 'weeks', 'months', 'years'].includes(unit)) return null;
