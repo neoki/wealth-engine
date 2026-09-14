@@ -1,0 +1,61 @@
+{
+  "id": "france-einvoice-recovery-sprint",
+  "status": "validated-prospectable-no-build",
+  "discovered_at": "2026-09-14",
+  "origin": "money-hunter",
+  "category": "compliance-operations",
+  "title": "France E-Invoice Recovery Sprint",
+  "one_liner": "A fixed-price recovery check for French SMEs/TPEs that still lack a working e-invoice reception setup after the 1 September 2026 mandate: verify directory status, platform selection, routing address and a real receive-path test, then return a short remediation checklist.",
+  "buyer": "French VAT-established SMEs/TPEs, especially small firms whose accounting stack or adviser has not completed e-invoice reception setup.",
+  "pain": {
+    "description": "Since 1 September 2026 every French business subject to the reform must be able to receive electronic invoices through an approved platform. Official government guidance says more than 10 million economic actors are affected. A March 2026 OpinionWay/Quadient survey reported only 7% fully compliant and only 27% having signed with a platform at that time.",
+    "evidence_count": 4,
+    "pain_gate": "passed",
+    "freshness": "live obligation since 2026-09-01"
+  },
+  "distribution_wedge": {
+    "description": "The official French e-invoicing directory is public and can be used without an account to verify whether a company has a reception platform and electronic invoicing address. This makes readiness externally observable at company level and therefore prospectable without first asking the buyer to self-diagnose.",
+    "limits": [
+      "Do not assume the public portal exposes a bulk API; official API/EDI access is for connected partners.",
+      "Do not automate unsolicited outreach or scrape at scale without a separate legal/privacy review.",
+      "Manual or small-sample validation comes before any public product build."
+    ]
+  },
+  "offer": {
+    "name": "E-Invoice Reception Recovery Sprint",
+    "test_price_eur": 99,
+    "delivery": "manual-first",
+    "scope": [
+      "Confirm whether the business appears in the official directory and has an active reception platform/address.",
+      "Check whether the selected approved platform is correctly associated with the business.",
+      "Run or guide a receive-path test using a compliant structured invoice where feasible.",
+      "Return a one-page remediation checklist and escalation path to the accountant/software provider/platform."
+    ],
+    "not_in_scope": "Tax or legal advice; platform resale; paid implementation work unless separately validated."
+  },
+  "competitive_validation": {
+    "gate": "conditional-pass",
+    "checked_at": "2026-09-14",
+    "findings": [
+      "The platform-selection market is crowded, with well over 100 approved platforms and independent comparison sites.",
+      "The official government directory itself provides free status lookup, so a pure checker has no moat and should not be built.",
+      "The viable wedge is remediation and receive-path verification for firms that discover they are not actually ready, not platform comparison or generic compliance content."
+    ],
+    "conclusion": "Do not build a SaaS checker. Validate whether firms will pay for a fast remediation service once non-readiness is observable."
+  },
+  "decision": {
+    "action": "validate-manually-before-build",
+    "capital_spent_on_build": 0,
+    "service_deployed": false,
+    "public_web": false,
+    "promotion_gate": "Promote only after at least 3 real company checks reveal actionable setup defects and at least 1 buyer shows willingness to pay for remediation.",
+    "next_experiment": "Take a small manually selected sample of French SMEs from public business sources, check only their public directory readiness status, classify failure modes, and estimate how often a paid remediation sprint would create value."
+  },
+  "sources": [
+    "French Ministry of Economy, 1 Sep 2026: reform live; all companies must receive e-invoices.",
+    "French Ministry of Economy/AIFE: public directory can show whether a company has a reception platform and its e-invoicing address.",
+    "European Commission 2026 France country sheet: universal reception from 1 Sep 2026; phased issuance.",
+    "OpinionWay/Quadient, Mar 2026: only 7% reported all prerequisites completed; 27% had signed a platform contract."
+  ],
+  "terminal_metric": "net-capital-generated"
+}
