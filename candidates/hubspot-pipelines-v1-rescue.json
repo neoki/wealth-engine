@@ -1,0 +1,71 @@
+{
+  "id": "hubspot-pipelines-v1-rescue",
+  "status": "watch-validation",
+  "discovered_at": "2026-09-14",
+  "origin": "platform-deprecation-radar",
+  "category": "developer-operations",
+  "title": "HubSpot Pipelines API V1 Rescue",
+  "one_liner": "Fixed-scope migration sprint for agencies and SaaS products whose HubSpot integrations still call Pipelines API V1 before its 2026-12-04 shutdown.",
+  "buyer": "HubSpot agencies, RevOps consultancies, SaaS vendors and internal teams with custom scripts or integrations that read or write deal, ticket or custom-object pipeline configuration through the legacy Pipelines API.",
+  "pain": {
+    "description": "HubSpot will permanently retire Pipelines API V1 on 2026-12-04. Calls using the old endpoints will stop working. This can break deal/ticket routing, provisioning, reporting or configuration sync in custom integrations. The replacement API changes paths and response structure, so migration requires code and regression testing rather than a simple URL substitution.",
+    "evidence_count": 5,
+    "pain_gate": "passed",
+    "deadline": "2026-12-04"
+  },
+  "observable_targeting": {
+    "gate": "passed-in-principle",
+    "method": "Public code repositories, integration documentation and agency-maintained scripts can be scanned for legacy HubSpot pipeline endpoint strings and older HubSpot client patterns before outreach.",
+    "observations": [
+      "HubSpot explicitly recommends auditing codebases for Pipelines V1 calls before the deadline.",
+      "Public repositories and wrappers still expose old HubSpot authentication and legacy API usage patterns, showing that obsolete integrations remain discoverable in code.",
+      "The acquisition path can therefore be code-first: detect legacy endpoint -> verify active commercial project -> contact only plausible buyers.",
+      "Agency portfolios are especially attractive because one relationship can expose multiple affected client integrations."
+    ]
+  },
+  "competitive_validation": {
+    "gate": "provisionally-passed",
+    "checked_at": "2026-09-14",
+    "findings": [
+      "HubSpot documentation and community posts provide migration guidance for free, so information alone has no value.",
+      "HubSpot agencies already advertise audits and migration assistance, confirming a paid service market but also creating competition.",
+      "No dominant low-cost fixed-scope code migration offer surfaced in this pass; the opportunity is likely strongest as a rapid implementation sprint or white-label service for agencies."
+    ],
+    "risk": "The deadline is still several months away and many integrations may already use newer APIs. A generic landing page without prequalified targets would probably waste effort."
+  },
+  "offer": {
+    "name": "HubSpot Pipeline API Rescue Sprint",
+    "scope": [
+      "Scan repository/integration code for legacy pipeline calls",
+      "Map each affected call to the current HubSpot pipeline API",
+      "Patch request and response handling",
+      "Regression-test pipeline reads/writes and downstream parsing",
+      "Document remaining portal-specific risks and cutover checklist"
+    ],
+    "experimental_price_eur": {
+      "min": 390,
+      "max": 1290
+    },
+    "pricing_note": "Quote after code review. Do not promise fixes for unrelated HubSpot workflows, third-party connector internals or portal configuration outside the migration scope."
+  },
+  "validation": {
+    "next_test": "Find 10-20 active commercial repositories, agencies or SaaS products with credible evidence of Pipelines V1 use, prioritizing agencies with multiple HubSpot clients; look for at least one explicit paid-interest signal before building a landing page.",
+    "promotion_gate": "At least one credible buyer requests a code review, migration quote or implementation discussion.",
+    "public_experiment_if_promoted": "hubspot-rescue.rockrai.com",
+    "preferred_infrastructure": "rockrai-experiment-factory on Railway"
+  },
+  "constraints": {
+    "no_paid_ads": true,
+    "no_new_domain": true,
+    "no_paid_services": true,
+    "no_dns_change_without_approval": true,
+    "no_financial_or_irreversible_action_without_approval": true
+  },
+  "decision": {
+    "action": "validate-before-build",
+    "reason": "Hard shutdown date, commercially meaningful failure mode and a plausible code-first acquisition channel make this worth validating, but competition and uncertain prevalence argue against building before target discovery.",
+    "capital_spent_on_build": 0,
+    "service_deployed": false
+  },
+  "terminal_metric": "net-capital-generated"
+}
