@@ -6,6 +6,19 @@
   "buyer": "labor advisory firms, payroll bureaus and multi-company HR teams",
   "problem": "Agreement changes are published across different official gazettes; existing payroll suites validate demand for alerts but often tie the feature to their own ecosystem or merely announce that a document changed.",
   "wedge": "Start from the agreement codes already known by payroll/advisory teams when available. For low-friction onboarding, propose likely company/workplace-to-agreement mappings from public evidence, but never represent those proposals as authoritative until the adviser confirms them. The service watches official gazettes directly, matches new publications to confirmed agreements, summarizes what changed, states effective/retroactive dates, and identifies affected companies.",
+  "currentState": {
+    "asOf": "2026-09-14",
+    "production": "Deployed successfully as an independent Railway project at convenio-watch-production.up.railway.app.",
+    "traffic": "No HTTP requests observed on the current production deployment yet; absence of traffic is not treated as negative demand evidence because distribution has not started.",
+    "commercialReadiness": "Brand-independent landing page is live with SEO metadata and an EUR 79/month offer. Contact and checkout CTAs are intentionally disabled until real destinations are configured.",
+    "blockers": [
+      "real contact destination",
+      "Stripe checkout/payment destination",
+      "own domain if/when explicitly approved and purchased",
+      "qualified prospect distribution"
+    ],
+    "nextDecision": "Do not add product scope merely to create activity. The next meaningful evidence must come from qualified advisory-firm conversations, contact attempts or payment intent."
+  },
   "ingestionStrategy": {
     "principle": "Prefer structured official sources before document conversion. Use BOE open-data APIs and DOG RSS/structured feeds for discovery and metadata; fetch the authoritative linked document only when content extraction is required.",
     "markitdownRole": "Use Microsoft MarkItDown as a low-cost normalization fallback for PDF/Office/HTML/XML and other source documents into LLM-friendly Markdown. Do not depend on it for discovery and do not assume PDF layout fidelity is perfect.",
