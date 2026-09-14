@@ -1,0 +1,59 @@
+{
+  "id": "sendgrid-link-deliverability-rescue",
+  "name": "SendGrid Link Deliverability Rescue",
+  "status": "candidate",
+  "created_at": "2026-09-14",
+  "problem": "SendGrid senders using unbranded ct.sendgrid.net tracking links or branded links without working SSL can lose clicks or trigger security warnings. Twilio says Microsoft Defender blocks sendgrid.net links by default in some configurations, and Gmail is rolling out warnings on non-HTTPS links by the end of October 2026.",
+  "offer": {
+    "type": "fixed-scope remediation sprint",
+    "price_hypothesis_eur": {
+      "single_sender": "149-399",
+      "agency_or_multi_domain": "799-1499"
+    },
+    "deliverables": [
+      "Identify whether click tracking uses generic sendgrid.net or branded tracking domains",
+      "Audit branded-link DNS and SSL/TLS state",
+      "Configure or recreate Link Branding with automatic SSL where appropriate",
+      "Verify click/open tracking and HTTPS resolution with test mail",
+      "Provide before/after evidence"
+    ]
+  },
+  "why_now": [
+    "Twilio added automatic SSL certificate provisioning for Link Branding on 2026-08-27.",
+    "Twilio explicitly recommends SSL for branded links and says Gmail is rolling out warnings on non-HTTPS links by the end of October 2026.",
+    "Twilio support documents that Microsoft Defender can block default sendgrid.net tracking links and that missing SSL on branded links can also cause blocking/security errors."
+  ],
+  "observable_acquisition": {
+    "hypothesis": "Publicly archived emails and indexed newsletters expose ct.sendgrid.net tracking URLs, allowing identification of some affected senders before outreach.",
+    "evidence": [
+      "Search results expose 2026 outbound mail from AlgoArena containing u*.ct.sendgrid.net/ls/click URLs.",
+      "Search results expose 2026 press-release/newsletter material with generic SendGrid tracking URLs, proving the signal is indexable, though results include large enterprises and duplicates."
+    ],
+    "limitations": [
+      "Search-engine discovery is noisy and may surface mirrors, old mail, or senders too large to be plausible customers.",
+      "A generic ct.sendgrid.net link proves unbranded tracking in that message, but not necessarily the sender's current account configuration.",
+      "Do not contact or test live customer infrastructure automatically."
+    ]
+  },
+  "competition": "The implementation is documented by Twilio and can be done internally; the paid value is diagnosis, DNS/SSL remediation, verification, and batch execution for teams/agencies, not proprietary information.",
+  "score_notes": {
+    "pain": "medium-high",
+    "urgency": "high through October 2026",
+    "observability": "medium",
+    "delivery_complexity": "low-medium",
+    "competition": "medium",
+    "revenue_potential": "medium; better for agencies/multi-domain accounts than single senders"
+  },
+  "gate": {
+    "before_public_experiment": "Find at least 10 commercially plausible senders or agencies with recent public evidence of generic SendGrid tracking or broken branded-link SSL; at least 3 should be SMB/mid-market targets with identifiable decision makers.",
+    "promotion_condition": "At least one target confirms the issue matters economically or requests remediation/pricing.",
+    "failure_condition": "If 10-20 plausible targets cannot be found cheaply, or most can self-fix without meaningful friction, archive the candidate."
+  },
+  "public_site": null,
+  "sources": [
+    "https://www.twilio.com/en-us/changelog/ssl-for-branded-links",
+    "https://help.twilio.com/articles/50688232632475",
+    "https://support.sendgrid.com/hc/en-us/articles/10143238252571-Troubleshooting-ERR-CERT-COMMON-NAME_INVALID-Error-for-SSL",
+    "https://blog.google/security/https-by-defau/"
+  ]
+}
