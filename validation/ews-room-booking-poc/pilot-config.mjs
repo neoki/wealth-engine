@@ -7,7 +7,8 @@ export const pilotConfig = {
       'Calendars.ReadWrite',
       'Place.Read.All'
     ],
-    accessBoundary: 'restrict-app-to-pilot-mailbox'
+    accessBoundary: 'exchange-app-rbac-single-room-scope',
+    legacyApplicationAccessPolicy: false
   },
   exchangePolicy: {
     AutomateProcessing: 'AutoAccept',
