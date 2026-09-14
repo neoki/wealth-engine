@@ -3,6 +3,7 @@
   "name": "Exchange EWS to Microsoft Graph Rescue",
   "status": "candidate",
   "created_at": "2026-09-14",
+  "updated_at": "2026-09-14",
   "problem": "Microsoft is phasing out Exchange Web Services (EWS) in Exchange Online. Phased disablement starts on 2026-10-01 and full retirement is scheduled for 2027-04-01. Applications, scripts, room-booking tools, CRM connectors and internal automations that still depend on EWS can lose access to Exchange Online unless they are explicitly allowed during the transition and then migrated to Microsoft Graph.",
   "offer": {
     "type": "fixed-scope migration and continuity sprint",
@@ -20,18 +21,87 @@
       "Produce before/after evidence and remaining exceptions"
     ]
   },
+  "product_wedge": {
+    "name": "vertical EWS compatibility bridge",
+    "thesis": "Do not attempt a universal EWS proxy. Start with one vertical application class whose EWS traffic uses a small, observable subset of operations, translate only those operations to Microsoft Graph, and sell the result as continuity infrastructure to the software vendor, MSP, or affected customer base.",
+    "why_this_wedge": [
+      "Microsoft publishes direct Graph mappings for many common EWS mail, calendar and utility operations.",
+      "Calendar, contact, message and synchronization workloads are sufficiently well mapped to support narrow compatibility layers.",
+      "Microsoft still documents material parity gaps, so a universal drop-in replacement would create large scope and support risk.",
+      "A vertical implementation can constrain the supported SOAP shapes, permissions, recurrence behavior and edge cases to what one application actually emits."
+    ],
+    "best_initial_verticals": [
+      "meeting-room and desk-booking products",
+      "legal/practice-management calendar and contact sync",
+      "legacy CRM calendar/contact synchronization",
+      "MSP-managed internal line-of-business applications"
+    ],
+    "mvp_supported_operations": [
+      "GetUserAvailability / free-busy",
+      "FindItem or calendar-range reads",
+      "GetItem",
+      "CreateItem for calendar events",
+      "UpdateItem for calendar events",
+      "DeleteItem for calendar events",
+      "basic contact list/get/create/update/delete if required by the selected vertical"
+    ],
+    "explicit_non_goals": [
+      "full EWS protocol parity",
+      "public-folder CRUD",
+      "archive-mailbox parity",
+      "every EWS notification model",
+      "Exchange on-premises replacement"
+    ]
+  },
+  "commercial_validation": {
+    "finding": "The compatibility-bridge model is already commercially validated.",
+    "evidence": [
+      "Exchange Sync Bridge markets a drop-in EWS-compatible endpoint that translates legacy Exchange sync traffic to Microsoft Graph without rewriting the client application.",
+      "Third-party market data lists hosted pricing around USD 40/month with a higher plan around USD 60/month and characterizes billing as per active mailbox.",
+      "Exchange Sync Bridge runs an affiliate program paying recurring commission per subscribed mailbox, indicating an expected recurring SaaS/distribution model.",
+      "Nylas documents migration via native Graph or a provider abstraction, confirming demand for an abstraction layer rather than only one-off code rewrites."
+    ],
+    "implication": "Do not build a generic clone. Compete through vertical compatibility, vendor/MSP white-labeling, lower implementation friction, or a narrowly supported operation set with much lower support burden."
+  },
+  "technical_research": {
+    "feasibility": "high for a constrained subset; poor risk/reward for universal compatibility",
+    "evidence": [
+      "Microsoft publishes an EWS-to-Graph API mapping covering utility, message, notification/synchronization and calendar operations.",
+      "Common mappings include CreateItem, GetItem, UpdateItem, DeleteItem, FindItem, GetUserAvailability, SyncFolderItems and related Graph endpoints/delta APIs.",
+      "Microsoft explicitly states that Graph does not yet fully cover several EWS feature areas, including some archive, public-folder, configuration and administration scenarios.",
+      "An open-source EWS proxy from yasoon demonstrates production use of an EWS proxy architecture, although its purpose is not an EWS-to-Graph compatibility bridge.",
+      "Akonadi Microsoft 365 demonstrates that mail, calendar, contacts and tasks can be reimplemented successfully on Graph as an EWS replacement."
+    ],
+    "hard_parts": [
+      "SOAP request parsing and reconstruction of EWS-shaped responses",
+      "Exchange ID translation and persistence where Graph and EWS identifiers differ",
+      "OAuth/Entra tenant consent and application-vs-delegated permission design",
+      "recurring calendar semantics and delta/change tracking",
+      "throttling, retries and Graph-specific error translation",
+      "impersonation/application-permission differences",
+      "feature-gap detection and an explicit unsupported-operation response instead of silent corruption"
+    ],
+    "security_constraints": [
+      "Prefer OAuth and tenant-scoped Graph permissions; never collect user passwords.",
+      "Do not retain mailbox content unless strictly required.",
+      "Minimize Graph scopes and support customer-controlled Entra app registration where possible.",
+      "Provide auditable operation logs without storing message/calendar bodies by default."
+    ]
+  },
   "why_now": [
     "Microsoft states that phased disablement of EWS in Exchange Online begins on 2026-10-01.",
     "Microsoft states that EWS is permanently retired in Exchange Online on 2027-04-01.",
+    "Microsoft says there will be no exceptions past April 2027.",
     "The transition is not always a trivial endpoint swap because Graph has different authentication, permissions and operation models, and Microsoft documents remaining feature-gap considerations.",
     "October 2026 creates a near-term continuity problem even for teams planning a later full migration."
   ],
   "observable_acquisition": {
-    "hypothesis": "Public code exposes concrete EWS usage through Microsoft.Exchange.WebServices.Data, exchangelib and outlook.office365.com/EWS/Exchange.asmx. These signals can identify software products, internal tools, MSP scripts and vendors likely to need migration work.",
+    "hypothesis": "Public code and product documentation expose concrete EWS usage through Microsoft.Exchange.WebServices.Data, exchangelib, outlook.office365.com/EWS/Exchange.asmx, configuration screenshots and migration documentation. These signals can identify software products, internal tools, MSP scripts and vendors likely to need migration or compatibility work.",
     "evidence": [
       "GitHub code search returns public projects using Microsoft.Exchange.WebServices.Data directly.",
       "GitHub code search returns public code pointing directly at https://outlook.office365.com/EWS/Exchange.asmx.",
-      "Examples include room-booking software, PowerShell administration scripts and application code, demonstrating multiple commercial use cases rather than a single niche."
+      "Examples include room-booking software, PowerShell administration scripts and application code, demonstrating multiple commercial use cases rather than a single niche.",
+      "Commercial products and support sites are publishing EWS-to-Graph migration instructions in 2026, demonstrating active installed bases still moving."
     ],
     "limitations": [
       "Public repositories may be abandoned, examples, security tooling or Exchange on-premises code, which is not affected by the Exchange Online retirement.",
@@ -39,24 +109,52 @@
       "Do not probe customer tenants or send outreach automatically."
     ]
   },
-  "competition": "Microsoft provides migration documentation and many Microsoft partners can perform this work. The value proposition must therefore be fast detection, fixed scope, continuity before the October disablement and efficient migration for small integrations or MSP portfolios rather than generic consultancy.",
+  "competition": {
+    "level": "high for generic bridge; medium for verticalized bridge and fixed-scope rescue",
+    "known": [
+      "Exchange Sync Bridge: commercial drop-in EWS-to-Graph bridge",
+      "Microsoft migration tooling, usage reports and EWS code analyzer",
+      "Microsoft partners and specialist migration consultancies",
+      "provider abstraction platforms such as Nylas"
+    ],
+    "positioning_rule": "Never market a generic EWS replacement unless we discover a defensible technical or distribution advantage. Prefer vertical compatibility packs or vendor/MSP partnerships."
+  },
   "score_notes": {
     "pain": "high when EWS is operationally critical",
     "urgency": "very high through October 2026, then high until April 2027",
-    "observability": "medium-high via code and vendor fingerprints",
-    "delivery_complexity": "medium; can become high for feature-gap-heavy integrations",
-    "competition": "medium-high",
-    "revenue_potential": "high compared with micro-audits, especially through MSPs and software vendors"
+    "observability": "medium-high via code, docs and vendor fingerprints",
+    "delivery_complexity": "medium for a narrow vertical; very high for a universal bridge",
+    "competition": "high for generic bridge",
+    "revenue_potential": "high for recurring per-mailbox/per-tenant compatibility or MSP/vendor licensing",
+    "revised_score": "8/10 as a verticalized opportunity, not as a generic clone"
+  },
+  "next_test": {
+    "objective": "Select one software category and prove that its real EWS traffic can be covered by a tiny operation set.",
+    "steps": [
+      "Choose one public EWS-dependent business application with a commercially meaningful installed base.",
+      "Enumerate the exact EWS operations it uses from source, docs or reproducible local behavior.",
+      "Check every operation against Microsoft's current Graph mapping and parity-gap roadmap.",
+      "If <=10 core operations cover the critical workflow, build a local translation proof of concept before any public landing page.",
+      "Only create a public experiment if the PoC works and at least one plausible buyer/vendor/MSP can be identified."
+    ],
+    "pass_condition": "A critical vertical workflow is reproduced through Graph while presenting an EWS-compatible interface using no more than roughly 10 core EWS operations.",
+    "fail_condition": "Required behavior depends heavily on unsupported EWS semantics, public folders, archive/configuration gaps, or a broad/unbounded operation set."
   },
   "gate": {
-    "before_public_experiment": "Find 15 commercially plausible organizations, software vendors or MSPs with recent evidence of EWS use against Exchange Online; at least 5 should have a clear business-critical calendar/mail/contact workflow.",
-    "promotion_condition": "At least one plausible target confirms an active EWS dependency, asks about migration/continuity, or requests pricing.",
-    "failure_condition": "Archive if most observable EWS usage is abandoned/on-premises/example code or if commercially plausible targets cannot be identified cheaply."
+    "before_public_experiment": "Find 15 commercially plausible organizations, software vendors or MSPs with recent evidence of EWS use against Exchange Online; at least 5 should have a clear business-critical calendar/mail/contact workflow, and select one vertical for a constrained compatibility PoC.",
+    "promotion_condition": "At least one plausible target confirms an active EWS dependency, asks about migration/continuity, requests pricing, or a constrained compatibility PoC successfully reproduces a critical workflow with a small operation set.",
+    "failure_condition": "Archive if most observable EWS usage is abandoned/on-premises/example code, commercially plausible targets cannot be identified cheaply, or the chosen vertical requires broad unsupported EWS parity."
   },
   "public_site": null,
   "sources": [
+    "https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-ews-exchange-online",
+    "https://learn.microsoft.com/en-us/graph/migrate-exchange-web-services-overview",
+    "https://learn.microsoft.com/en-us/graph/migrate-exchange-web-services-api-mapping",
     "https://techcommunity.microsoft.com/blog/exchange/exchange-online-ews-your-time-is-almost-up/4492361",
-    "https://learn.microsoft.com/en-us/skypeforbusiness/hybrid/prepare-for-ews-retirement",
-    "https://techcommunity.microsoft.com/blog/exchange/retirement-of-exchange-web-services-in-exchange-online/3924440/"
+    "https://exchangesyncbridge.com/",
+    "https://exchangesyncbridge.com/affiliates/",
+    "https://cli.nylas.com/guides/ews-to-graph-migration",
+    "https://github.com/yasoonOfficial/yasoon-ews-proxy",
+    "https://github.com/mzilinski/akonadi-microsoft365"
   ]
 }
