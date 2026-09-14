@@ -1,7 +1,16 @@
 export function ewsToGraphOperation(op, payload) {
   switch (op) {
-    case 'GetUserAvailability':
-      return { method: 'POST', path: '/me/calendar/getSchedule', body: payload };
+    case 'GetUserAvailability': {
+      const scheduler = payload.scheduler || payload.user || 'me';
+      return {
+        method: 'POST',
+        path:
+          scheduler === 'me'
+            ? '/me/calendar/getSchedule'
+            : `/users/${scheduler}/calendar/getSchedule`,
+        body: payload.body || payload
+      };
+    }
     case 'CreateItem':
       return {
         method: 'POST',
