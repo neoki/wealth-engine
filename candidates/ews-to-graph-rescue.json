@@ -1,0 +1,62 @@
+{
+  "id": "ews-to-graph-rescue",
+  "name": "Exchange EWS to Microsoft Graph Rescue",
+  "status": "candidate",
+  "created_at": "2026-09-14",
+  "problem": "Microsoft is phasing out Exchange Web Services (EWS) in Exchange Online. Phased disablement starts on 2026-10-01 and full retirement is scheduled for 2027-04-01. Applications, scripts, room-booking tools, CRM connectors and internal automations that still depend on EWS can lose access to Exchange Online unless they are explicitly allowed during the transition and then migrated to Microsoft Graph.",
+  "offer": {
+    "type": "fixed-scope migration and continuity sprint",
+    "price_hypothesis_eur": {
+      "single_script_or_small_integration": "490-990",
+      "business_integration": "1490-3990",
+      "msp_or_multi_client_batch": "from 2990"
+    },
+    "deliverables": [
+      "Identify EWS calls and Exchange Online dependencies",
+      "Determine whether temporary allow-list continuity is required before October 2026",
+      "Map EWS operations to Microsoft Graph equivalents and identify feature gaps",
+      "Replace authentication and API calls where feasible",
+      "Test mailbox/calendar/contact behavior against Exchange Online",
+      "Produce before/after evidence and remaining exceptions"
+    ]
+  },
+  "why_now": [
+    "Microsoft states that phased disablement of EWS in Exchange Online begins on 2026-10-01.",
+    "Microsoft states that EWS is permanently retired in Exchange Online on 2027-04-01.",
+    "The transition is not always a trivial endpoint swap because Graph has different authentication, permissions and operation models, and Microsoft documents remaining feature-gap considerations.",
+    "October 2026 creates a near-term continuity problem even for teams planning a later full migration."
+  ],
+  "observable_acquisition": {
+    "hypothesis": "Public code exposes concrete EWS usage through Microsoft.Exchange.WebServices.Data, exchangelib and outlook.office365.com/EWS/Exchange.asmx. These signals can identify software products, internal tools, MSP scripts and vendors likely to need migration work.",
+    "evidence": [
+      "GitHub code search returns public projects using Microsoft.Exchange.WebServices.Data directly.",
+      "GitHub code search returns public code pointing directly at https://outlook.office365.com/EWS/Exchange.asmx.",
+      "Examples include room-booking software, PowerShell administration scripts and application code, demonstrating multiple commercial use cases rather than a single niche."
+    ],
+    "limitations": [
+      "Public repositories may be abandoned, examples, security tooling or Exchange on-premises code, which is not affected by the Exchange Online retirement.",
+      "A code hit does not prove that the organization currently runs that integration against Exchange Online.",
+      "Do not probe customer tenants or send outreach automatically."
+    ]
+  },
+  "competition": "Microsoft provides migration documentation and many Microsoft partners can perform this work. The value proposition must therefore be fast detection, fixed scope, continuity before the October disablement and efficient migration for small integrations or MSP portfolios rather than generic consultancy.",
+  "score_notes": {
+    "pain": "high when EWS is operationally critical",
+    "urgency": "very high through October 2026, then high until April 2027",
+    "observability": "medium-high via code and vendor fingerprints",
+    "delivery_complexity": "medium; can become high for feature-gap-heavy integrations",
+    "competition": "medium-high",
+    "revenue_potential": "high compared with micro-audits, especially through MSPs and software vendors"
+  },
+  "gate": {
+    "before_public_experiment": "Find 15 commercially plausible organizations, software vendors or MSPs with recent evidence of EWS use against Exchange Online; at least 5 should have a clear business-critical calendar/mail/contact workflow.",
+    "promotion_condition": "At least one plausible target confirms an active EWS dependency, asks about migration/continuity, or requests pricing.",
+    "failure_condition": "Archive if most observable EWS usage is abandoned/on-premises/example code or if commercially plausible targets cannot be identified cheaply."
+  },
+  "public_site": null,
+  "sources": [
+    "https://techcommunity.microsoft.com/blog/exchange/exchange-online-ews-your-time-is-almost-up/4492361",
+    "https://learn.microsoft.com/en-us/skypeforbusiness/hybrid/prepare-for-ews-retirement",
+    "https://techcommunity.microsoft.com/blog/exchange/retirement-of-exchange-web-services-in-exchange-online/3924440/"
+  ]
+}
