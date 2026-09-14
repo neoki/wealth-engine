@@ -1,0 +1,49 @@
+{
+  "date":"2026-09-15",
+  "candidate":"ews-to-graph-rescue",
+  "decision":"Re-rank verticals after commercial gate",
+  "ranking":[
+    {
+      "rank":1,
+      "vertical":"Dynamics CRM on-premises + Exchange Online",
+      "score":"9/10",
+      "why":"Microsoft's own documentation says the integration uses EWS, stopped accepting new tenants/updates, recommends migration or temporary allow-listing, and ends support April 1 2027. Loss of EWS can break email, appointments, contacts, tasks and CRM-driven workflows. Riva and Synoptek already market Graph-based alternatives/assessments, proving budget and demand.",
+      "best_offer":"Fixed-price EWS Exposure Assessment followed by optional Graph Sync Continuity Layer",
+      "pricing_hypothesis_eur":"490-990 assessment; 3000-10000+ continuity implementation depending scope",
+      "buyer":"IT director / Dynamics partner / MSP / CRM owner",
+      "acquisition":"Dynamics partners, MSPs, public migration content, organizations advertising CRM on-prem expertise",
+      "risk":"Strong competition and heterogeneous customizations; avoid building a full generic CRM sync product before a paid assessment."
+    },
+    {
+      "rank":2,
+      "vertical":"Professional/practice-management software integrations",
+      "score":"8.5/10",
+      "why":"Access OneOffice/DPS publicly warns customers that its OAuth connection to Exchange Online still uses EWS and requires tenant action before October. Professional-services firms have high dependence on email/calendar and high switching costs.",
+      "best_offer":"EWS dependency audit + migration/continuity sprint for practice-management integrations",
+      "pricing_hypothesis_eur":"990-3990",
+      "buyer":"IT manager / software partner / professional-services firm",
+      "risk":"Need exact per-product API surface and vendor cooperation."
+    },
+    {
+      "rank":3,
+      "vertical":"Room/resource booking legacy installed bases",
+      "score":"8/10",
+      "why":"Multiple vendors still have Exchange Online customers on EWS, but many already provide Graph migration paths. Strong installed-base opportunity but weaker moat for a standalone bridge.",
+      "best_offer":"Migration kit / implementation service for legacy versions and hardware fleets",
+      "pricing_hypothesis_eur":"990-4990 per environment; possible vendor/MSP licensing",
+      "buyer":"workplace IT / AV integrator / vendor partner",
+      "risk":"Vendor-specific versions and existing Graph upgrades reduce addressable pain."
+    },
+    {
+      "rank":4,
+      "vertical":"Financial-advisor CRM calendar sync",
+      "score":"7.5/10",
+      "why":"Wealthbox is actively migrating EWS Outlook calendar customers to Graph in September 2026. Regulated users value continuity, but the vendor is already handling the transition.",
+      "best_offer":"Migration assistance for firms with complex tenant/security constraints",
+      "pricing_hypothesis_eur":"490-1990",
+      "buyer":"RIA/MSP/IT administrator",
+      "risk":"Vendor-led migration may absorb most demand."
+    }
+  ],
+  "next_action":"Do not launch a website. Validate the #1 vertical by enumerating 10-20 Dynamics CRM on-premises partners/MSPs that publicly discuss the EWS deadline or support CRM 9.x + Exchange Online. If at least 5 are reachable and do not already sell a complete Graph continuity solution, package a fixed-price assessment before writing production code."
+}
