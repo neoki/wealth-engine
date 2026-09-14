@@ -36,9 +36,9 @@ const experiments = {
   'spain-einvoice-readiness': {
     title: 'Spain B2B E-Invoice Portfolio Readiness Map',
     price: '€79 one-time',
-    promise: 'Turn a mixed client portfolio into a prioritized B2B e-invoice migration map: who needs attention first, why, and what must be resolved before choosing software.',
+    promise: 'Turn a mixed client portfolio into a prioritized B2B e-invoice migration map: who needs attention first, what must change, and which invoice-entry point each client will need to publish or configure.',
     buyer: 'Spanish advisory and accounting firms managing multiple client invoicing stacks',
-    deliverable: ['anonymous portfolio intake by turnover band and current invoicing stack','client-archetype readiness segmentation','priority map for migration and follow-up','interoperability / platform questions by archetype','regulatory dependency and timing flags','one-page management action map'],
+    deliverable: ['anonymous portfolio intake by turnover band and current invoicing stack','client-archetype readiness segmentation','priority map for migration and follow-up','invoice-entry-point publication/configuration check','interoperability / platform questions by archetype','regulatory dependency and timing flags','one-page management action map'],
     cta: 'Map my client portfolio — €79',
     issueNumber: 6
   },
@@ -64,7 +64,7 @@ const experiments = {
 
 const exp = experiments[id] || experiments['mcp-audit'];
 const issueUrl = `https://github.com/neoki/wealth-engine/issues/${exp.issueNumber}`;
-const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
 const page = () => `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(exp.title)}</title><style>body{font-family:system-ui;max-width:760px;margin:60px auto;padding:0 20px;line-height:1.55;color:#161616}h1{font-size:2.4rem;line-height:1.05}.price{font-size:1.4rem;font-weight:700}.box{background:#f4f4f4;padding:20px;border-radius:14px;margin:24px 0}button{font:inherit;font-weight:700;padding:13px 18px;border:0;border-radius:10px;background:#111;color:white;cursor:pointer}small{color:#666}</style></head><body><small>Wealth Engine experiment · ${esc(id)}</small><h1>${esc(exp.title)}</h1><p>${esc(exp.promise)}</p><p class="price">${esc(exp.price)}</p><div class="box"><strong>For:</strong> ${esc(exp.buyer)}<ul>${exp.deliverable.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><button onclick="const b=this;b.disabled=true;fetch('/api/intent',{method:'POST'}).finally(()=>{window.location.href='${issueUrl}'})">${esc(exp.cta)}</button><p><small>Clicking records purchase intent and opens the request thread. No automatic charge yet; fulfilment is manual while demand is validated.</small></p></body></html>`;
 
 const server = http.createServer((req,res)=>{
