@@ -1,0 +1,31 @@
+{
+  "id": "google-merchant-api-recovery",
+  "name": "Google Merchant API Recovery Sprint",
+  "status": "candidate",
+  "created": "2026-09-14",
+  "signal": "Google Content API for Shopping sunset on 2026-08-18. Since 2026-09-01, clients without an active extension can intermittently receive HTTP 410 Gone; full decommissioning is planned for early 2027.",
+  "customer": "E-commerce merchants, agencies and SaaS/PIM/feed vendors with custom Content API integrations that have not fully migrated to Merchant API v1.",
+  "pain": "Intermittent failures can silently leave prices, stock and product listings stale, making the defect commercially damaging and harder to diagnose than a clean outage.",
+  "offer": "Fixed-price recovery sprint: identify legacy Content API calls, map them to Merchant API v1, migrate product/inventory/account/reporting flows as needed, test and verify feed freshness.",
+  "price_hypothesis_eur": "490-1990",
+  "distribution": [
+    "GitHub code search for shoppingcontent.googleapis.com and content/v2.1 usage",
+    "E-commerce/PPC agencies with custom Merchant Center integrations",
+    "Merchants whose Merchant Center data source still reports Content API",
+    "ERP/PIM/feed integration developers"
+  ],
+  "evidence": [
+    "Official Google documentation: Content API sunset 2026-08-18; progressive HTTP 410 failures from 2026-09-01 without extension; full decommissioning early 2027.",
+    "Merchant API is not a drop-in endpoint rename: architecture is modular and legacy customBatch behavior changes.",
+    "Public GitHub code still contains direct shoppingcontent.googleapis.com/content/v2.1 usage, although much of the searchable corpus consists of libraries/samples and is not itself a commercial lead.",
+    "Commercial migration/audit services already exist, validating willingness to pay but reducing differentiation."
+  ],
+  "gate": "Do not create a public Rockrai experiment yet. First identify at least 10 commercially plausible organizations with evidence of a legacy custom integration or current 410/feed-freshness symptoms, and obtain at least one credible commercial-interest signal. If passed, proposed subdomain: merchant-rescue.rockrai.com.",
+  "risks": [
+    "Major commerce platforms and feed vendors generally handle migration for customers, shrinking the addressable segment to custom integrations and lagging vendors.",
+    "Long advance notice means many competent teams have already migrated.",
+    "Public code evidence is noisy because official SDKs and samples dominate searches.",
+    "Google extensions can temporarily defer urgency for some projects."
+  ],
+  "decision": "KEEP AS CANDIDATE; stronger than a future deadline because failures are already occurring, but lead-quality gate must be passed before building a landing page."
+}
