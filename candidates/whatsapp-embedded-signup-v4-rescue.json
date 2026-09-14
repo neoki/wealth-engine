@@ -1,0 +1,72 @@
+{
+  "id": "whatsapp-embedded-signup-v4-rescue",
+  "status": "watch-validation",
+  "discovered_at": "2026-09-14",
+  "origin": "platform-deprecation-radar",
+  "category": "developer-operations",
+  "title": "WhatsApp Embedded Signup v4 Rescue",
+  "one_liner": "Fixed-scope migration and validation sprint for SaaS products, agencies and messaging platforms whose WhatsApp customer-onboarding flow still depends on Meta Embedded Signup v2/v3 before the 2026-10-15 retirement.",
+  "buyer": "Small and mid-sized SaaS products, WhatsApp automation vendors, agencies and internal platforms that onboard customer WhatsApp Business accounts through Meta Embedded Signup and do not have spare Meta-platform engineering capacity.",
+  "pain": {
+    "description": "Meta retires Embedded Signup v2/v3 on 2026-10-15. An affected integration can keep serving existing senders while silently losing the ability to onboard new customers. Migration is not only a version-string change: v4 uses Facebook Login for Business configurations and requires end-to-end validation of permissions, callbacks, token exchange and webhooks.",
+    "evidence_count": 4,
+    "pain_gate": "passed",
+    "deadline": "2026-10-15"
+  },
+  "observable_targeting": {
+    "gate": "passed-in-principle",
+    "method": "Public GitHub code search can expose repositories that reference WhatsApp Embedded Signup, FB.login and explicit v3/legacy feature configuration, allowing target discovery without paid ads or private data.",
+    "observations": [
+      "Public code search on 2026-09-14 returned multiple active repositories implementing WhatsApp Embedded Signup.",
+      "At least one surfaced repository explicitly documents signup_version '3' and raw legacy extras.featureType handling.",
+      "Other surfaced projects contain FB.login-based WhatsApp onboarding code that can be inspected manually before any outreach.",
+      "This creates an unusually cheap acquisition path: detect legacy implementation -> verify repository/project -> contact only the maintainer/business where a credible commercial buyer exists."
+    ]
+  },
+  "competitive_validation": {
+    "gate": "provisionally-passed",
+    "checked_at": "2026-09-14",
+    "findings": [
+      "Twilio publishes a detailed migration guide and estimates the change at a couple of hours to one week depending on configuration, validating non-trivial implementation effort.",
+      "Search results contain many migration guides and vendors discussing the deadline, but no obvious dominant low-cost fixed-scope independent migration service surfaced in this check.",
+      "The main substitute is an internal developer following Meta/Twilio documentation, so the offer must sell speed, testing and deadline risk reduction rather than information."
+    ],
+    "risk": "Technically capable targets may prefer to migrate internally; generic educational content has near-zero willingness to pay."
+  },
+  "offer": {
+    "name": "Embedded Signup v4 Rescue Sprint",
+    "scope": [
+      "Identify current Embedded Signup version and legacy feature dependencies",
+      "Produce exact migration map to v4 configuration-driven flow",
+      "Patch or provide patch-ready code for the onboarding entry point",
+      "Validate callback, authorization-code exchange and required identifiers",
+      "Validate webhook delivery and Coexistence path when applicable",
+      "Provide rollback/checklist evidence before production cutover"
+    ],
+    "experimental_price_eur": {
+      "min": 490,
+      "max": 1490
+    },
+    "pricing_note": "Use fixed scope after repository/config review. Do not promise App Review approval or Meta-side turnaround times."
+  },
+  "validation": {
+    "next_test": "Build a list of 10-20 commercially plausible targets whose public code or documentation still shows legacy Embedded Signup implementation, then look for at least one explicit paid-interest signal before building a landing page.",
+    "promotion_gate": "At least one credible buyer asks for migration help, a quote, or a paid implementation discussion.",
+    "public_experiment_if_promoted": "whatsappv4.rockrai.com",
+    "preferred_infrastructure": "rockrai-experiment-factory on Railway"
+  },
+  "constraints": {
+    "no_paid_ads": true,
+    "no_new_domain": true,
+    "no_paid_services": true,
+    "no_dns_change_without_approval": true,
+    "no_financial_or_irreversible_action_without_approval": true
+  },
+  "decision": {
+    "action": "validate-before-build",
+    "reason": "Hard deadline + high-value B2B failure mode + targets can be found from public implementation evidence. The remaining unknown is willingness to pay rather than existence of the technical problem.",
+    "capital_spent_on_build": 0,
+    "service_deployed": false
+  },
+  "terminal_metric": "net-capital-generated"
+}
