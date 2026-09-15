@@ -1,0 +1,25 @@
+{
+  "crm": {
+    "deployment": "on-premises",
+    "version": "9.0",
+    "server_side_sync_enabled": true
+  },
+  "exchange": {
+    "deployment": "exchange-online",
+    "ews_allowlisted_until_2027": false
+  },
+  "workflows": {
+    "incoming_email": true,
+    "outgoing_email": true,
+    "appointments": true,
+    "contacts": true,
+    "tasks": true
+  },
+  "business": {
+    "users_affected": 75,
+    "sync_is_business_critical": true,
+    "crm_cloud_migration_planned_before_2027_04_01": false,
+    "exchange_on_prem_option": false,
+    "third_party_graph_sync_layer": false
+  }
+}
