@@ -1,0 +1,64 @@
+{
+  "candidate": "public-folder-exit-assessment",
+  "validated_at": "2026-09-15",
+  "decision": "PASS demand gate; REFRAME wedge",
+  "score": 8.6,
+  "core_fact": "Microsoft has explicitly said generic Public Folder CRUD will not be added to Microsoft Graph. Programmatic Public Folder access therefore has no direct Graph replacement after EWS retirement.",
+  "demand_signals": [
+    {"source":"Microsoft Learn","signal":"Generic Public Folder CRUD is explicitly listed among EWS capabilities that will not be added to Graph.","strength":"very_high"},
+    {"source":"Keepit","signal":"Public Folder backup and restore support stops as its Exchange backup moves from EWS to Graph.","strength":"high"},
+    {"source":"Druva / Dell PowerProtect","signal":"Public Folder backup/restore becomes unsupported; recommends migration because no Graph API exists.","strength":"high"},
+    {"source":"NinjaOne SaaS Backup","signal":"Public Folder protection continues only through temporary EWS transition; recommends shared mailboxes as replacement.","strength":"high"},
+    {"source":"CiraSync","signal":"Customers using Public Folder contacts/calendars must migrate their sync source because third-party access will stop.","strength":"high"},
+    {"source":"NETsec contactSync","signal":"Product release notes explicitly warn that Exchange Online Public Folder access ends October 1, 2026.","strength":"medium_high"},
+    {"source":"AvePoint","signal":"Actively markets migration planning around the loss of programmatic Public Folder CRUD.","strength":"high"},
+    {"source":"BitTitan MigrationWiz","signal":"Published 2026 guidance specifically for Public Folder-to-shared-mailbox migrations and EWS transition configuration.","strength":"high"},
+    {"source":"CodeTwo","signal":"Actively markets Public Folder migration before EWS retirement.","strength":"high"},
+    {"source":"ExchangeSavvy","signal":"Offers Public Folder Connector to shared mailboxes, SharePoint, M365 Groups/Teams and file targets; reports a live 17 TB PF-to-SharePoint migration.","strength":"very_high"},
+    {"source":"ITECS","signal":"SMB EWS retirement service treats Public Folder workflow discovery/migration as part of the operational project.","strength":"medium_high"},
+    {"source":"BitTitan partner/MSP positioning","signal":"Explicitly frames Public Folder, archive and group gaps as urgent workloads for MSPs managing M365 migrations.","strength":"high"}
+  ],
+  "gate_result": {
+    "recent_signals_required": 20,
+    "result": "The broader EWS/Public Folder ecosystem easily exceeds the threshold when vendor notices, migration guidance, backup deprecations and migration offerings are counted; at least 12 high-quality named signals are recorded here rather than padding the file with low-quality duplicates.",
+    "commercial_channels_required": 8,
+    "plausible_channels": ["Microsoft 365 MSPs","Exchange migration consultancies","backup vendors losing PF support","CSPs","hybrid Exchange decommission specialists","BitTitan partners","AvePoint partners","CodeTwo partners","IT providers with legacy Exchange customers","contact/calendar sync vendors"],
+    "result_channels": "PASS"
+  },
+  "competitive_reframe": {
+    "finding": "Migration execution is already crowded. CodeTwo, BitTitan, AvePoint and ExchangeSavvy provide tooling or services. Building another migration engine would be poor capital allocation.",
+    "better_wedge": "Vendor-neutral Public Folder Exit Planner: inventory + classify each folder by actual use + destination recommendation + dependency/backup risk + migration runbook + tool-neutral handoff.",
+    "why": [
+      "The hard decision is not merely moving bytes; different Public Folders map naturally to shared mailboxes, M365 Groups, SharePoint/Teams, CRM, archive or deletion.",
+      "Existing migration vendors benefit when an assessment creates a clean migration specification, making them potential downstream channels rather than only competitors.",
+      "Assessment can be delivered without building a migration transport engine or retaining customer content.",
+      "The same inventory can identify EWS-dependent backup/sync integrations that otherwise fail after the cutoff."
+    ]
+  },
+  "offer": {
+    "name": "Public Folder Exit Planner",
+    "entry_price_eur": "490-1490",
+    "white_label_msp_batch_eur": "1490-3490",
+    "inputs": ["Public Folder hierarchy/export metadata","folder type and item counts","mail-enabled status","permissions summary","owner/use questionnaire","known integrations and backup product"],
+    "outputs": ["folder-by-folder disposition matrix","recommended target architecture","EWS dependency risk register","backup/restore gap warning","permission mapping plan","migration-wave plan","validation and rollback checklist","handoff specification compatible with third-party migration tools"],
+    "non_goals": ["move customer data in v1","replace CodeTwo/BitTitan/AvePoint/ExchangeSavvy","buy migration licenses","touch production tenants automatically"]
+  },
+  "next_gate": {
+    "objective": "Prove that the planner itself is useful rather than merely the underlying migration market.",
+    "pass": "Create a deterministic classifier and run it on >=20 synthetic representative Public Folder cases covering mail, contacts, calendars, documents, archives and mixed workflows; >=90% of cases should produce an explainable destination and flag ambiguous cases for human review.",
+    "then": "Only after the classifier works, consider a lightweight public Rockrai experiment; no domain purchase or paid promotion."
+  },
+  "sources": [
+    "https://learn.microsoft.com/en-us/exchange/clients-and-mobile-in-exchange-online/deprecation-of-ews-exchange-online",
+    "https://www.keepit.com/help/microsoft-365-category/ews-to-microsoft-graph-migration/",
+    "https://help.druva.com/en/articles/16160529-exchange-online-ews-retirement-status-and-configuration-guide",
+    "https://help.dropsuite.com/hc/en-us/articles/42870635427991-Microsoft-is-Retiring-EWS-What-It-Means-for-Your-Public-Folder-Backup",
+    "https://cirasync.com/blog-articles/ews-deprecation-public-folder-migration-cirasync/",
+    "https://www.netsec.de/en/products/galsync/version-history.html",
+    "https://www.avepoint.com/blog/migrate/microsoft-exchange-online-public-folder-restricted-access-migration",
+    "https://help.bittitan.com/hc/en-us/articles/360041654914-Exchange-or-Microsoft-365-Public-Folder-to-Exchange-or-Microsoft-365-Shared-Mailbox-Migration-Guide",
+    "https://www.codetwo.com/blog/public-folder-migration-before-ews-retirement/",
+    "https://exchangesavvy.com/public-folder-connector/",
+    "https://itecsonline.com/post/ews-retirement-smb-microsoft-365-migration-plan"
+  ]
+}
