@@ -1,0 +1,38 @@
+{
+  "id": "public-folder-ews-exit",
+  "name": "Exchange Online Public Folder Exit Pack",
+  "status": "candidate",
+  "created_at": "2026-09-15",
+  "problem": "Microsoft will not add generic Public Folder CRUD to Microsoft Graph. Third-party EWS access to Exchange Online Public Folders therefore has no direct Graph replacement as EWS is retired.",
+  "why_now": [
+    "EWS phased disablement begins 2026-10-01.",
+    "EWS is permanently disabled in Exchange Online on 2027-04-01.",
+    "Microsoft explicitly lists generic Public Folder CRUD among capabilities that will not be added to Graph.",
+    "Backup/sync vendors including Druva, Keepit, SysCloud and CiraSync are publicly warning that Public Folder backup/sync or direct access will stop or must be redesigned."
+  ],
+  "wedge": {
+    "offer": "Public Folder Exit Assessment + Migration Blueprint",
+    "description": "Inventory Public Folder dependencies and classify each workload into shared mailbox, Microsoft 365 Group, SharePoint/Teams, CRM, archive/export, or retire. Deliver mapping, risk, permissions, coexistence and cutover plan without requiring mailbox content by default.",
+    "price_hypothesis_eur": "490-1490 assessment; migration execution quoted separately",
+    "buyer": "Microsoft 365 MSPs, IT departments, backup/sync customers, organizations with legacy shared contacts/calendars/workflows"
+  },
+  "advantages": [
+    "The gap cannot be solved by a generic EWS-to-Graph endpoint because Graph intentionally lacks generic Public Folder CRUD.",
+    "The deliverable is mostly discovery, classification and migration design, so it can be standardized before building heavy software.",
+    "Multiple independent vendors expose the same deadline and unsupported workload, creating observable prospect signals."
+  ],
+  "competition_and_risk": [
+    "CodeTwo, BitTitan, CiraSync/CiraHub and specialist Microsoft partners already offer migration tooling or services.",
+    "This is a deadline-driven market and will shrink after migrations complete.",
+    "A generic migration service is not defensible; distribution through MSPs and an automated assessment/report is the preferred wedge."
+  ],
+  "score": "8.3/10 provisional",
+  "next_gate": "Find at least 20 recent public signals from organizations/MSPs/vendors mentioning Exchange Online Public Folders plus EWS dependency, backup/sync loss, or migration need; require >=8 commercially plausible channels/prospects before building a public Rockrai experiment.",
+  "sources": [
+    "https://learn.microsoft.com/exchange/clients-and-mobile-in-exchange-online/deprecation-of-ews-exchange-online",
+    "https://help.druva.com/en/articles/16160529-exchange-online-ews-retirement-status-and-configuration-guide",
+    "https://www.keepit.com/help/microsoft-365-category/ews-to-microsoft-graph-migration/",
+    "https://cirasync.com/es/public-folder-sync/ews-retirement-public-folder-replacement/",
+    "https://www.codetwo.com/blog/public-folder-migration-before-ews-retirement/"
+  ]
+}
