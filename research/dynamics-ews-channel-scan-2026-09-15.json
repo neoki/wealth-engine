@@ -1,0 +1,66 @@
+{
+  "date": "2026-09-15",
+  "candidate": "dynamics-ews-dependency-triage",
+  "objective": "Test whether small/mid-size Dynamics partners form a reachable channel for white-label EWS dependency triage before Exchange Online retirement.",
+  "official_deadline": {
+    "recommended_action_by": "2026-10-01",
+    "hard_end": "2027-04-01",
+    "note": "Microsoft documents the end of Dynamics 365 Customer Engagement on-premises server-side synchronization with Exchange Online and recommends migration or temporary EWS allow-list continuity."
+  },
+  "targets": [
+    {"name":"Netzer Consulting","region":"Spain","evidence":"Microsoft Dynamics partner; explicitly offers upgrades for Dynamics CRM/NAV/Axapta","channel_fit":"high","legacy_signal":"medium","own_continuity_solution_found":false},
+    {"name":"Izertis","region":"Spain","evidence":"Historical Microsoft award as Spain's most ready CRM 2016 partner","channel_fit":"medium","legacy_signal":"high-historical","own_continuity_solution_found":false},
+    {"name":"Dynamics 360","region":"UK/Nordics/USA","evidence":"Current support for CRM 2011-2016 on-premises plus migration and integration services","channel_fit":"high","legacy_signal":"very-high","own_continuity_solution_found":false},
+    {"name":"Code8 Software","region":"UK","evidence":"Microsoft partner; explicitly advertises on-premise-to-cloud Dynamics migrations","channel_fit":"high","legacy_signal":"high","own_continuity_solution_found":false},
+    {"name":"Hyper Talent Solutions","region":"UK","evidence":"Explicit Dynamics CRM v4/2011/2013/2015/2016 on-premise support and integration services","channel_fit":"high","legacy_signal":"very-high","own_continuity_solution_found":false},
+    {"name":"Stallions Solutions","region":"UK","evidence":"Microsoft Dynamics CRM consultancy, support and cloud-migration services","channel_fit":"medium-high","legacy_signal":"medium","own_continuity_solution_found":false},
+    {"name":"TechLabs London","region":"UK","evidence":"Dynamics CRM on-premise migration-to-cloud consultancy; public day rates","channel_fit":"medium-high","legacy_signal":"high","own_continuity_solution_found":false},
+    {"name":"m-hance","region":"UK","evidence":"Dynamics 365 Sales consultancy and migration to Dynamics 365 Online from on-premise","channel_fit":"medium","legacy_signal":"high","own_continuity_solution_found":false},
+    {"name":"Savaco","region":"Belgium","evidence":"Dedicated Dynamics CRM On-Premise to cloud service; experience since CRM 3.0","channel_fit":"medium","legacy_signal":"very-high","own_continuity_solution_found":true,"note":"Has in-house migration tooling; less likely white-label buyer."},
+    {"name":"ARP Ideas","region":"Europe/Poland","evidence":"Dedicated Dynamics CRM on-premise cloud migration offer","channel_fit":"medium","legacy_signal":"high","own_continuity_solution_found":false},
+    {"name":"arades","region":"Germany","evidence":"Current page explicitly supports Dynamics CRM on-premise/hybrid deployment","channel_fit":"high","legacy_signal":"high","own_continuity_solution_found":false},
+    {"name":"b4dynamics","region":"Germany","evidence":"Microsoft Dynamics consultancy with on-premise and cloud customer base","channel_fit":"medium","legacy_signal":"medium","own_continuity_solution_found":false},
+    {"name":"3P Solutions","region":"Singapore","evidence":"Microsoft Gold Partner for Dynamics CRM; on-premise, cloud, migration and integration services","channel_fit":"medium-high","legacy_signal":"high","own_continuity_solution_found":false},
+    {"name":"Synchronicity Systems","region":"UK","evidence":"Partner/customer-focused Dynamics CRM on-premise migration specialist with proprietary Echo Managed Service","channel_fit":"low","legacy_signal":"very-high","own_continuity_solution_found":true},
+    {"name":"KPMG","region":"UK/global","evidence":"Explicit Dynamics CRM on-premise/private-cloud migration service","channel_fit":"low","legacy_signal":"high","own_continuity_solution_found":true,"note":"Too large and self-sufficient for initial channel wedge."}
+  ],
+  "results": {
+    "targets_reviewed": 15,
+    "plausible_channels_without_visible_own_continuity_product": 11,
+    "strong_recent_or_explicit_legacy_signals": 10,
+    "clearly_self_sufficient_or_own_tooling": 3,
+    "gate": "PASS"
+  },
+  "interpretation": "The channel hypothesis survives desk research. There are more than eight plausible partners and more than three with explicit legacy Dynamics CRM/on-premises work. However, this is distribution evidence, not willingness-to-pay. Do not build a public site yet. The next scarce evidence is whether partners will pay for or resell a standardized triage artifact rather than perform it themselves.",
+  "offer_refinement": {
+    "name":"Dynamics EWS Cutoff Triage Pack",
+    "buyer":"small/mid-size Dynamics partner or MSP with legacy CRM customers",
+    "format":"white-label fixed-scope assessment",
+    "inputs":["CRM version/deployment","Exchange topology","server-side sync configuration","mailbox/profile inventory","EWS usage/allow-list state"],
+    "outputs":["affected/not-affected matrix","April 2027 failure modes","temporary continuity checklist","migration options","client-ready white-label report"],
+    "price_hypothesis_eur":{"single_customer":"390-790","five_customer_batch":"1490-2490"},
+    "non_goal":"Do not compete with full cloud migrations or generic Graph sync products."
+  },
+  "next_gate": {
+    "test":"Obtain real market response from a small set of partners or identify public requests for this exact cutoff problem.",
+    "pass":"At least 2 partners show interest in a reusable assessment/white-label deliverable, or 1 asks for pricing/pilot.",
+    "fail":"Partners universally treat the assessment as trivial/in-house work or only want full cloud migration projects."
+  },
+  "sources":[
+    "https://learn.microsoft.com/en-us/dynamics365/customerengagement/on-premises/admin/connect-dynamics-365-on-premises-exchange-online?view=op-9-1",
+    "https://www.netzer.es/",
+    "https://www.izertis.com/pt/w/actualidad/izertis-premiado-por-microsoft-como-partner-mas-ready-crm-2016",
+    "https://dynamics360.net/microsoft-solutions/dynamics-crm/",
+    "https://code8.co.uk/",
+    "https://www.hypertalentsolutions.com/cloud-services/pages/69",
+    "https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud/services/676368943477409",
+    "https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud/services/316786189469643",
+    "https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud/services/239114268787404",
+    "https://marketplace.microsoft.com/nl-nl/marketplace/consulting-services/savaco1601389323151.ces-customer-engagement-move-to-cloud",
+    "https://arpideas.com/pl/uslugi/migracja-dynamics-crm-on-premise-do-chmury",
+    "https://arades.de/de/microsoft-dynamics-crm/",
+    "https://www.softguide.de/firma/b4dynamics-gmbh",
+    "https://www.3psolutions.com/",
+    "https://www.synchronicity-systems.com/"
+  ]
+}
