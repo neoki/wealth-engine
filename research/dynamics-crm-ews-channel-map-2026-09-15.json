@@ -1,0 +1,84 @@
+{
+  "date": "2026-09-15",
+  "candidate": "dynamics-crm-onprem-exchange-online-continuity",
+  "finding": "The pain is real and urgent, but the generic assessment/Graph-sync offer is already being commercialized by established Dynamics/CRM integration vendors. Wealth Engine should not build another generic connector before proving a narrower channel or price advantage.",
+  "primary_evidence": {
+    "microsoft": {
+      "status": "confirmed",
+      "facts": [
+        "Dynamics 365 Customer Engagement on-premises to Exchange Online uses EWS.",
+        "No new tenants have been connected to this feature since 2025-10-01 and it receives no new updates.",
+        "2026-10-01 is Microsoft's recommended deadline to migrate or allow-list EWS temporarily.",
+        "2027-04-01 is the end of support for Dynamics CRM Customer Engagement v9.0 on-premises with Exchange Online.",
+        "Microsoft's supported strategic paths are Dynamics 365 online or supported Exchange Server on-premises; keeping CRM on-premises with Exchange Online therefore requires a third-party/custom continuity path."
+      ],
+      "source": "https://learn.microsoft.com/en-us/dynamics365/customerengagement/on-premises/admin/connect-dynamics-365-on-premises-exchange-online?view=op-9-1"
+    }
+  },
+  "commercial_competitors": [
+    {
+      "name": "Riva",
+      "type": "mature CRM/Exchange synchronization platform",
+      "evidence": "Riva explicitly markets a Graph-based sync layer as a way to keep Dynamics CRM on-premises with Exchange Online after EWS retirement; its 2026 releases already use its Modern Microsoft Exchange Connector (Graph).",
+      "implication": "Strong validation of willingness-to-pay and technical feasibility, but weakens a generic connector thesis.",
+      "sources": [
+        "https://rivaengine.com/blog/ews-retirement-dynamics-on-premises/",
+        "https://support.rivasync.com/hc/en-us/articles/44823813966356-Riva-On-Premise-2026-1-Release-Notes"
+      ]
+    },
+    {
+      "name": "Synoptek",
+      "type": "Dynamics/IT consultancy",
+      "evidence": "Offers a named Dynamics CRM Exposure Assessment specifically for the EWS retirement risk.",
+      "implication": "The low-friction assessment wedge is already validated commercially, but is not differentiated by itself.",
+      "source": "https://synoptek.com/dynamics-crm-exposure-assessment/"
+    },
+    {
+      "name": "enCloud9",
+      "type": "Microsoft Dynamics consultancy",
+      "evidence": "Actively markets migration services around the EWS retirement and Dynamics on-premises risk.",
+      "implication": "Partners are already educating their installed bases; they can be competitors or channels.",
+      "source": "https://www.encloud9.com/blog/last-call-for-on-prem-crm-why-the-ews-retirement-matters-more-than-you-think/"
+    },
+    {
+      "name": "Stoneridge Software",
+      "type": "Microsoft business applications partner",
+      "evidence": "Published a dedicated 2026 warning for CRM on-premises 9.x customers about EWS retirement.",
+      "implication": "Confirms an active partner channel with customer exposure, but also means simple advisory content is commoditized.",
+      "source": "https://stoneridgesoftware.com/ews-retirement-crm-onpremise-9-x-users/"
+    }
+  ],
+  "fresh_demand_signal": {
+    "source": "Microsoft Exchange Team Community reply, 2026-08-11",
+    "signal": "An administrator reports an active Dynamics 365 on-premises deployment failing to connect after Exchange mailboxes were moved to Exchange Online, despite S2S certificate and tenant configuration, and says a Microsoft support ticket had not resolved it.",
+    "interpretation": "There is not only future deadline risk; live hybrid/on-prem transition failures already create support demand.",
+    "source_url": "https://techcommunity.microsoft.com/blog/exchange/exchange-online-ews-your-time-is-almost-up/4492361/replies/4545799"
+  },
+  "revised_offer_strategy": {
+    "do_not_build_yet": "generic Graph sync replacement for Dynamics CRM on-premises",
+    "reason": "Riva already supplies a mature Graph-based synchronization layer and Microsoft migration partners can sell broader cloud migrations.",
+    "best_near_term_wedge": "EWS Dependency Triage for Microsoft partners/MSPs",
+    "buyer": "small and mid-sized Microsoft/Dynamics partners that have legacy CRM on-premises customers but do not maintain their own Graph synchronization product",
+    "delivery": [
+      "identify affected CRM version and Exchange topology",
+      "verify EWS usage and mailbox workflows",
+      "classify email/calendar/contact/task dependencies",
+      "produce a continuity decision: temporary allow-list, Riva/third-party layer, Exchange on-premises, custom bridge, or Dynamics online migration",
+      "optionally white-label the assessment for the partner"
+    ],
+    "price_test_eur": {
+      "single_customer_fixed_assessment": "390-790",
+      "partner_batch_5_customers": "1490-2490",
+      "white_label_or_recurring_partner": "validate after first paid batch"
+    },
+    "why_better": "It monetizes urgency without taking on the engineering/support burden of competing with Riva. The partner already owns the customer relationship, reducing acquisition cost."
+  },
+  "gate": {
+    "status": "commercial pain validated; distribution wedge unvalidated",
+    "next_test": "Identify 20 small/mid-sized Dynamics partners/MSPs with evidence of on-premises CRM work. Exclude firms already selling their own EWS/Graph continuity product. Rank by reachable decision-maker, legacy CRM specialization and absence of a published EWS solution.",
+    "pass": "At least 8 plausible channel partners remain after exclusions and at least 3 show recent Dynamics CRM on-premises work or explicit legacy support.",
+    "fail": "The reachable partner set is dominated by firms already selling migration/continuity solutions, making channel acquisition expensive or adversarial."
+  },
+  "public_experiment": null,
+  "decision": "No new website or Railway deployment yet. Distribution evidence is the next scarce information."
+}
