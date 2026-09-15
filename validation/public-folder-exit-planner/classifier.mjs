@@ -9,6 +9,7 @@ export function classifyFolder(f) {
   const app = Boolean(f.applicationDependency);
   const active = (f.itemsLast90Days ?? 0) > 0;
   const sizeGb = f.sizeGb ?? 0;
+  const itemCount = f.itemCount ?? (f.mailItems ?? 0) + (f.documentItems ?? 0) + (f.calendarItems ?? 0) + (f.contactItems ?? 0);
 
   if (mail) workloads.push('mail');
   if (docs) workloads.push('documents');
@@ -20,14 +21,12 @@ export function classifyFolder(f) {
   let confidence = 0.55;
   let requiresSplit = false;
 
-  // Application dependencies are a distinct migration track even when content is mixed.
   if (app) {
     destination = 'crm-or-application'; confidence = 0.92; signals.push('application dependency');
     requiresSplit = workloads.length > 1;
   } else if (mail && docs && !calendar && !contacts) {
     destination = 'split-mail-sharepoint'; confidence = 0.86; signals.push('mixed mail/document workload'); requiresSplit = true;
   } else if (workloads.length > 1) {
-    // Calendar/contact combinations do not have a universally safe one-target mapping.
     destination = 'manual-review'; confidence = 0.6; signals.push('heterogeneous workload'); requiresSplit = true;
   } else if (contacts || calendar) {
     destination = 'm365-group-or-shared-mailbox'; confidence = 0.84; signals.push('contacts/calendar workload');
@@ -42,17 +41,24 @@ export function classifyFolder(f) {
   }
 
   const blockers = [];
+  const migrationRisks = [];
   if (f.complianceHold) blockers.push('compliance-hold');
   if ((f.uniqueAclCount ?? 0) > 10) blockers.push('complex-permissions');
   if (requiresSplit) blockers.push('workload-split');
   if (destination === 'manual-review') blockers.push('ambiguous-destination');
 
+  // Execution-risk rules are kept separate from modernisation destination.
+  // These thresholds are vendor-specific planning signals, not universal Exchange limits.
+  if (itemCount > 100000) migrationRisks.push({code:'bittitan-item-count-split',severity:'high',detail:'BitTitan recommends splitting source Public Folders above 100,000 items for Exchange 2010+/M365 sources.'});
+  if (sizeGb > 20) migrationRisks.push({code:'bittitan-folder-size-split',severity:'high',detail:'BitTitan recommends splitting individual source Public Folders above 20 GB before migration.'});
+  if (f.maxItemSizeMb != null && f.targetMaxReceiveSizeMb != null && f.maxItemSizeMb > f.targetMaxReceiveSizeMb) migrationRisks.push({code:'target-item-size-limit',severity:'high',detail:'Largest observed item exceeds the supplied destination public-folder mailbox receive limit.'});
+
   if (f.complianceHold) { signals.push('compliance hold'); confidence = Math.min(confidence, 0.82); }
   if ((f.uniqueAclCount ?? 0) > 10) { signals.push('complex permissions'); confidence = Math.min(confidence, 0.8); }
+  if (migrationRisks.length) signals.push('execution risk detected');
 
-  // Destination recommendation and migration safety are deliberately independent.
-  const migrationSafety = blockers.length ? 'review-required' : 'candidate';
+  const migrationSafety = blockers.length || migrationRisks.some(r => r.severity === 'high') ? 'review-required' : 'candidate';
   const manualReview = migrationSafety === 'review-required' || confidence < 0.8;
 
-  return { id: f.id, destination, confidence, workloads, requiresSplit, blockers, migrationSafety, signals, manualReview };
+  return { id: f.id, destination, confidence, workloads, requiresSplit, blockers, migrationRisks, migrationSafety, signals, manualReview };
 }
