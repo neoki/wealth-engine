@@ -47,7 +47,7 @@ export function classifyFolder(f) {
   if (requiresSplit) blockers.push('workload-split');
   if (destination === 'manual-review') blockers.push('ambiguous-destination');
 
-  // Execution-profile signals. They describe the selected migration method, not universal Exchange limits.
+  // MigrationWiz execution profile: vendor-specific preparation and non-migrated features.
   if (itemCount > 100000) migrationRisks.push({code:'bittitan-item-count-split',severity:'high',profile:'migrationwiz',detail:'BitTitan recommends splitting source Public Folders above 100,000 items for Exchange 2010+/M365 sources.'});
   if (sizeGb > 20) migrationRisks.push({code:'bittitan-folder-size-split',severity:'high',profile:'migrationwiz',detail:'BitTitan recommends splitting individual source Public Folders above 20 GB before migration.'});
   if (f.totalPublicFolderCount > 1000) migrationRisks.push({code:'bittitan-project-split-required',severity:'high',profile:'migrationwiz',detail:'MigrationWiz projects above 1,000 Public Folders require additional split-project steps and BitTitan Support involvement.'});
@@ -55,6 +55,18 @@ export function classifyFolder(f) {
   if (f.hasRules) migrationRisks.push({code:'bittitan-rules-not-migrated',severity:'medium',profile:'migrationwiz',detail:'MigrationWiz does not migrate Public Folder rules.'});
   if (f.hasDelegatePermissions) migrationRisks.push({code:'bittitan-delegate-permissions-not-migrated',severity:'medium',profile:'migrationwiz',detail:'MigrationWiz does not migrate Full Access, Send As, or Send on Behalf delegate permissions in this Public Folder scenario.'});
   if (f.hasStandaloneDocuments) migrationRisks.push({code:'bittitan-standalone-documents-not-migrated',severity:'high',profile:'migrationwiz',detail:'MigrationWiz lists standalone IPM.Document items in Public Folders as not migrated.'});
+
+  // Microsoft-native execution profile. These are Exchange Online target constraints/recommendations,
+  // deliberately kept separate from MigrationWiz's vendor-specific thresholds.
+  if (sizeGb > 25) migrationRisks.push({code:'ms-native-large-folder-autosplit-risk',severity:'high',profile:'microsoft-native',detail:'Microsoft recommends keeping an individual Exchange Online Public Folder at or below 25 GB because larger folders can have auto-split issues.'});
+  if ((f.totalPublicFolderCount ?? 0) > 100000) migrationRisks.push({code:'ms-native-folder-count-limit',severity:'high',profile:'microsoft-native',detail:'Exchange Online supports up to 100,000 Public Folders in the hierarchy.'});
+  if ((f.childFolderCount ?? 0) > 1000) migrationRisks.push({code:'ms-native-child-folder-limit',severity:'high',profile:'microsoft-native',detail:'Exchange Online supports up to 1,000 subfolders under an individual Public Folder.'});
+  if ((f.folderDepth ?? 0) > 300) migrationRisks.push({code:'ms-native-hierarchy-depth-limit',severity:'high',profile:'microsoft-native',detail:'Exchange Online supports a Public Folder hierarchy depth up to 300 levels.'});
+  if ((f.publicFolderMailboxCount ?? 0) > 1000) migrationRisks.push({code:'ms-native-mailbox-count-limit',severity:'high',profile:'microsoft-native',detail:'Exchange Online supports up to 1,000 Public Folder mailboxes.'});
+  if (f.sourceValidationPassed === false) migrationRisks.push({code:'ms-native-source-validation-failed',severity:'high',profile:'microsoft-native',detail:'Microsoft requires source-side validation before batch migration; reported source validation issues should be remediated before proceeding.'});
+  if (f.ageLimitRisk === true) migrationRisks.push({code:'ms-native-age-limit-retention-risk',severity:'high',profile:'microsoft-native',detail:'Public Folder age-limit settings can cause items to be treated as expired and deleted during or after batch migration; review retention settings before migration.'});
+
+  // Destination constraint independent of the migration method selected by the MSP.
   if (f.maxItemSizeMb != null && f.targetMaxReceiveSizeMb != null && f.maxItemSizeMb > f.targetMaxReceiveSizeMb) migrationRisks.push({code:'target-item-size-limit',severity:'high',profile:'target',detail:'Largest observed item exceeds the supplied destination public-folder mailbox receive limit.'});
 
   if (f.complianceHold) { signals.push('compliance hold'); confidence = Math.min(confidence, 0.82); }
