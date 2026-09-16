@@ -47,11 +47,15 @@ export function classifyFolder(f) {
   if (requiresSplit) blockers.push('workload-split');
   if (destination === 'manual-review') blockers.push('ambiguous-destination');
 
-  // Execution-risk rules are kept separate from modernisation destination.
-  // These thresholds are vendor-specific planning signals, not universal Exchange limits.
-  if (itemCount > 100000) migrationRisks.push({code:'bittitan-item-count-split',severity:'high',detail:'BitTitan recommends splitting source Public Folders above 100,000 items for Exchange 2010+/M365 sources.'});
-  if (sizeGb > 20) migrationRisks.push({code:'bittitan-folder-size-split',severity:'high',detail:'BitTitan recommends splitting individual source Public Folders above 20 GB before migration.'});
-  if (f.maxItemSizeMb != null && f.targetMaxReceiveSizeMb != null && f.maxItemSizeMb > f.targetMaxReceiveSizeMb) migrationRisks.push({code:'target-item-size-limit',severity:'high',detail:'Largest observed item exceeds the supplied destination public-folder mailbox receive limit.'});
+  // Execution-profile signals. They describe the selected migration method, not universal Exchange limits.
+  if (itemCount > 100000) migrationRisks.push({code:'bittitan-item-count-split',severity:'high',profile:'migrationwiz',detail:'BitTitan recommends splitting source Public Folders above 100,000 items for Exchange 2010+/M365 sources.'});
+  if (sizeGb > 20) migrationRisks.push({code:'bittitan-folder-size-split',severity:'high',profile:'migrationwiz',detail:'BitTitan recommends splitting individual source Public Folders above 20 GB before migration.'});
+  if (f.totalPublicFolderCount > 1000) migrationRisks.push({code:'bittitan-project-split-required',severity:'high',profile:'migrationwiz',detail:'MigrationWiz projects above 1,000 Public Folders require additional split-project steps and BitTitan Support involvement.'});
+  if (f.mailEnabled && f.preserveSmtpAddresses !== false) migrationRisks.push({code:'bittitan-smtp-address-handoff',severity:'medium',profile:'migrationwiz',detail:'MigrationWiz does not migrate SMTP addresses for mail-enabled Public Folders; export/import scripts are required.'});
+  if (f.hasRules) migrationRisks.push({code:'bittitan-rules-not-migrated',severity:'medium',profile:'migrationwiz',detail:'MigrationWiz does not migrate Public Folder rules.'});
+  if (f.hasDelegatePermissions) migrationRisks.push({code:'bittitan-delegate-permissions-not-migrated',severity:'medium',profile:'migrationwiz',detail:'MigrationWiz does not migrate Full Access, Send As, or Send on Behalf delegate permissions in this Public Folder scenario.'});
+  if (f.hasStandaloneDocuments) migrationRisks.push({code:'bittitan-standalone-documents-not-migrated',severity:'high',profile:'migrationwiz',detail:'MigrationWiz lists standalone IPM.Document items in Public Folders as not migrated.'});
+  if (f.maxItemSizeMb != null && f.targetMaxReceiveSizeMb != null && f.maxItemSizeMb > f.targetMaxReceiveSizeMb) migrationRisks.push({code:'target-item-size-limit',severity:'high',profile:'target',detail:'Largest observed item exceeds the supplied destination public-folder mailbox receive limit.'});
 
   if (f.complianceHold) { signals.push('compliance hold'); confidence = Math.min(confidence, 0.82); }
   if ((f.uniqueAclCount ?? 0) > 10) { signals.push('complex permissions'); confidence = Math.min(confidence, 0.8); }
