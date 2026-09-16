@@ -1,0 +1,7 @@
+FolderPath;ItemCount;SizeGB;LastModified;MailEnabled;PrimarySMTPAddress;PermissionCount;ComplianceHold;ApplicationDependency;MailItems;DocumentItems;CalendarItems;ContactItems;ItemsLast90Days;LargestItemMB
+\Finance;12480;18.6;2026-09-10;true;finance@example.invalid;8;false;false;11600;720;160;0;430;28
+\Projects\Active;22100;31.4;2026-09-12;false;;14;false;false;18900;2700;500;0;910;42
+\LegacyApp;8100;9.8;2024-01-15;false;;12;false;true;7000;950;150;0;0;18
+\LegalHold;420;0.7;2026-08-20;false;;3;true;false;350;70;0;0;9;4
+\HR\Policies;1800;2.2;2026-09-01;true;hr-policies@example.invalid;6;false;false;300;1450;50;0;22;15
+\Archive\2019;46000;48.5;2019-12-20;false;;5;false;false;41000;4800;200;0;0;37
