@@ -1,8 +1,8 @@
 {
   "objective": "maximize net capital generated with increasing autonomy",
   "experimentPolicy": {
-    "defaultMaxActive": 6,
-    "absoluteMaxActive": 6,
+    "defaultMaxActive": 5,
+    "absoluteMaxActive": 5,
     "defaultExpiryDays": 14,
     "requireEconomicMetric": true,
     "separateTrafficClasses": ["self", "bot", "crawler", "unknown_human", "qualified_lead", "payment"],
@@ -11,7 +11,7 @@
       "exception": "a domain may exceed the share only when superior economic performance is demonstrated with external evidence"
     },
     "reservedSlots": {
-      "agenticEconomy": 2,
+      "agenticEconomy": 1,
       "traditionalB2B": 2,
       "openWorld": 2
     },
@@ -24,7 +24,14 @@
       "multiple independent paying customers",
       "positive contribution margin",
       "evidence of repeat purchase or reproducible acquisition channel"
-    ]
+    ],
+    "learningLoopPolicy": {
+      "buyerBlockedState": "When an experiment has enough public evidence, a usable artifact and a defined buyer gate, mark it buyer-blocked until new external buyer evidence exists.",
+      "noResearchSubstitution": "Do not keep adding competitor, pricing or market-research notes merely to simulate progress while the next falsifiable step requires buyer contact or buyer data.",
+      "rotationRule": "A buyer-blocked experiment keeps its incubation slot but autonomous cycles rotate to other active experiments or open-world discovery unless genuinely decision-changing evidence appears.",
+      "widenBeforeKill": "Competition or a narrow wedge is not itself a kill signal. Test adjacent value capture or a wider job-to-be-done when evidence supports it.",
+      "maxConsecutiveAutonomousCyclesPerExperiment": 3
+    }
   },
   "businessPolicy": {
     "validatedBusinessesDoNotCountTowardExperimentCap": true,
