@@ -1,63 +1,30 @@
 {
   "id": "spain-algorithmic-work-decisions-inventory",
-  "status": "validated-signal-no-build",
+  "status": "rejected-source-contradiction",
   "discovered_at": "2026-09-14",
+  "rechecked_at": "2026-09-17",
   "origin": "money-hunter",
   "category": "hr-compliance-operations",
   "title": "Spain Algorithmic Work Decisions Inventory",
-  "one_liner": "A fixed-price pre-compliance sprint for Spanish employers to identify software, rules and AI/algorithmic systems that influence pay, schedules, task allocation, evaluation or termination, then produce the information map needed to answer employee transparency requests under Spain's newly approved transparent-working-conditions reform.",
-  "buyer": "Spanish SMEs and mid-market employers using payroll, scheduling, performance, workforce-management or AI-enabled HR software; secondary channel: labour advisers and HR consultancies serving many such employers.",
-  "pain": {
-    "description": "On 8 September 2026 the Spanish Council of Ministers approved the Royal Decree transposing Directive (EU) 2019/1152. The official government summary states that workers will have an individual right to know the algorithmic systems used to determine any working condition or termination of employment. Workers with existing contracts missing essential information may request it, and employers will have up to 30 days to provide it. The decree still needs BOE publication before the exact legal text and effective date should be treated as final.",
-    "evidence_count": 3,
-    "pain_gate": "passed-with-publication-caveat",
-    "freshness": "approved 2026-09-08; BOE publication must be verified before claiming entry into force"
-  },
-  "distribution_wedge": {
-    "description": "The strongest channel is not cold-selling individual SMEs but packaging the inventory for labour advisers, payroll providers and HR consultancies that need to prepare many clients at once. A single adviser can expose dozens or hundreds of employers to the same new requirement.",
-    "limits": [
-      "Do not present the government-approved text as legally in force until BOE publication is confirmed.",
-      "Do not position this as legal advice or an AI Act audit.",
-      "Do not build a generic contract-document generator: the Ministry has announced an official information-document template within 20 days of the rule's entry into force.",
-      "The value must come from discovering and mapping actual automated decision systems, not reproducing statutory wording."
-    ]
-  },
-  "offer": {
-    "name": "Algorithmic Work Decisions Inventory Sprint",
-    "test_price_eur": 249,
-    "delivery": "manual-first",
-    "scope": [
-      "Inventory payroll, scheduling, performance, recruiting and workforce tools that may influence working conditions or termination.",
-      "Map each tool or automated rule to the employment condition it can affect.",
-      "Record owner, vendor, input data, output/decision, human override and current employee-facing explanation.",
-      "Produce a short disclosure-ready information map for review by the employer's labour adviser.",
-      "Flag unknown vendor logic that must be escalated to the software provider."
-    ],
-    "not_in_scope": "Legal opinion, algorithmic fairness certification, AI Act conformity assessment, employee surveillance, or technical reverse engineering of vendor systems."
-  },
-  "competitive_validation": {
-    "gate": "conditional-pass",
-    "checked_at": "2026-09-14",
-    "findings": [
-      "General AI-governance and AI-audit services already exist in Spain, so a broad AI compliance audit is not differentiated.",
-      "The newly approved employment-specific disclosure duty is much narrower and operationally concrete.",
-      "The government intends to publish a free standard information document, making document generation alone a weak product.",
-      "The less commoditised work is discovering which existing payroll/HR/workforce systems actually make or influence algorithmic decisions and assembling the evidence needed to explain them."
-    ],
-    "conclusion": "Do not build software yet. Test whether labour advisers will pay for or resell a repeatable inventory workflow across their client base."
+  "one_liner": "Rejected hypothesis: the final published Royal Decree 723/2026 does not contain the algorithmic-decision disclosure obligation attributed to the pre-publication government summary.",
+  "correction": {
+    "official_source": "BOE-A-2026-19200, Real Decreto 723/2026, published 2026-09-15",
+    "effective_date": "2026-10-05",
+    "finding": "The final BOE text regulates information on essential employment conditions and gives workers with existing relationships a 30-working-day request path for missing Article 3/4/5 information, but a full-text check finds no occurrence of 'algorítm'. Therefore the prior candidate's core claim that this decree creates an individual right to know algorithmic systems determining working conditions or termination is not supported by the enacted text.",
+    "lesson": "Council-of-Ministers summaries and press coverage are discovery signals, not sufficient evidence for a regulation-triggered commercial offer. Once the enacted text exists, Wealth Engine must reconcile the hypothesis against the operative text before promotion or build."
   },
   "decision": {
-    "action": "validate-through-adviser-channel-before-build",
+    "action": "kill-current-offer",
+    "reason": "The legal trigger that made the narrow offer timely is absent from the final published decree. A generic HR/AI inventory may still have value under other law, but it requires a new evidence chain and should not inherit this candidate's validation score.",
     "capital_spent_on_build": 0,
     "service_deployed": false,
     "public_web": false,
-    "promotion_gate": "Promote to a public Rockrai subdomain only after BOE publication is verified and at least 2 labour/HR advisers confirm that clients are asking how to identify algorithmic decision systems, with at least 1 willingness-to-pay or reseller signal.",
-    "next_experiment": "Once the decree is published in BOE, extract the exact operative wording and create a one-page manual inventory worksheet. Test it with labour advisers before writing any software."
+    "rockrai_subdomain": null,
+    "reopen_only_if": "A separate enacted legal obligation, buyer evidence, or repeated paid operational pain specifically supports algorithmic employment-decision inventory work."
   },
-  "sources": [
-    "La Moncloa, Council of Ministers reference, 8 Sep 2026: Royal Decree approved; individual right to know algorithmic systems used to determine working conditions or termination; existing workers may request missing essential information and employer has up to 30 days.",
-    "La Moncloa, Council of Ministers summary, 8 Sep 2026: expanded information requirements for salary, variable pay, working time and other essential employment conditions.",
-    "RTVE, 8 Sep 2026: Ministry will provide a standard information document; reinforces that template generation alone is not a defensible offer."
-  ],
+  "source_policy_upgrade": {
+    "rule": "For regulation-triggered opportunities: proposal/announcement = signal; published operative text = validation. If publication occurs after candidate creation, revalidate the exact claimed obligation, scope, dates and transitional rules before build or promotion.",
+    "failure_prevented": "Avoids building or selling compliance around language that changed or disappeared between announcement and enactment."
+  },
   "terminal_metric": "net-capital-generated"
 }
