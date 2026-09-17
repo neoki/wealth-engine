@@ -39,11 +39,32 @@
   },
   "buildPolicy": {
     "noFullProductBeforePurchaseSignal": true,
-    "actionVerificationEvidenceRequiredBeforeReportingSuccess": true
+    "actionVerificationEvidenceRequiredBeforeReportingSuccess": true,
+    "publicExperimentDeployment": {
+      "operatingUmbrella": "rockrai.com",
+      "defaultHostnamePattern": "<descriptive-slug>.rockrai.com",
+      "preferredRailwayInfrastructure": "rockrai-experiment-factory",
+      "useExistingAuthorizedInfrastructureWhenPossible": true,
+      "ownDomainOnlyAfter": "demonstrated traction or economic value",
+      "ownDomainRequiresExplicitApproval": true
+    },
+    "irreversibleActionGuardrails": {
+      "requireExplicitPabloApproval": [
+        "buy domain",
+        "contract paid service",
+        "enable paid advertising",
+        "change critical DNS",
+        "financial action",
+        "irreversible action"
+      ],
+      "doNotRequestNewConnectorsForAutonomousRuns": true,
+      "googleDriveNotRequired": true
+    }
   },
   "payments": {
     "stripeConnected": false,
-    "connectStripeWhen": "a qualified buyer is ready to pay and payment friction becomes the bottleneck"
+    "connectStripeWhen": "a qualified buyer is ready to pay and payment friction becomes the bottleneck",
+    "connectionRequiresExplicitApproval": true
   },
   "railwayBudget": {
     "requestedMonthlyCeilingEUR": 150,
