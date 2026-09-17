@@ -1,93 +1,117 @@
-# CRA 24h Reporting Drill — validation v3
+# CRA 24h Reporting Drill — validation v4
 
-Status: RESHAPE — exact wedge is crowded; validate regulatory-collision drill instead
+Status: RESHAPE — validate regulatory-collision acceptance test, not CRA filing software
 
-## Decision update — 2026-09-17
+## Decision update — 2026-09-17 (live-SRP correction)
 
-Fresh competitor discovery materially changes this experiment. Competition itself is positive evidence of demand, but several products now reproduce the *exact* low-end wedge rather than merely adjacent CRA compliance:
+The ENISA Single Reporting Platform is now operational, so the experiment can be constrained by the real workflow rather than pre-launch assumptions.
 
-- cradrill.com: free 7-minute CRA incident drill plus a $39 Article 14 operations pack;
-- CRA-Portal.eu: free self-service incident-response builder + tabletop drill;
-- Tensetti: free 10-minute CRA 24h/72h reporting drill;
-- CRAnotify: dedicated Article 14 workflow, deadline calculation, draft notification and evidence log;
-- REGU: managed CRA reporting from EUR 490/year;
-- Seentrix: CRA platform from EUR 59/month including Article 14 incident reporting;
-- broader consultancies also explicitly sell tabletop exercises and reporting-process design.
+Verified operational facts:
+- CRA Article 14 manufacturer reporting obligations have applied since 11 September 2026.
+- ENISA's SRP is the mandatory single submission route for actively exploited vulnerabilities and severe incidents affecting products with digital elements.
+- The CRA sequence is 24h early warning, 72h notification and a later final report whose deadline depends on the event path.
+- The SRP deliberately routes one CRA submission to the appropriate authorities; do **not** model CRA itself as multiple Member-State filings.
+- ENISA says voluntary reporting will arrive in a later platform phase.
+- Current market documentation reports no SRP reporting API at this stage. Therefore do not promise automatic regulator filing or build an SRP integration unless ENISA later publishes a supported API.
+- CRA reporting can apply to legacy products already placed on the EU market; the opportunity is not limited to products launched after the broader December 2027 CRA application date.
 
-This is strong validation that the pain is real, but weakens a standalone EUR 490 generic CRA tabletop offer. We should not abandon the market; we should move one layer up where the operational failure is harder.
+This changes the product boundary in a useful way: the valuable layer is **before and around the official portal**, not replacing it.
 
-## New wedge to validate: EU Regulatory Collision Drill
+## New wedge to validate: EU Regulatory Collision Acceptance Test
 
 A single real security event can create several independent reporting duties. CRA, NIS2, GDPR and—where relevant—DORA do not collapse into one filing. They can have different triggers, recipients, clocks and evidence requirements.
 
-The test is therefore no longer “can you file a CRA report?” It is:
+The test is:
 
-> **If one incident triggers multiple EU regimes at once, can your organisation identify every applicable clock, route the right facts to the right owner and produce the separate filings without contradiction?**
+> **If one incident triggers multiple EU regimes at once, can the organisation reach consistent decisions and assemble every filing package before each clock expires?**
 
 Default synthetic scenario:
-- an actively exploited vulnerability exists in a connected product;
+- an actively exploited vulnerability exists in a connected product, including an optional legacy product;
 - exploitation causes a material service incident;
 - customer personal data may have been accessed;
 - optionally, a regulated financial customer/service is affected.
 
-The drill starts from one awareness event and builds a deterministic obligation matrix:
+The drill starts from one awareness event and builds:
 
-`event fact -> possible trigger -> regime -> clock anchor -> deadline -> recipient -> owner -> required facts -> filing status -> evidence`
+`event fact -> possible trigger -> regime -> clock anchor -> deadline -> recipient -> owner -> required facts -> filing package -> submission status -> evidence`
 
 Outputs:
-1. incident fact sheet shared across regimes;
+1. canonical incident fact sheet shared across regimes;
 2. applicability/UNKNOWN matrix (no invented legal conclusions);
 3. parallel clock map for CRA / NIS2 / GDPR / optional DORA;
 4. owner + backup owner for each decision and filing;
-5. contradiction test: facts/timestamps/severity statements that diverge between draft filings;
-6. evidence gaps and missing access/credentials;
-7. 60-minute tabletop log;
-8. remediation queue;
-9. one-page “collision readiness” evidence sheet.
+5. contradiction test across timestamps, affected products/users, severity and remediation statements;
+6. evidence/access gaps, including SRP readiness;
+7. portal-ready CRA information package, but **no automated filing**;
+8. 60-minute tabletop log;
+9. remediation queue;
+10. one-page collision-readiness evidence sheet.
 
-This remains operational readiness support, not legal advice, certification, incident-response outsourcing or regulatory filing.
+This is operational readiness/acceptance testing, not legal advice, certification, incident-response outsourcing or regulatory filing.
 
 ## Why this wedge may survive commoditisation
 
-The low-end CRA-only workflow is already being commoditised to free/$39 tooling. The multi-regime problem is less about generating forms and more about orchestration across product security, IT/security, privacy/legal and possibly regulated-business teams.
+The low-end CRA-only workflow is already commoditised by free/cheap drills and dedicated compliance products. ENISA itself now supplies the official submission surface. Building another CRA portal is therefore strategically weak.
 
-Public evidence also shows vendors moving toward unified engines: ReportAct and Venvera explicitly cover multiple frameworks. That is competition, but also confirms the category. Our potential position is **independent acceptance testing of the organisation's existing incident stack**, including those platforms, rather than another GRC system.
+The remaining failure surface is organisational: product security, IT/security, privacy/legal and possibly regulated-business teams may disagree on awareness time, scope, severity, affected users or remediation while separate statutory clocks run.
+
+Our potential position is **independent acceptance testing of the organisation's existing incident stack**, including commercial GRC/CRA products. Competition is positive evidence of demand; we only reject a wedge when competitors eliminate the specific differentiated workflow or economics.
+
+## Buyer expansion from legacy-product reporting
+
+Do not restrict prospecting to companies actively preparing new products for December 2027. Include manufacturers/software vendors with older supported products already on the EU market, especially where:
+- product ownership changed hands;
+- incident response is centralised but product evidence is fragmented;
+- legacy dependencies/SBOMs are incomplete;
+- support teams, security teams and legal teams use different systems;
+- an MSP/MSSP or product-security consultancy serves many such manufacturers.
+
+This may be a better channel than generic direct outreach because one adviser can repeat the acceptance test across a portfolio.
 
 ## Pricing hypothesis
 
 Do not publish or charge automatically.
 
-- direct collision drill: test EUR 790 / 1,490 / 2,500 depending on number of regimes and teams;
-- consultancy/MSP/DPO channel: EUR 2,500–5,000 white-label protocol + first supervised delivery, then determine economics from actual demand.
+- direct collision acceptance test: test EUR 790 / 1,490 / 2,500 depending on regimes and teams;
+- consultancy/MSP/MSSP/DPO channel: EUR 2,500–5,000 white-label protocol + first supervised delivery, then determine economics from actual demand.
 
-The higher anchor reflects cross-functional facilitation and independent testing. If buyers only value a generated deadline matrix, kill this: free/cheap software will win.
+If buyers only value generated deadlines or templates, kill this: ENISA guidance and cheap software will win.
 
 ## Gate
 
-PASS only if >=3 relevant organisations or advisers confirm that the *same incident* can require coordination across >=2 reporting regimes and at least one has not rehearsed the combined workflow.
+PASS only if >=3 relevant organisations/advisers confirm that the *same incident* can require coordination across >=2 reporting regimes and at least one has not rehearsed the combined workflow.
 
 Strong PASS if:
-- one consultancy/MSP/DPO/security firm can repeat the drill across >=5 clients; OR
-- one organisation agrees to run a synthetic collision scenario across >=2 real internal teams; OR
-- a drill exposes a concrete contradiction/missed obligation that a CRA-only or NIS2-only process did not catch.
+- one consultancy/MSP/MSSP/DPO/security firm can repeat the test across >=5 clients; OR
+- one organisation agrees to run a synthetic collision across >=2 real internal teams; OR
+- a test exposes a concrete contradiction/missed obligation that a single-regime process did not catch.
 
 RESHAPE toward white-label independent QA if buyers already use multi-framework GRC but have never tested it end-to-end.
 
 KILL if five qualified buyers already have rehearsed cross-regime workflows and see no value in independent testing, or if the only valued output is deadline calculation/template generation.
 
-## Regulatory facts to preserve
+## Competition already discovered
 
-CRA Article 14 reporting became applicable on 11 September 2026. The operational pattern includes a 24h early warning and 72h follow-up, with final-report timing depending on the event path. NIS2 has its own significant-incident reporting chain; GDPR can separately require supervisory-authority notification within 72 hours for qualifying personal-data breaches; DORA has its own major ICT-related incident reporting timetable for in-scope financial entities.
-
-Do not imply that every incident triggers every regime. Trigger analysis must explicitly allow NOT APPLICABLE and UNKNOWN/escalate.
+CRA-only/adjacent: cradrill.com, CRA-Portal.eu, Tensetti, CRAnotify, REGU, Seentrix, CRA Ready, cramio, CRA Evidence and others. Multi-framework engines include ReportAct and Venvera. Their existence validates spend and urgency but means our wedge must remain independent QA rather than another compliance dashboard.
 
 ## Public deployment rule
 
-No public web is required for manual validation. If the reshaped experiment earns a public surface, use `incident-collision.rockrai.com` and prefer `rockrai-experiment-factory` on Railway. Do not buy a domain, paid service, advertising, alter critical DNS or perform financial/irreversible actions without Pablo's explicit approval.
+No public web is required for manual validation. If the experiment earns a public surface, use `incident-collision.rockrai.com` and prefer `rockrai-experiment-factory` on Railway. Do not buy a domain, paid service, advertising, alter critical DNS or perform financial/irreversible actions without Pablo's explicit approval.
 
 ## Sources checked — 2026-09-17
 
-Primary/regulatory sources should govern final client materials. Market discovery sources below are evidence of category/competition, not legal authority:
+Primary:
+- https://digital-strategy.ec.europa.eu/en/policies/cra-reporting
+- https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp
+- https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/frequently-asked-questions
+- https://www.enisa.europa.eu/news/the-cra-single-reporting-platform-is-launched
+
+Operational/market evidence (not legal authority):
+- https://crareport.eu/guides/enisa-single-reporting-platform/
+- https://craevidence.com/cra-compliance/vulnerability-reporting
+- https://www.hlc.com/en/publications/eu-cyber-resilience-act-vulnerability-and-incident-reporting-obligations-now-apply
+- https://www.cramio.eu/
+- https://www.cra-ready.io/
 - https://cradrill.com/
 - https://cra-portal.eu/cra-incident-response/
 - https://tools.tensetti.io/cra
@@ -96,8 +120,3 @@ Primary/regulatory sources should govern final client materials. Market discover
 - https://seentrix.com/
 - https://reportact.com/
 - https://venvera.com/frameworks/cra
-
-Primary CRA references retained:
-- https://digital-strategy.ec.europa.eu/en/policies/cra-reporting
-- https://digital-strategy.ec.europa.eu/en/policies/cra-summary
-- https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp
