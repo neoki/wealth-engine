@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-17",
+  "phase": "continuous-discovery",
+  "canonicalMemory": "git",
+  "objective": "maximize net capital generated with increasing autonomy",
+  "currentDirective": "keep discovery broad; diverge sufficiently validated ideas into independent child projects",
+  "discovery": {
+    "targetSignalsPerSweep": 40,
+    "maxActiveCandidates": 5,
+    "maxConsecutiveCyclesPerCandidate": 3,
+    "requiredBehaviorWhenBuyerBlocked": "rotate",
+    "lateralConnectionsRequired": true
+  },
+  "lifecycle": ["signal", "candidate", "promoted", "rejected"],
+  "promotedKnown": [
+    {"id":"convenio-watch","status":"independent"},
+    {"id":"public-folder-planner","status":"independent-buyer-blocked"}
+  ],
+  "constraints": {
+    "operatingUmbrella":"rockrai.com",
+    "preferredRailwayInfrastructure":"rockrai-experiment-factory",
+    "noNewConnectorsForAutonomousRuns":true,
+    "requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]
+  },
+  "nextEngineAction":"run a broad heterogeneous signal sweep rather than deepen a promoted or buyer-blocked project"
+}
