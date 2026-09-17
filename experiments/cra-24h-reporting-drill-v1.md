@@ -1,146 +1,103 @@
-# CRA 24h Reporting Drill — validation v2
+# CRA 24h Reporting Drill — validation v3
 
-Status: manual-validation
+Status: RESHAPE — exact wedge is crowded; validate regulatory-collision drill instead
 
-## Why now
+## Decision update — 2026-09-17
 
-CRA Article 14 reporting obligations became applicable to manufacturers on 11 September 2026. The operational problem is immediate: an actively exploited vulnerability or severe product-security incident can start a 24h / 72h reporting clock before a manufacturer has decided who owns triage, who records awareness, who can file, or what evidence must be preserved.
+Fresh competitor discovery materially changes this experiment. Competition itself is positive evidence of demand, but several products now reproduce the *exact* low-end wedge rather than merely adjacent CRA compliance:
 
-This experiment is deliberately narrower than generic CRA compliance.
+- cradrill.com: free 7-minute CRA incident drill plus a $39 Article 14 operations pack;
+- CRA-Portal.eu: free self-service incident-response builder + tabletop drill;
+- Tensetti: free 10-minute CRA 24h/72h reporting drill;
+- CRAnotify: dedicated Article 14 workflow, deadline calculation, draft notification and evidence log;
+- REGU: managed CRA reporting from EUR 490/year;
+- Seentrix: CRA platform from EUR 59/month including Article 14 incident reporting;
+- broader consultancies also explicitly sell tabletop exercises and reporting-process design.
 
-Important nuance: do **not** sell this primarily through fine avoidance. European Commission guidance notes that microenterprises and small enterprises may not be fined for failures to meet the 24h reporting deadline. The stronger value proposition is operational readiness, customer/partner confidence, reduced incident chaos, evidence of a tested process, and a low-cost entry point into a much larger CRA readiness programme.
+This is strong validation that the pain is real, but weakens a standalone EUR 490 generic CRA tabletop offer. We should not abandon the market; we should move one layer up where the operational failure is harder.
 
-## Buyer hypothesis
+## New wedge to validate: EU Regulatory Collision Drill
 
-Primary targets:
-- EU software vendors distributing installable software/apps;
-- IoT / connected-device manufacturers;
-- hardware vendors whose products contain software;
-- security/compliance consultancies serving those manufacturers, as a potentially higher-leverage channel.
+A single real security event can create several independent reporting duties. CRA, NIS2, GDPR and—where relevant—DORA do not collapse into one filing. They can have different triggers, recipients, clocks and evidence requirements.
 
-Avoid pure browser-only SaaS until scope is confirmed. Do not imply that every software company is in CRA scope.
+The test is therefore no longer “can you file a CRA report?” It is:
 
-## Market/economic evidence — checked 2026-09-17
+> **If one incident triggers multiple EU regimes at once, can your organisation identify every applicable clock, route the right facts to the right owner and produce the separate filings without contradiction?**
 
-Fresh public pricing suggests the original EUR 149–299 anchor was probably underpriced rather than validated:
-- cyberresilienceact.ai advertises a self-service CRA Exposure Check at GBP 99, then GBP 199/299 follow-on report/plan products;
-- Vigilon Cyber advertises CRA readiness assessments from USD 4,000;
-- Regulus advertises CRA software at EUR 2,500/year Basic and EUR 15,000/year Pro;
-- iso-easy advertises full-service CRA programmes from EUR 7,500 to EUR 24,900 and explicitly includes the ENISA 24h/72h/14-day reporting process;
-- UK G-Cloud public pricing includes CRA advisory/cyber-risk work around GBP 1,200.
+Default synthetic scenario:
+- an actively exploited vulnerability exists in a connected product;
+- exploitation causes a material service incident;
+- customer personal data may have been accessed;
+- optionally, a regulated financial customer/service is affected.
 
-Interpretation: competition is evidence of spend. The drill should not try to replace a EUR 4k–25k compliance engagement. It can be the fast, concrete diagnostic at the front of that market, or a repeatable white-label component inside consultancies.
+The drill starts from one awareness event and builds a deterministic obligation matrix:
 
-## Offer to validate
+`event fact -> possible trigger -> regime -> clock anchor -> deadline -> recipient -> owner -> required facts -> filing status -> evidence`
 
-**CRA 24h Reporting Drill**
+Outputs:
+1. incident fact sheet shared across regimes;
+2. applicability/UNKNOWN matrix (no invented legal conclusions);
+3. parallel clock map for CRA / NIS2 / GDPR / optional DORA;
+4. owner + backup owner for each decision and filing;
+5. contradiction test: facts/timestamps/severity statements that diverge between draft filings;
+6. evidence gaps and missing access/credentials;
+7. 60-minute tabletop log;
+8. remediation queue;
+9. one-page “collision readiness” evidence sheet.
 
-A 45–60 minute tabletop exercise plus a tailored incident-reporting runbook and observed-failure report.
+This remains operational readiness support, not legal advice, certification, incident-response outsourcing or regulatory filing.
 
-Manual deliverable:
-1. Scope sanity-check and explicit UNKNOWN items requiring legal/specialist review.
-2. Named reporting owner + backup owner.
-3. Definition of the internal `awareness timestamp` and where it is recorded.
-4. Intake path for vulnerability reports / product-security incidents.
-5. Decision tree: potentially reportable / clearly not reportable / escalate for specialist review.
-6. 24-hour early-warning checklist.
-7. 72-hour notification checklist.
-8. Final-report checklist and evidence retention list.
-9. SRP access/readiness checklist (including EU Login / assigned representative readiness where relevant).
-10. One tabletop scenario with timestamps, handoffs and missed-step log.
-11. Remediation list: owner, priority, due date.
-12. One-page readiness evidence sheet suitable for management/customer/compliance files, clearly describing what was tested and what remains unresolved.
+## Why this wedge may survive commoditisation
 
-This is operational readiness support, not legal advice, certification, incident-response outsourcing or a guarantee of compliance.
+The low-end CRA-only workflow is already being commoditised to free/$39 tooling. The multi-regime problem is less about generating forms and more about orchestration across product security, IT/security, privacy/legal and possibly regulated-business teams.
 
-## Drill scenario
+Public evidence also shows vendors moving toward unified engines: ReportAct and Venvera explicitly cover multiple frameworks. That is competition, but also confirms the category. Our potential position is **independent acceptance testing of the organisation's existing incident stack**, including those platforms, rather than another GRC system.
 
-Default scenario: a customer reports credible evidence that a vulnerability in a currently supported product is being actively exploited.
+## Pricing hypothesis
 
-Start clock at T+00:00 when the organisation's chosen awareness threshold is met.
+Do not publish or charge automatically.
 
-Test whether the team can answer without improvisation:
-- What product/version is affected?
-- Who decides whether the event meets CRA reporting criteria?
-- Who has authority and access to submit through the CRA Single Reporting Platform?
-- What can be stated confidently at T+24h?
-- Which facts must be collected by T+72h?
-- Who owns corrective action and user/customer communications?
-- Where is the evidence retained?
+- direct collision drill: test EUR 790 / 1,490 / 2,500 depending on number of regimes and teams;
+- consultancy/MSP/DPO channel: EUR 2,500–5,000 white-label protocol + first supervised delivery, then determine economics from actual demand.
 
-Record every unknown, delay, missing credential/access path and ownership ambiguity. Those failures are the primary output of the drill.
-
-## Pricing hypotheses
-
-Validation anchors only. Test willingness to pay rather than assuming the cheapest anchor wins:
-- direct manufacturer: test EUR 490 as default anchor, with EUR 290 and EUR 790 as price-sensitivity alternatives;
-- consultancy/MSP: test EUR 1,500–3,000 for a white-label reusable kit + facilitator guide + first supervised delivery, then per-client/licence economics only if demanded.
-
-Rationale: a EUR 149 offer sits too close to automated/self-service CRA diagnostics despite requiring synchronous expert facilitation. Public market evidence shows much larger budgets for broader CRA assessments. We should capture some of the value of a tested operational workflow without pretending this is a full compliance engagement.
-
-Do not publish pricing, create checkout, buy services or take payment automatically.
-
-## Validation script
-
-Ask 5 manufacturers or consultancies:
-1. Who owns CRA Article 14 reporting today?
-2. If an actively exploited vulnerability were confirmed at 10:00 tomorrow, could you identify the decision-maker and submit the early warning within 24 hours?
-3. Have you tested that workflow end-to-end since the SRP became operational?
-4. What would most likely delay you: scope/triage, internal ownership, facts, SRP access, approvals, or customer communications?
-5. Would you run a 45–60 minute tabletop drill that leaves a tailored runbook, observed-failure report and evidence sheet?
-6. Price sensitivity: EUR 290 / 490 / 790 — at which point does this become trivial, acceptable, painful or impossible?
-7. Have you already bought, budgeted or been quoted a broader CRA assessment? Approximate range is enough.
-8. For consultancies: would you prefer a white-label drill kit you can repeat with customers, and how many relevant customers do you have?
-
-Do not lead with fines or fear. Validate operational friction and existing CRA spend.
+The higher anchor reflects cross-functional facilitation and independent testing. If buyers only value a generated deadline matrix, kill this: free/cheap software will win.
 
 ## Gate
 
-PASS only with:
-- >=3 independent buyers acknowledging a real reporting-readiness gap, and
-- >=1 buyer willing to run the drill on a real product/workflow OR explicit willingness to pay, and
-- at least one concrete operational failure uncovered (ownership, awareness timestamp, SRP access, escalation, evidence collection, or deadline workflow).
+PASS only if >=3 relevant organisations or advisers confirm that the *same incident* can require coordination across >=2 reporting regimes and at least one has not rehearsed the combined workflow.
 
-Strong PASS if at least one consultancy identifies >=5 customer accounts to which it could resell/repeat the drill.
+Strong PASS if:
+- one consultancy/MSP/DPO/security firm can repeat the drill across >=5 clients; OR
+- one organisation agrees to run a synthetic collision scenario across >=2 real internal teams; OR
+- a drill exposes a concrete contradiction/missed obligation that a CRA-only or NIS2-only process did not catch.
 
-RESHAPE if manufacturers see the problem but only buy through an existing security/compliance partner. This is potentially positive channel evidence, not failure.
+RESHAPE toward white-label independent QA if buyers already use multi-framework GRC but have never tested it end-to-end.
 
-KILL if 5 relevant buyers already have tested incident-reporting workflows and see no value in an external drill.
+KILL if five qualified buyers already have rehearsed cross-regime workflows and see no value in independent testing, or if the only valued output is deadline calculation/template generation.
 
-## Expansion only after validation
+## Regulatory facts to preserve
 
-Possible path, not roadmap:
+CRA Article 14 reporting became applicable on 11 September 2026. The operational pattern includes a 24h early warning and 72h follow-up, with final-report timing depending on the event path. NIS2 has its own significant-incident reporting chain; GDPR can separately require supervisory-authority notification within 72 hours for qualifying personal-data breaches; DORA has its own major ICT-related incident reporting timetable for in-scope financial entities.
 
-CRA 24h Reporting Drill -> recurring reporting-readiness review -> broader CRA operational evidence workflow.
-
-A second possible path is channel-first:
-
-manual drill -> white-label consultancy kit -> repeatable partner workflow.
-
-Do not build broad CRA compliance SaaS. Existing tools already cover scope checks, SBOM, documentation and general readiness, with public prices from low hundreds to five figures.
+Do not imply that every incident triggers every regime. Trigger analysis must explicitly allow NOT APPLICABLE and UNKNOWN/escalate.
 
 ## Public deployment rule
 
-No public web is required for manual validation. If this earns a public experiment later, use a descriptive subdomain such as `cra-drill.rockrai.com` and prefer `rockrai-experiment-factory` on Railway. Do not buy a domain, paid service, advertising, alter critical DNS or perform financial/irreversible actions without Pablo's explicit approval.
+No public web is required for manual validation. If the reshaped experiment earns a public surface, use `incident-collision.rockrai.com` and prefer `rockrai-experiment-factory` on Railway. Do not buy a domain, paid service, advertising, alter critical DNS or perform financial/irreversible actions without Pablo's explicit approval.
 
-## Primary and market sources checked — 2026-09-17
+## Sources checked — 2026-09-17
 
-Primary:
-- European Commission, CRA reporting obligations: https://digital-strategy.ec.europa.eu/en/policies/cra-reporting
-- European Commission, CRA summary: https://digital-strategy.ec.europa.eu/en/policies/cra-summary
-- ENISA, Single Reporting Platform: https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp
+Primary/regulatory sources should govern final client materials. Market discovery sources below are evidence of category/competition, not legal authority:
+- https://cradrill.com/
+- https://cra-portal.eu/cra-incident-response/
+- https://tools.tensetti.io/cra
+- https://cranotify.eu/
+- https://reguproof.com/
+- https://seentrix.com/
+- https://reportact.com/
+- https://venvera.com/frameworks/cra
 
-Public market evidence (pricing is vendor-claimed, not independently audited):
-- https://cyberresilienceact.ai/
-- https://www.vigiloncyber.com/packages
-- https://goregulus.com/
-- https://iso-easy.de/full-service/
-
-Verified regulatory facts used in this experiment:
-- manufacturer Article 14 reporting applies from 11 September 2026;
-- mandatory notifications are submitted through the CRA Single Reporting Platform;
-- early warning: within 24 hours of awareness;
-- full notification: within 72 hours;
-- final report: no later than 14 days after a corrective measure is available for an actively exploited vulnerability, or within one month from the 72-hour notification for a severe incident;
-- the SRP became operational on 11 September 2026;
-- Commission CRA summary states that microenterprises and small enterprises may not be fined for failures to meet the 24h deadline.
+Primary CRA references retained:
+- https://digital-strategy.ec.europa.eu/en/policies/cra-reporting
+- https://digital-strategy.ec.europa.eu/en/policies/cra-summary
+- https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp
