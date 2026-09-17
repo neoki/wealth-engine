@@ -4,11 +4,14 @@ import { normalizeInventory } from './normalize-inventory.mjs';
 // Deliberately dependency-free: accepts common PowerShell/CSV headings and
 // preserves unknown fields without requiring tenant credentials.
 const ALIASES = {
-  id: ['id','identity','folderid'],
+  id: ['id','identity','folderid','entryid'],
   path: ['path','folderpath','folder path','identitypath','name'],
-  itemCount: ['itemcount','items','item count','totalitemcount'],
-  sizeGb: ['sizegb','size gb','foldersizegb','folder size gb','totalitemsizegb'],
-  lastUserModified: ['lastusermodified','last modified','lastmodified','lastusermodificationtime'],
+  itemCount: ['itemcount','items','item count','totalitemcount','total item count'],
+  // TotalItemSize is the native Get-PublicFolderStatistics heading. Its value
+  // is usually a formatted ByteQuantifiedSize string; normalize-inventory
+  // converts B/KB/MB/GB/TB displays to GB.
+  sizeGb: ['sizegb','size gb','foldersizegb','folder size gb','totalitemsizegb','totalitemsize','total item size'],
+  lastUserModified: ['lastusermodified','last modified','lastmodified','lastusermodificationtime','last user modification time'],
   mailEnabled: ['mailenabled','mail enabled','ismailenabled'],
   mailAddress: ['mailaddress','primarysmtpaddress','smtpaddress','emailaddress'],
   uniqueAclCount: ['uniqueaclcount','aclcount','unique acl count','permissioncount'],
@@ -68,7 +71,7 @@ export function parseInventoryCsv(text, now=new Date()) {
   const warnings=[];
   if(!mapping.path && !mapping.id) warnings.push('No folder identity/path column recognised');
   if(mapping.itemCount==null) warnings.push('No item-count column recognised; workload counts may be used instead');
-  if(mapping.sizeGb==null) warnings.push('No folder-size-GB column recognised');
+  if(mapping.sizeGb==null) warnings.push('No folder-size column recognised (SizeGB or Exchange TotalItemSize)');
 
   const rows=lines.slice(1).map((line,index)=>{
     const cells=parseCsvLine(line,delimiter);
