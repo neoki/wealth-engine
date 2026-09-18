@@ -20,7 +20,7 @@
     {"id":"public-folder-planner","status":"independent-buyer-blocked"}
   ],
   "currentCandidateQueue": [
-    {"id":"cra-incident-evidence-reconciler","rank":1,"stage":"candidate-new","next":"map official CRA reporting workflow and competitive PSIRT/GRC coverage; test portfolio distribution wedge"},
+    {"id":"cra-incident-evidence-reconciler","rank":1,"stage":"rejected-horizontal","decision":"crowded at exact incident/evidence/reporting and multi-tenant/white-label wedge; retain lateral signals only"},
     {"id":"green-claim-evidence-reconciler","rank":2,"stage":"candidate-new","next":"map EU claim substantiation workflow and existing scanners; test agency portfolio wedge"},
     {"id":"asesoria-einvoice-portfolio-map","rank":3,"stage":"candidate-new","next":"compare Sage/ERP/Peppol partner portfolio tooling; test whether asesorias maintain migration state manually"},
     {"id":"ai-workflow-outcome-ledger","rank":4,"stage":"candidate-new","next":"test whether AI ROI/FinOps products measure workflow outcomes vs license/token utilization"},
@@ -32,5 +32,5 @@
     "noNewConnectorsForAutonomousRuns":true,
     "requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]
   },
-  "nextEngineAction":"evaluate candidate #1 CRA Incident Evidence Pack / Submission Reconciler for one evidence cycle; competition is positive evidence unless it eliminates a differentiated portfolio/workflow wedge; do not build before evidence gate; then decide or rotate"
+  "nextEngineAction":"rotate to candidate #2 Green-Claim Evidence Reconciler; verify the exact operative EU rules/current dates first, then map existing claim-scanning/substantiation products and test whether agency/retailer portfolio reconciliation remains differentiated; do not build before evidence gate"
 }
