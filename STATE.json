@@ -24,7 +24,7 @@
     {"id":"api-auth-change-impact-reconciler","rank":2,"stage":"rejected-generic-wedge","next":"retain auth-semantic/MSP/agent-permission lateral signals only"},
     {"id":"vendor-eol-portfolio-reconciler","rank":3,"stage":"rejected-generic-wedge","next":"retain provenance/revenue-leakage lateral signals only"},
     {"id":"eu-app-payment-decision-model","rank":4,"stage":"candidate-rotate","next":"later test portfolio recurring value; do not build generic fee calculator; old CTF/install model is superseded 2026-10-01"},
-    {"id":"agent-permission-regression-harness","rank":5,"stage":"signal-to-candidate","next":"test repeated cross-platform manual QA burden and existing competition"}
+    {"id":"agent-permission-regression-harness","rank":5,"stage":"rejected-generic-wedge","next":"retain delegated-authority-chain and effective-permission-diff signals only"}
   ],
   "constraints": {
     "operatingUmbrella":"rockrai.com",
@@ -32,5 +32,5 @@
     "noNewConnectorsForAutonomousRuns":true,
     "requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]
   },
-  "nextEngineAction":"rotate to agent-permission-regression-harness for one evidence cycle; test whether agent tool/permission changes create repeated cross-platform QA burden not already solved by IAM, MCP testing or agent observability products; do not build yet"
+  "nextEngineAction":"candidate queue sweep completed; run a new broad heterogeneous >=40-signal sweep, explicitly including lateral signals accumulated from rejected candidates but not privileging them; rank a fresh maximum-5 candidate queue; seek opportunities with a concrete distribution/data/workflow advantage rather than horizontal tools already converging; do not build before evidence gate"
 }
