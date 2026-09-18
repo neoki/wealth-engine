@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updatedAt": "2026-09-19",
-  "phase": "engine-redesign",
+  "phase": "multi-round-maturation",
   "canonicalMemory": "git",
   "objective": "maximize net capital generated with increasing autonomy",
   "currentDirective": "generate exogenous diversity from world observations; mature ideas across multiple independent evidence rounds; classify rather than prematurely kill; proven profitable copies are explicitly valid where market room exists",
@@ -12,8 +12,9 @@
     "minimumMateriallyDifferentRoundsBeforeTerminalClassification": 3,
     "requiredBehaviorWhenBuyerBlocked": "classify/retain and rotate",
     "lateralConnectionsRequired": true,
-    "lastSweep": "signals/2026-09-18-sweep-05.md",
-    "nextSweep": "sweep-06"
+    "lastSweep": "signals/2026-09-19-sweep-06-10-round-trial.md",
+    "nextSweep": "sweep-07-world",
+    "lastSweepSignalCount": 10
   },
   "lifecycle": [
     "observation",
@@ -49,7 +50,14 @@
       "status": "independent-buyer-blocked"
     }
   ],
-  "currentCandidateQueue": [],
+  "currentCandidateQueue": [
+    "wedding-content-creator-network-galicia",
+    "second-home-home-watch",
+    "pet-waste-removal-spain",
+    "sell-it-for-me-vertical",
+    "senior-family-tech-concierge",
+    "vertical-ai-receptionist-managed-service"
+  ],
   "constraints": {
     "operatingUmbrella": "rockrai.com",
     "preferredRailwayInfrastructure": "rockrai-experiment-factory",
@@ -64,5 +72,5 @@
       "outreach in Pablo's name"
     ]
   },
-  "nextEngineAction": "redesign sweep-06 around exogenous WORLD observations and idea maturation. Do not continue the correlated sweep-05 queue by default. Generate heterogeneous raw observations, derive/recombine ideas, then run materially different evidence rounds. Explicitly include proven profitable business models that may be copied/adapted where market room remains."
+  "nextEngineAction": "Run independent maturation rounds on the two PROMISING candidates (Wedding Content Creator network/brand Galicia; Second-home Home Watch), especially distribution and unit economics, while preserving fresh WORLD sampling in parallel. Do not build until BRILLIANT."
 }
