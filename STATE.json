@@ -11,7 +11,7 @@
     "maxConsecutiveCyclesPerCandidate": 3,
     "requiredBehaviorWhenBuyerBlocked": "rotate",
     "lateralConnectionsRequired": true,
-    "lastSweep": "signals/2026-09-17-sweep-01.md",
+    "lastSweep": "signals/2026-09-18-sweep-02.md",
     "lastSweepSignalCount": 40
   },
   "lifecycle": ["signal", "candidate", "promoted", "rejected"],
@@ -20,11 +20,11 @@
     {"id":"public-folder-planner","status":"independent-buyer-blocked"}
   ],
   "currentCandidateQueue": [
-    {"id":"agentic-commerce-acceptance-test","rank":1,"stage":"rejected-generic-wedge","next":"retain lateral post-purchase/reconciliation signals only"},
-    {"id":"api-auth-change-impact-reconciler","rank":2,"stage":"rejected-generic-wedge","next":"retain auth-semantic/MSP/agent-permission lateral signals only"},
-    {"id":"vendor-eol-portfolio-reconciler","rank":3,"stage":"rejected-generic-wedge","next":"retain provenance/revenue-leakage lateral signals only"},
-    {"id":"eu-app-payment-decision-model","rank":4,"stage":"candidate-rotate","next":"later test portfolio recurring value; do not build generic fee calculator; old CTF/install model is superseded 2026-10-01"},
-    {"id":"agent-permission-regression-harness","rank":5,"stage":"rejected-generic-wedge","next":"retain delegated-authority-chain and effective-permission-diff signals only"}
+    {"id":"cra-incident-evidence-reconciler","rank":1,"stage":"candidate-new","next":"map official CRA reporting workflow and competitive PSIRT/GRC coverage; test portfolio distribution wedge"},
+    {"id":"green-claim-evidence-reconciler","rank":2,"stage":"candidate-new","next":"map EU claim substantiation workflow and existing scanners; test agency portfolio wedge"},
+    {"id":"asesoria-einvoice-portfolio-map","rank":3,"stage":"candidate-new","next":"compare Sage/ERP/Peppol partner portfolio tooling; test whether asesorias maintain migration state manually"},
+    {"id":"ai-workflow-outcome-ledger","rank":4,"stage":"candidate-new","next":"test whether AI ROI/FinOps products measure workflow outcomes vs license/token utilization"},
+    {"id":"delegated-transaction-proof-reconciler","rank":5,"stage":"candidate-new","next":"map end-to-end intent/action/payment/refund proof ownership across agentic payment protocols"}
   ],
   "constraints": {
     "operatingUmbrella":"rockrai.com",
@@ -32,5 +32,5 @@
     "noNewConnectorsForAutonomousRuns":true,
     "requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]
   },
-  "nextEngineAction":"candidate queue sweep completed; run a new broad heterogeneous >=40-signal sweep, explicitly including lateral signals accumulated from rejected candidates but not privileging them; rank a fresh maximum-5 candidate queue; seek opportunities with a concrete distribution/data/workflow advantage rather than horizontal tools already converging; do not build before evidence gate"
+  "nextEngineAction":"evaluate candidate #1 CRA Incident Evidence Pack / Submission Reconciler for one evidence cycle; competition is positive evidence unless it eliminates a differentiated portfolio/workflow wedge; do not build before evidence gate; then decide or rotate"
 }
