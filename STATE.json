@@ -23,8 +23,8 @@
     {"id":"agentic-commerce-acceptance-test","rank":1,"stage":"rejected-generic-wedge","next":"retain lateral post-purchase/reconciliation signals only"},
     {"id":"api-auth-change-impact-reconciler","rank":2,"stage":"rejected-generic-wedge","next":"retain auth-semantic/MSP/agent-permission lateral signals only"},
     {"id":"vendor-eol-portfolio-reconciler","rank":3,"stage":"rejected-generic-wedge","next":"retain provenance/revenue-leakage lateral signals only"},
-    {"id":"eu-app-payment-decision-model","rank":4,"stage":"signal-to-candidate","next":"test whether portfolio workflow beats free calculators and existing app-economics tooling"},
-    {"id":"agent-permission-regression-harness","rank":5,"stage":"watch","next":"look for repeated cross-platform manual QA burden"}
+    {"id":"eu-app-payment-decision-model","rank":4,"stage":"candidate-rotate","next":"later test portfolio recurring value; do not build generic fee calculator; old CTF/install model is superseded 2026-10-01"},
+    {"id":"agent-permission-regression-harness","rank":5,"stage":"signal-to-candidate","next":"test repeated cross-platform manual QA burden and existing competition"}
   ],
   "constraints": {
     "operatingUmbrella":"rockrai.com",
@@ -32,5 +32,5 @@
     "noNewConnectorsForAutonomousRuns":true,
     "requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]
   },
-  "nextEngineAction":"rotate to eu-app-payment-decision-model for one evidence cycle; test whether a repeated multi-app portfolio decision workflow has differentiated economic value beyond free calculators and existing app-economics tooling; do not build yet"
+  "nextEngineAction":"rotate to agent-permission-regression-harness for one evidence cycle; test whether agent tool/permission changes create repeated cross-platform QA burden not already solved by IAM, MCP testing or agent observability products; do not build yet"
 }
