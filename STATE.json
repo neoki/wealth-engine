@@ -1,1 +1,68 @@
-{"schemaVersion":1,"updatedAt":"2026-09-19","phase":"candidate-falsification","canonicalMemory":"git","objective":"maximize net capital generated with increasing autonomy","currentDirective":"keep discovery broad; diverge sufficiently validated ideas into independent child projects; competition is demand evidence and only kills a candidate when it removes our plausible differentiated wedge","discovery":{"targetSignalsPerSweep":40,"maxActiveCandidates":5,"maxConsecutiveCyclesPerCandidate":3,"requiredBehaviorWhenBuyerBlocked":"rotate","lateralConnectionsRequired":true,"lastSweep":"signals/2026-09-18-sweep-05.md","lastSweepSignalCount":40,"nextSweep":"sweep-06"},"lifecycle":["signal","candidate","promoted","rejected"],"promotedKnown":[{"id":"convenio-watch","status":"independent"},{"id":"public-folder-planner","status":"independent-buyer-blocked"}],"currentCandidateQueue":["customer-contract-ai-use-restriction-mapper","security-questionnaire-promise-to-reality-auditor","field-service-warranty-reimbursement-leakage-auditor","agent-stale-context-revalidation-gate"],"rejectedRecent":[{"id":"agent-approval-economics-auditor","reason":"core telemetry-to-policy wedge is already occupied: Runshift explicitly learns from approval/edit/denial history to raise automation thresholds and reduce gates; adjacent HITL systems/guidance increasingly implement the same progressive-autonomy loop","evidence":"candidates/agent-approval-economics-auditor.md"},{"id":"grant-reimbursement-leakage-auditor","reason":"exact eligible-incurred-spend to missed-reimbursement recovery is already occupied by FullRecover; GrantPipe, Avila and GrantLink independently validate the workflow","evidence":"candidates/grant-reimbursement-leakage-auditor.md"},{"id":"operational-credential-revenue-blocker","reason":"economic credential-to-capacity chain is real across healthcare, field service and staffing, but exact revenue-at-risk/blocker prioritization already exists in healthcare and vertical operating systems already join credentials to scheduling/dispatch","evidence":"candidates/operational-credential-revenue-blocker.md"}],"retainedSignals":["accounting close exception router pending anonymized real sample","asesoria heterogeneous e-invoice transition orchestrator","outcome contract reconciliation","post-settlement autonomous procurement fulfillment reconciliation","cross-system supplier evidence propagation","accounting cross-channel completeness","cross-channel professional-services scope interception","contractor-side cross-platform CAE revenue router","constraint-to-production graph primitive","representation-to-reality drift","revenue-capture-before-optimization","counterparty-side multi-portal fragmentation","money-that-exists-before-software","credential-to-capacity economic triage only where credential and booked-work systems are disconnected","entitlement leakage: transaction/event -> rule/entitlement -> evidence -> unclaimed cash -> minimum recovery action","agent human-attention economics as a primitive, especially cross-system review bottlenecks","agent approval stale-context risk","outbound promise-to-runtime drift"],"constraints":{"operatingUmbrella":"rockrai.com","preferredRailwayInfrastructure":"rockrai-experiment-factory","noNewConnectorsForAutonomousRuns":true,"requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]},"nextEngineAction":"falsify customer-contract-ai-use-restriction-mapper. Test whether contract lifecycle management, AI governance/GRC, legal AI policy and customer assurance products already extract customer-specific AI-use clauses/engagement restrictions and map them to concrete allowed/prohibited internal agent workflows. Treat competition as demand evidence; reject only if it removes a plausible wedge. If a differentiated wedge survives, define the cheapest evidence-first experiment before any public build."}
+{
+  "schemaVersion": 2,
+  "updatedAt": "2026-09-19",
+  "phase": "engine-redesign",
+  "canonicalMemory": "git",
+  "objective": "maximize net capital generated with increasing autonomy",
+  "currentDirective": "generate exogenous diversity from world observations; mature ideas across multiple independent evidence rounds; classify rather than prematurely kill; proven profitable copies are explicitly valid where market room exists",
+  "discovery": {
+    "targetSignalsPerSweep": 40,
+    "maxActiveCandidates": 5,
+    "maxConsecutiveCyclesPerCandidate": 3,
+    "minimumMateriallyDifferentRoundsBeforeTerminalClassification": 3,
+    "requiredBehaviorWhenBuyerBlocked": "classify/retain and rotate",
+    "lateralConnectionsRequired": true,
+    "lastSweep": "signals/2026-09-18-sweep-05.md",
+    "nextSweep": "sweep-06"
+  },
+  "lifecycle": [
+    "observation",
+    "signal",
+    "idea",
+    "maturation",
+    "possible",
+    "promising",
+    "brilliant",
+    "production",
+    "rejected"
+  ],
+  "classifications": {
+    "rejected": "profitably entering is implausible after sufficient evidence or decisive falsification",
+    "possible": "plausible but evidence/timing insufficient",
+    "promising": "multiple independent signals plus plausible profit route",
+    "brilliant": "exceptional expected profitability versus capital/time/risk with credible demand, room, distribution and execution",
+    "production": "brilliant opportunity diverged into independent execution"
+  },
+  "principles": {
+    "originalityRequired": false,
+    "provenModelCopyingAllowed": true,
+    "competitionUsuallyDemandEvidence": true,
+    "worldInputsSeparatedFromEngineLearnings": true
+  },
+  "promotedKnown": [
+    {
+      "id": "convenio-watch",
+      "status": "independent"
+    },
+    {
+      "id": "public-folder-planner",
+      "status": "independent-buyer-blocked"
+    }
+  ],
+  "currentCandidateQueue": [],
+  "constraints": {
+    "operatingUmbrella": "rockrai.com",
+    "preferredRailwayInfrastructure": "rockrai-experiment-factory",
+    "noNewConnectorsForAutonomousRuns": true,
+    "requireExplicitApprovalFor": [
+      "domain purchase",
+      "paid service",
+      "paid advertising",
+      "critical DNS change",
+      "financial action",
+      "irreversible action",
+      "outreach in Pablo's name"
+    ]
+  },
+  "nextEngineAction": "redesign sweep-06 around exogenous WORLD observations and idea maturation. Do not continue the correlated sweep-05 queue by default. Generate heterogeneous raw observations, derive/recombine ideas, then run materially different evidence rounds. Explicitly include proven profitable business models that may be copied/adapted where market room remains."
+}
