@@ -12,9 +12,9 @@
     {"id":"cra-incident-evidence-reconciler","rank":1,"stage":"rejected-horizontal"},
     {"id":"green-claim-evidence-reconciler","rank":2,"stage":"rejected-horizontal","decision":"deadline and pain validated; generic claim-evidence-approval-audit workflow already crowded"},
     {"id":"asesoria-einvoice-portfolio-map","rank":3,"stage":"rotated-generic-rejected","decision":"multi-client readiness/dashboard proposition already directly occupied; retain heterogeneous installed-base transition orchestration as signal","retainedSignal":"asesoria heterogeneous e-invoice transition orchestrator"},
-    {"id":"ai-workflow-outcome-ledger","rank":4,"stage":"candidate-new","next":"test whether businesses need a cross-agent outcome/economic ledger beyond observability and eval platforms"},
-    {"id":"delegated-transaction-proof-reconciler","rank":5,"stage":"candidate-new"}
+    {"id":"ai-workflow-outcome-ledger","rank":4,"stage":"rejected-horizontal","decision":"business-value measurement validated but generic traces-cost-outcome-ROI workflow already directly occupied","retainedSignals":["counterfactual outcome attribution","professional-services AI value assurance","outcome contract reconciliation"]},
+    {"id":"delegated-transaction-proof-reconciler","rank":5,"stage":"candidate-new","next":"test whether agent-initiated transactions create a repeated buyer/vendor evidence reconciliation problem distinct from payment authorization, agent identity and generic audit logs"}
   ],
   "constraints": {"operatingUmbrella":"rockrai.com","preferredRailwayInfrastructure":"rockrai-experiment-factory","noNewConnectorsForAutonomousRuns":true,"requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]},
-  "nextEngineAction":"rotate to candidate #4 AI Workflow Outcome Ledger; map observability/eval/FinOps competition and test whether a distinct business-outcome reconciliation workflow exists before any build"
+  "nextEngineAction":"rotate to candidate #5 Delegated Transaction Proof Reconciler; map payment authorization, verifiable intent, agent identity and transaction evidence competition, then test for a distinct reconciliation workflow before any build"
 }
