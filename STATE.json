@@ -16,17 +16,7 @@
     "nextSweep": "sweep-07-world",
     "lastSweepSignalCount": 10
   },
-  "lifecycle": [
-    "observation",
-    "signal",
-    "idea",
-    "maturation",
-    "possible",
-    "promising",
-    "brilliant",
-    "production",
-    "rejected"
-  ],
+  "lifecycle": ["observation","signal","idea","maturation","possible","promising","brilliant","production","rejected"],
   "classifications": {
     "rejected": "profitably entering is implausible after sufficient evidence or decisive falsification",
     "possible": "plausible but evidence/timing insufficient",
@@ -41,36 +31,26 @@
     "worldInputsSeparatedFromEngineLearnings": true
   },
   "promotedKnown": [
-    {
-      "id": "convenio-watch",
-      "status": "independent"
-    },
-    {
-      "id": "public-folder-planner",
-      "status": "independent-buyer-blocked"
-    }
+    {"id":"convenio-watch","status":"independent"},
+    {"id":"public-folder-planner","status":"independent-buyer-blocked"}
   ],
   "currentCandidateQueue": [
     "wedding-content-creator-network-galicia",
-    "second-home-home-watch",
+    "second-home-home-watch-b2b2c-costa-blanca",
     "pet-waste-removal-spain",
     "sell-it-for-me-vertical",
-    "senior-family-tech-concierge",
-    "vertical-ai-receptionist-managed-service"
+    "senior-family-tech-concierge"
   ],
+  "maturation": {
+    "evidenceFile": "candidates/2026-09-19-maturation-wedding-homewatch.md",
+    "wedding-content-creator-network-galicia": {"classification":"promising","roundsCompleted":["demand-price","distribution","economics-scalability"],"nextGate":"creator supply and partner-channel economics"},
+    "second-home-home-watch-b2b2c-costa-blanca": {"classification":"promising","roundsCompleted":["demand-geography","price-competition","economics-moat"],"nextGate":"B2B2C referral channel and micro-geography route economics"}
+  },
   "constraints": {
     "operatingUmbrella": "rockrai.com",
     "preferredRailwayInfrastructure": "rockrai-experiment-factory",
     "noNewConnectorsForAutonomousRuns": true,
-    "requireExplicitApprovalFor": [
-      "domain purchase",
-      "paid service",
-      "paid advertising",
-      "critical DNS change",
-      "financial action",
-      "irreversible action",
-      "outreach in Pablo's name"
-    ]
+    "requireExplicitApprovalFor": ["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]
   },
-  "nextEngineAction": "Run independent maturation rounds on the two PROMISING candidates (Wedding Content Creator network/brand Galicia; Second-home Home Watch), especially distribution and unit economics, while preserving fresh WORLD sampling in parallel. Do not build until BRILLIANT."
+  "nextEngineAction": "Do one more independent evidence round on each PROMISING candidate: wedding creator supply/referral economics; Home Watch B2B2C estate-agent/developer channel and route economics. Do not build until BRILLIANT. In parallel start fresh WORLD observations so these candidates do not become a new attractor."
 }
