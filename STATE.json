@@ -11,10 +11,10 @@
   "currentCandidateQueue": [
     {"id":"cra-incident-evidence-reconciler","rank":1,"stage":"rejected-horizontal"},
     {"id":"green-claim-evidence-reconciler","rank":2,"stage":"rejected-horizontal","decision":"deadline and pain validated; generic claim-evidence-approval-audit workflow already crowded"},
-    {"id":"asesoria-einvoice-portfolio-map","rank":3,"stage":"candidate-new","next":"map current Spanish implementation status and existing portfolio tooling"},
-    {"id":"ai-workflow-outcome-ledger","rank":4,"stage":"candidate-new"},
+    {"id":"asesoria-einvoice-portfolio-map","rank":3,"stage":"rotated-generic-rejected","decision":"multi-client readiness/dashboard proposition already directly occupied; retain heterogeneous installed-base transition orchestration as signal","retainedSignal":"asesoria heterogeneous e-invoice transition orchestrator"},
+    {"id":"ai-workflow-outcome-ledger","rank":4,"stage":"candidate-new","next":"test whether businesses need a cross-agent outcome/economic ledger beyond observability and eval platforms"},
     {"id":"delegated-transaction-proof-reconciler","rank":5,"stage":"candidate-new"}
   ],
   "constraints": {"operatingUmbrella":"rockrai.com","preferredRailwayInfrastructure":"rockrai-experiment-factory","noNewConnectorsForAutonomousRuns":true,"requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]},
-  "nextEngineAction":"rotate to candidate #3 Asesoria E-Invoice Portfolio Map; verify current Spanish implementation dates/status and map existing portfolio tooling before any build"
+  "nextEngineAction":"rotate to candidate #4 AI Workflow Outcome Ledger; map observability/eval/FinOps competition and test whether a distinct business-outcome reconciliation workflow exists before any build"
 }
