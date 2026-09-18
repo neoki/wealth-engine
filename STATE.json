@@ -1,20 +1,21 @@
 {
   "schemaVersion": 1,
   "updatedAt": "2026-09-18",
-  "phase": "continuous-discovery",
+  "phase": "candidate-falsification",
   "canonicalMemory": "git",
   "objective": "maximize net capital generated with increasing autonomy",
   "currentDirective": "keep discovery broad; diverge sufficiently validated ideas into independent child projects",
-  "discovery": {"targetSignalsPerSweep":40,"maxActiveCandidates":5,"maxConsecutiveCyclesPerCandidate":3,"requiredBehaviorWhenBuyerBlocked":"rotate","lateralConnectionsRequired":true,"lastSweep":"signals/2026-09-18-sweep-02.md","lastSweepSignalCount":40},
+  "discovery": {"targetSignalsPerSweep":40,"maxActiveCandidates":5,"maxConsecutiveCyclesPerCandidate":3,"requiredBehaviorWhenBuyerBlocked":"rotate","lateralConnectionsRequired":true,"lastSweep":"signals/2026-09-18-sweep-03.md","lastSweepSignalCount":40},
   "lifecycle": ["signal","candidate","promoted","rejected"],
   "promotedKnown": [{"id":"convenio-watch","status":"independent"},{"id":"public-folder-planner","status":"independent-buyer-blocked"}],
   "currentCandidateQueue": [
-    {"id":"cra-incident-evidence-reconciler","rank":1,"stage":"rejected-horizontal"},
-    {"id":"green-claim-evidence-reconciler","rank":2,"stage":"rejected-horizontal","decision":"deadline and pain validated; generic claim-evidence-approval-audit workflow already crowded"},
-    {"id":"asesoria-einvoice-portfolio-map","rank":3,"stage":"rotated-generic-rejected","decision":"multi-client readiness/dashboard proposition already directly occupied; retain heterogeneous installed-base transition orchestration as signal","retainedSignal":"asesoria heterogeneous e-invoice transition orchestrator"},
-    {"id":"ai-workflow-outcome-ledger","rank":4,"stage":"rejected-horizontal","decision":"business-value measurement validated but generic traces-cost-outcome-ROI workflow already directly occupied","retainedSignals":["counterfactual outcome attribution","professional-services AI value assurance","outcome contract reconciliation"]},
-    {"id":"delegated-transaction-proof-reconciler","rank":5,"stage":"rejected-horizontal","decision":"authorization-to-proof chain increasingly covered by AP2/Verifiable Intent and emerging dispute-evidence products; no sufficient horizontal differentiation","retainedSignals":["post-settlement autonomous procurement fulfillment reconciliation","cross-protocol neutral evidence portability","outcome-contract plus delegated-payment reconciliation"]}
+    {"id":"accounting-close-exception-router","rank":1,"stage":"falsify","thesis":"rank client/document exceptions by downstream blocked work, deadline and economic impact rather than merely collecting files"},
+    {"id":"supplier-evidence-change-propagator","rank":2,"stage":"queued","thesis":"supplier certificate/declaration/spec changes propagate to affected packaging/products/claims/customers; PPWR as forcing function, not product boundary"},
+    {"id":"professional-services-scope-leak-ledger","rank":3,"stage":"queued","thesis":"detect incoming client work performed outside engagement scope before it becomes unbilled goodwill"},
+    {"id":"cae-work-blocking-exception-router","rank":4,"stage":"queued","thesis":"missing/expired subcontractor evidence mapped to exact site/work package/person blocked and smallest next action"},
+    {"id":"ai-production-disclosure-regression-monitor","rank":5,"stage":"queued","thesis":"continuously detect required AI disclosures lost or made inconsistent by production changes"}
   ],
+  "retainedSignals": ["asesoria heterogeneous e-invoice transition orchestrator","outcome contract reconciliation","post-settlement autonomous procurement fulfillment reconciliation","CRA third-party component to shipped-product impact","supplier-evidence propagation","accounting cross-channel completeness","professional-services request-to-scope check"],
   "constraints": {"operatingUmbrella":"rockrai.com","preferredRailwayInfrastructure":"rockrai-experiment-factory","noNewConnectorsForAutonomousRuns":true,"requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]},
-  "nextEngineAction":"sweep-02 queue exhausted; start sweep-03 with >=40 heterogeneous signals, deliberately diversify away from agentic-commerce concentration, score for repeated buyer pain, distribution advantage, monetization and cheap falsifiability; retain lateral signals without privileging them"
+  "nextEngineAction":"falsify accounting-close-exception-router against current accounting/practice-management products; seek evidence of exception-to-blocked-work mapping and economic/deadline prioritization; do not build before evidence from >=3 independent workflows and a credible pilot/sample path"
 }
