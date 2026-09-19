@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-09-19-sweep14-world-ap-economics",
+  "timestamp": "2026-09-19",
+  "parentId": "2026-09-19-sweep13-recovery-audit-world",
+  "rootObservation": "Test AP recovery economics while forcing unrelated WORLD exploration.",
+  "candidateId": "sme-ap-recovery-audit-via-advisors",
+  "policy": {
+    "mode": "mature+world",
+    "reason": "Candidate required independent economics/channel evidence; engine required anti-attractor perturbation.",
+    "evidenceDimension": "minimum viable spend + channel incumbency + unrelated WORLD sampling"
+  },
+  "before": {"classification": "possible-plus", "confidence": null},
+  "action": "Estimate recovery-fee geometry from public benchmarks, test advisor-channel uniqueness, and sample unrelated domains.",
+  "cost": {"searchCalls": 4, "agentCalls": null, "elapsedMinutes": null, "tokens": null},
+  "evidenceRefs": ["candidates/2026-09-19-sweep14-world-ap-economics.md"],
+  "result": "Broad SME AP recovery economics weaken sharply at low supplier spend; advisor distribution is validated but not unique. Unrelated WORLD sampling found occupied primitives but no candidate strong enough to promote.",
+  "after": {"classification": "possible-rotated", "confidence": null},
+  "decision": "rotate",
+  "nextGate": "high-spend SME/mid-market prequalification, unusually cheap automated claim workflow, or privileged advisor portfolio access",
+  "laterOutcome": null
+}
