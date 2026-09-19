@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "sweep-16-world",
+  "timestamp": "2026-09-19",
+  "parentId": "sweep-15-world",
+  "rootObservation": "problem-first unrelated WORLD sampling",
+  "candidateId": "dpp-supplier-evidence-operations-channel",
+  "policy": {
+    "mode": "world",
+    "reason": "continue breadth after escaping recovery/refund attractor; test unrelated operational pains and one exogenous compliance wave without seeding from prior patterns",
+    "evidenceDimension": "pain plus market occupancy plus structural timing plus distribution wedge"
+  },
+  "before": {"classification": "observation", "confidence": null},
+  "action": "Sampled hospitality lost property, school/AMPA administration, event photo collection, SME HR, mobile detailing and Digital Product Passport operations; separately matured the remaining mobile-detailing candidate.",
+  "cost": {"searchCalls": 4, "agentCalls": null, "elapsedMinutes": null, "tokens": null},
+  "evidenceRefs": ["candidates/2026-09-19-sweep16-world-problem-first.md"],
+  "result": "Most sampled jobs were already well served. Mobile detailing was proven but lacked a privileged dense channel and was rotated. DPP is a real EU structural wave but generic passport software is already crowded; upstream supplier evidence collection/normalization remains a possible service/workflow wedge requiring validation.",
+  "after": {"classification": "possible", "confidence": null},
+  "decision": "continue",
+  "nextGate": "One independent round on actual SME supplier-evidence workflow, incumbent portal coverage, category deadline timing, willingness to pay and partner/channel economics; maintain unrelated WORLD breadth.",
+  "laterOutcome": null
+}
