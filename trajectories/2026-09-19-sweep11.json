@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-09-19-sweep11",
+  "timestamp": "2026-09-19",
+  "parentId": "sweep10-solar-world",
+  "rootObservation": "external schedules can manufacture route density",
+  "candidateId": "synchronized-community-bin-handling-copy",
+  "policy": {
+    "mode": "falsify+world",
+    "reason": "Give the bin-handling geographic copy one bounded maturation pass while preserving unrelated WORLD exploration.",
+    "evidenceDimension": "target geography + route economics + administrator distribution + incumbent substitution"
+  },
+  "before": {"classification": "possible", "confidence": null},
+  "action": "Search for target-market evidence and substitutes; in parallel probe unrelated synchronized/compliance/residual-value services and queued candidates.",
+  "cost": {"searchCalls": 18, "agentCalls": null, "elapsedMinutes": null, "tokens": null},
+  "evidenceRefs": ["candidates/2026-09-19-sweep11-synchronized-world.md"],
+  "result": "Madrid validates the model but no target-geography evidence or privileged administrator density was found; integrated cleaners/caretakers are likely substitutes. A stronger reusable primitive emerged: recoverable residual value can subsidize an adjacent painful service, as demonstrated by used-oil/kitchen-maintenance bundles including in Galicia.",
+  "after": {"classification": "possible-rotated", "confidence": null},
+  "decision": "rotate",
+  "nextGate": "Revisit bin handling only on explicit administrator demand or dense uncovered portal evidence. Next WORLD search should test residual-value-subsidized adjacent services; pet waste gets one B2B concentration pass.",
+  "laterOutcome": null
+}
