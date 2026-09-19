@@ -12,9 +12,9 @@
     "minimumMateriallyDifferentRoundsBeforeTerminalClassification": 3,
     "requiredBehaviorWhenBuyerBlocked": "classify/retain and rotate",
     "lateralConnectionsRequired": true,
-    "lastSweep": "candidates/2026-09-19-sweep17-world-dpp-absorption.md",
-    "nextSweep": "sweep-18-world",
-    "lastSweepSignalCount": 3
+    "lastSweep": "candidates/2026-09-19-sweep18-world-mundane-spend.md",
+    "nextSweep": "sweep-19-world",
+    "lastSweepSignalCount": 6
   },
   "lifecycle": ["observation","signal","idea","maturation","possible","promising","brilliant","production","rejected"],
   "classifications": {
@@ -28,7 +28,7 @@
   "promotedKnown": [{"id":"convenio-watch","status":"independent"},{"id":"public-folder-planner","status":"independent-buyer-blocked"}],
   "currentCandidateQueue": [],
   "maturation": {
-    "evidenceFiles": ["candidates/2026-09-19-maturation-wedding-homewatch.md","candidates/2026-09-19-maturation-wedding-homeorg.md","candidates/2026-09-19-homeorg-world-sweep07.md","candidates/2026-09-19-gravecare-world-sweep08.md","candidates/2026-09-19-sweep09.md","candidates/2026-09-19-sweep10-solar-world.md","candidates/2026-09-19-sweep11-synchronized-world.md","candidates/2026-09-19-sweep12-residual-world.md","candidates/2026-09-19-sweep13-recovery-audit-world.md","candidates/2026-09-19-sweep14-world-ap-economics.md","candidates/2026-09-19-sweep15-world-unrelated-needs.md","candidates/2026-09-19-sweep16-world-problem-first.md","candidates/2026-09-19-sweep17-world-dpp-absorption.md"],
+    "evidenceFiles": ["candidates/2026-09-19-maturation-wedding-homewatch.md","candidates/2026-09-19-maturation-wedding-homeorg.md","candidates/2026-09-19-homeorg-world-sweep07.md","candidates/2026-09-19-gravecare-world-sweep08.md","candidates/2026-09-19-sweep09.md","candidates/2026-09-19-sweep10-solar-world.md","candidates/2026-09-19-sweep11-synchronized-world.md","candidates/2026-09-19-sweep12-residual-world.md","candidates/2026-09-19-sweep13-recovery-audit-world.md","candidates/2026-09-19-sweep14-world-ap-economics.md","candidates/2026-09-19-sweep15-world-unrelated-needs.md","candidates/2026-09-19-sweep16-world-problem-first.md","candidates/2026-09-19-sweep17-world-dpp-absorption.md","candidates/2026-09-19-sweep18-world-mundane-spend.md"],
     "wedding-content-creator-network-galicia": {"classification":"promising-plus-rotated","nextGate":"external low-CAC channel evidence; desk research exhausted"},
     "second-home-home-watch-b2b2c-costa-blanca": {"classification":"promising-minus-rotated","nextGate":"only revisit on genuinely new channel/economic evidence"},
     "professional-home-organization-copy": {"classification":"possible-rotated","nextGate":"only revisit on low-CAC referral channel or high-ticket geography evidence"},
@@ -41,8 +41,8 @@
     "sme-ap-recovery-audit-via-advisors": {"classification":"possible-rotated","roundsCompleted":["proven-recovery-model-plus-channel-mutation","minimum-viable-spend-plus-channel-incumbency"],"nextGate":"high-spend SME/mid-market prequalification, unusually cheap automated claim workflow, or privileged advisor portfolio access"},
     "sell-it-for-me-vertical": {"classification":"possible-rotated","roundsCompleted":["cross-posting-occupied","full-service-consignment-verticalization"],"nextGate":"specific high-value vertical with poor service coverage, strong gross value per intake and repeatable acquisition"},
     "bereavement-admin-orchestration": {"classification":"observed-occupied-fragmented","nextGate":"explicit evidence that small funeral homes/advisors manually coordinate multi-provider post-death workflows and will pay for a white-label status/orchestration layer"},
-    "mobile-detailing-subscription-copy": {"classification":"possible-rotated","roundsCompleted":["Spain-model-observation","Spain-Galicia-competition-and-substitute-pass"],"signal":"Mobile detailing and maintenance clubs are proven in Spain and a mobile operator covers Galicia, but no privileged dense acquisition node is demonstrated and cheap tunnel subscriptions substitute routine washing.","nextGate":"privileged dense fleet, premium residential parking, office parking or dealership node with pre-aggregated vehicles and credible operator economics"},
-    "dpp-supplier-evidence-operations-channel": {"classification":"possible-rotated","roundsCompleted":["EU-wave-plus-generic-platform-occupancy","incumbent-service-layer-absorption"],"signal":"The mandatory supplier-data burden is real, but current DPP vendors already integrate supplier portals, automated requests, document extraction, audit trails and in some cases explicit supplier chasing/end-to-end service.","nextGate":"privileged category portfolio with unsolved post-platform human bottleneck or category-specific evidence job generic portals cannot perform economically"},
+    "mobile-detailing-subscription-copy": {"classification":"possible-rotated","roundsCompleted":["Spain-model-observation","Spain-Galicia-competition-and-substitute-pass"],"nextGate":"privileged dense fleet, premium residential parking, office parking or dealership node with pre-aggregated vehicles and credible operator economics"},
+    "dpp-supplier-evidence-operations-channel": {"classification":"possible-rotated","roundsCompleted":["EU-wave-plus-generic-platform-occupancy","incumbent-service-layer-absorption"],"nextGate":"privileged category portfolio with unsolved post-platform human bottleneck or category-specific evidence job generic portals cannot perform economically"},
     "hotel-lost-property-return": {"classification":"observed-occupied"},
     "school-activity-payment-permission-management": {"classification":"observed-occupied"},
     "event-qr-photo-collection": {"classification":"observed-crowded"},
@@ -61,7 +61,9 @@
     "school-uniform-material-reuse": {"classification":"observed-occupied"},
     "household-inventory-claim-readiness": {"classification":"observed-crowded"},
     "restaurant-allergen-menu-digitization": {"classification":"observed-crowded"},
-    "knife-sharpening-rental-galicia": {"classification":"observed-occupied"}
+    "knife-sharpening-rental-galicia": {"classification":"observed-occupied"},
+    "generic-restaurant-menu-profitability-ai": {"classification":"observed-crowded"},
+    "sme-equipment-uptime-subscription": {"classification":"world-primitive","nextGate":"specific fragmented revenue-critical equipment category with observable downtime cost, recurring preventive need and weak OEM/dealer subscription coverage"}
   },
   "worldObservations": [
     "route businesses should be evaluated on revenue per stop/km/hour rather than TAM",
@@ -82,10 +84,12 @@
     "a regulation/platform wave can be real while its obvious software artifact is already commoditizing; inspect the upstream recurring evidence/data acquisition work required to feed competing platforms",
     "when a regulatory wave is visible before its deadline, vendors may absorb the obvious upstream operational pain into the platform/service layer before the obligation starts; test current service coverage rather than infer whitespace",
     "hotel technology adoption can coexist with large manual reporting burdens; seek a narrow report-to-action loop with measurable economic outcome rather than generic AI reporting",
-    "when core vertical workflow software commoditizes, liability-bearing assurance or specialist outcome layers may remain monetizable, but require independent demand evidence"
+    "when core vertical workflow software commoditizes, liability-bearing assurance or specialist outcome layers may remain monetizable, but require independent demand evidence",
+    "cheap vertical SaaS increasingly absorbs obvious data-to-recommendation loops; rotate early when €20-€100/month software already performs most of the proposed job unless we own distribution, proprietary data, liability or the outcome",
+    "uptime-as-a-service is a proven recurring model: preventive maintenance plus priority repair plus predictable cost can monetize continuity of revenue-critical SME equipment without requiring novel software"
   ],
   "constraints": {"operatingUmbrella":"rockrai.com","preferredRailwayInfrastructure":"rockrai-experiment-factory","noNewConnectorsForAutonomousRuns":true,"requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]},
-  "nextEngineAction": "Sweep 18: start from unrelated WORLD observations and proven profitable models outside compliance, recovery, routes and DPP. Prefer mundane high-frequency jobs with observable existing spend or a distribution asymmetry. Keep the active queue empty unless evidence earns entry. DPP is rotated unless privileged portfolio evidence exposes an unsolved post-platform human bottleneck. Do not build until BRILLIANT.",
+  "nextEngineAction": "Sweep 19: test uptime-as-a-service across fragmented revenue-critical SME equipment categories where downtime has observable cost and OEM/dealer coverage may be weak. Keep at least half of WORLD sampling outside equipment/maintenance so this primitive does not become a new attractor. Apply an early SaaS-absorption filter: if cheap vertical software already performs >=70% of a proposed data-to-recommendation loop, rotate unless distribution, proprietary data, liability/outcome ownership or a materially different economic model exists. Keep active queue empty unless evidence earns entry. Do not build until BRILLIANT.",
   "metaLearning": {
     "enabled": true,
     "architecture": "trajectory-memory-plus-policy-replay",
