@@ -14,24 +14,26 @@ If important state exists only in chat, the system is unsynchronized.
 Discovery must be perturbed by exogenous reality, not generated only from previous ideas. Capture heterogeneous raw observations without requiring them to look like opportunities. Keep noisy WORLD inputs separate from compressed ENGINE learnings. Generate broadly before applying selection pressure.
 
 ## Core loop
-`WORLD → OBSERVATIONS → SIGNALS → IDEAS → MATURATION ROUNDS → CLASSIFY → PROMOTE/PRODUCE or RETAIN/REJECT → ROTATE`
+`WORLD → HYPOTHESIS → SELLABLE OFFER → MARKET EXPOSURE → PAYMENT WITHIN 24H or DEATH`
 
-Ideas are hypotheses, not commitments. Do not kill them from one shallow search and do not build them from one exciting signal.
+The engine is revenue-first. Research, prose, commits, traffic, leads and stated intent are not economic success. The primary KPI is external EUR actually collected.
 
-## Maturation by rounds
-Every idea receives enough independent rounds to reduce premature rejection and premature enthusiasm. Each round should add a different kind of evidence rather than repeat the previous search. Typical evidence dimensions: observed demand/pain, existing spend, competition and market room, buyer/channel access, economics/pricing, execution difficulty, timing/tailwind, differentiation if needed, and cheap falsification.
+## 24-hour survival rule
+Every activated commercial hypothesis gets a hard 24-hour clock. Within that window it must produce real external revenue. If EUR collected remains zero at expiry, kill the hypothesis and preserve the trajectory. Do not extend the clock because of encouraging traffic, leads, conversations, technical progress or learning.
 
-Default minimum before terminal classification: 3 materially different evidence rounds, except when decisive evidence proves impossibility, illegality, no plausible economics, or exact saturation with no viable segment/channel wedge. More promising ideas may receive additional rounds, but no idea may monopolize discovery.
+Research before activation is capped to the minimum needed to define a sellable offer. Prefer services, manual fulfillment, copies of proven offers and reversible no-code/static artifacts that can be sold immediately. Product construction follows payment; payment does not follow product construction.
+
+A hypothesis blocked by an approval-gated action must be marked blocked and rotated, not kept alive. No autonomous outreach in Pablo's name, spending, paid ads, domain purchase, critical DNS changes, financial or irreversible actions without explicit approval.
 
 ## Classification
-Maintain an evidence-based opportunity portfolio:
-- `REJECTED`: decisive evidence makes profitable entry implausible.
-- `POSSIBLE`: plausible economics but insufficient evidence or weak current timing; retain for future recombination/revisit.
-- `PROMISING`: multiple independent signals support demand and a plausible route to profit; deserves stronger validation.
-- `BRILLIANT`: unusually strong expected profitability relative to capital/time/risk, with credible demand, room for us, distribution and executable economics. Novelty is irrelevant.
-- `PRODUCTION`: a BRILLIANT opportunity promoted into an independent execution project.
+The old POSSIBLE/PROMISING/BRILLIANT maturation ladder is retired for active experiments. Use only:
+- `READY`: offer can be exposed and fulfilled now.
+- `LIVE`: 24-hour revenue clock running.
+- `PAID`: at least one external payment collected; eligible for replication and deeper economics.
+- `DEAD`: zero revenue at 24 hours or decisive earlier failure.
+- `BLOCKED`: payment test requires an approval-gated action; rotate until approval.
 
-Classification is provisional and can move up or down with new evidence.
+Only PAID experiments earn further build/research time. A first payment validates willingness to pay, not scalability; subsequent gates test margin, repeatability and acquisition.
 
 ## Copying proven models
 Actively search for businesses already making money. Competition is often stronger evidence than an unoccupied market. A copy/adaptation is valid when there is credible room for another actor through geography, language, segment, distribution, UX, automation, price, bundling, speed, brand, channel, operational execution or simply a sufficiently large/non-winner-take-all market. Do not invent differentiation merely to appear original.
