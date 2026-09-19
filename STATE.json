@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "updatedAt": "2026-09-19",
+  "updatedAt": "2026-09-19T16:13:00+02:00",
   "phase": "revenue-24h",
   "canonicalMemory": "git",
   "objective": "maximize net capital generated with increasing autonomy",
@@ -243,7 +243,7 @@
       "outreach in Pablo's name"
     ]
   },
-  "nextEngineAction": "Launch the first Revenue-24h offer. Prefer an immediately fulfillable productized service with proven spend and no product build. Start the 24h clock only when the offer is actually exposed to a plausible buyer channel. If outreach/payment exposure requires Pablo approval, prepare everything, mark BLOCKED, request that narrow approval, and rotate.",
+  "nextEngineAction": "Unblock automation-triage-24h: obtain explicit approval for buyer outreach and payment arrangement; publish intended rockrai subdomain once DNS can be configured without violating guardrails. Start 24h clock only after exposure. In parallel prepare other READY offers that do not require product build.",
   "metaLearning": {
     "enabled": true,
     "architecture": "trajectory-memory-plus-policy-replay",
@@ -260,5 +260,27 @@
       "domain-pattern-concentration"
     ],
     "policyChangeRule": "change branching/stopping/evidence-ordering policy only from repeated trajectory evidence or strong causal mechanism"
+  },
+  "revenue24h": {
+    "activeOffer": {
+      "id": "automation-triage-24h",
+      "status": "BLOCKED",
+      "priceEUR": 99,
+      "offer": "One-workflow Automation Triage delivered within 24h",
+      "artifact": "experiment-server.js",
+      "requestIssue": 11,
+      "railwayProject": "rockrai-experiment-factory",
+      "railwayService": "exp-automation-triage",
+      "intendedHostname": "automation-triage.rockrai.com",
+      "paymentCollectedEUR": 0,
+      "clockStartedAt": null,
+      "deadlineAt": null,
+      "blockers": [
+        "custom hostname requires CNAME automation-triage.rockrai.com -> du2j94h7.up.railway.app",
+        "no autonomous outreach in Pablo's name without explicit approval",
+        "no automatic payment rail; payment arrangement requires explicit approval"
+      ]
+    },
+    "rule": "24h clock starts only after actual exposure to plausible buyers; EUR 0 at deadline => DEAD"
   }
 }
