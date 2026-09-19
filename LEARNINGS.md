@@ -29,7 +29,10 @@ Principles earned from evidence/failure; not a diary.
 - Optimize net capital and reproducible acquisition, not novelty, repositories, features or websites.
 - A simple clone with distribution can dominate an ingenious product without customers.
 
-## Memory
+## Memory and meta-learning
 - Git is canonical; chat is cache.
 - Persist compressed state/decisions, not transcripts.
 - Every important rule must survive a fresh-agent session.
+- Compression alone is insufficient for meta-learning: preserve structured trajectories of decisions, evidence, costs and outcomes so search policy can be replayed and improved.
+- Failed/dead branches are useful data for learning stopping and branching policies; do not erase them from trajectory memory.
+- Separate object-level learning (which opportunities are good) from policy-level learning (which exploration strategy finds good opportunities efficiently).
