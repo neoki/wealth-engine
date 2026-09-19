@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-09-19-sweep12",
+  "timestamp": "2026-09-19",
+  "parentId": "2026-09-19-sweep11",
+  "rootObservation": "recoverable residual value can subsidize an adjacent painful service",
+  "candidateId": "residual-value-subsidized-service-search",
+  "policy": {
+    "mode": "recombine+falsify+world",
+    "reason": "Test whether residual-value subsidy generalizes beyond used oil while giving pet-waste B2B one bounded pass.",
+    "evidenceDimension": "vertical integration + downstream value + adjacent paid pain + B2B node substitution"
+  },
+  "before": {"classification": "observation", "confidence": null},
+  "action": "Probe IT asset buyback, pallets, toner/RAEE and pet-waste B2B concentration in Spain/Galicia.",
+  "cost": {"searchCalls": 8, "agentCalls": null, "elapsedMinutes": null, "tokens": null},
+  "evidenceRefs": ["candidates/2026-09-19-sweep12-residual-world.md"],
+  "result": "Residual-value subsidy generalizes strongly, but mature recovery markets vertically integrate collection, compliance and adjacent service. ITAD is a clean proof and an occupied category. Pet-waste B2B did not gain target-market evidence and faces bundled community-maintenance substitutes.",
+  "after": {"classification": "structural-learning", "confidence": null},
+  "decision": "branch",
+  "nextGate": "Search outside conventional waste for latent/stranded asset value that finances a mandatory, risky or annoying lifecycle task where both sides are not yet vertically integrated.",
+  "laterOutcome": null
+}
