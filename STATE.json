@@ -12,9 +12,9 @@
     "minimumMateriallyDifferentRoundsBeforeTerminalClassification": 3,
     "requiredBehaviorWhenBuyerBlocked": "classify/retain and rotate",
     "lateralConnectionsRequired": true,
-    "lastSweep": "candidates/2026-09-19-sweep11-synchronized-world.md",
-    "nextSweep": "sweep-12-world",
-    "lastSweepSignalCount": 8
+    "lastSweep": "candidates/2026-09-19-sweep12-residual-world.md",
+    "nextSweep": "sweep-13-world",
+    "lastSweepSignalCount": 6
   },
   "lifecycle": ["observation","signal","idea","maturation","possible","promising","brilliant","production","rejected"],
   "classifications": {
@@ -26,20 +26,21 @@
   },
   "principles": {"originalityRequired":false,"provenModelCopyingAllowed":true,"competitionUsuallyDemandEvidence":true,"worldInputsSeparatedFromEngineLearnings":true},
   "promotedKnown": [{"id":"convenio-watch","status":"independent"},{"id":"public-folder-planner","status":"independent-buyer-blocked"}],
-  "currentCandidateQueue": ["pet-waste-removal-b2b-concentrated","sell-it-for-me-vertical","mobile-detailing-subscription-copy","residual-value-subsidized-service-search"],
+  "currentCandidateQueue": ["sell-it-for-me-vertical","mobile-detailing-subscription-copy","latent-asset-funded-lifecycle-service-search"],
   "maturation": {
-    "evidenceFiles": ["candidates/2026-09-19-maturation-wedding-homewatch.md","candidates/2026-09-19-maturation-wedding-homeorg.md","candidates/2026-09-19-homeorg-world-sweep07.md","candidates/2026-09-19-gravecare-world-sweep08.md","candidates/2026-09-19-sweep09.md","candidates/2026-09-19-sweep10-solar-world.md","candidates/2026-09-19-sweep11-synchronized-world.md"],
+    "evidenceFiles": ["candidates/2026-09-19-maturation-wedding-homewatch.md","candidates/2026-09-19-maturation-wedding-homeorg.md","candidates/2026-09-19-homeorg-world-sweep07.md","candidates/2026-09-19-gravecare-world-sweep08.md","candidates/2026-09-19-sweep09.md","candidates/2026-09-19-sweep10-solar-world.md","candidates/2026-09-19-sweep11-synchronized-world.md","candidates/2026-09-19-sweep12-residual-world.md"],
     "wedding-content-creator-network-galicia": {"classification":"promising-plus-rotated","nextGate":"external low-CAC channel evidence; desk research exhausted"},
     "second-home-home-watch-b2b2c-costa-blanca": {"classification":"promising-minus-rotated","nextGate":"only revisit on genuinely new channel/economic evidence"},
     "professional-home-organization-copy": {"classification":"possible-rotated","nextGate":"only revisit on low-CAC referral channel or high-ticket geography evidence"},
     "grave-care-subscription-galicia": {"classification":"possible-rotated","nextGate":"only revisit on dense cemetery cluster plus low-CAC partner channel"},
     "baby-equipment-rental-channel-first": {"classification":"possible-rotated","nextGate":"only revisit on privileged distribution or dense underserved tourist micro-geography"},
     "solar-maintenance-admin-channel-operator": {"classification":"possible-rotated","roundsCompleted":["Spain-price-demand","administrator-channel-saturation","margin-renewal-geometry"],"nextGate":"only revisit on privileged administrator distribution or profitable multi-service bundle"},
-    "synchronized-community-bin-handling-copy": {"classification":"possible-rotated","roundsCompleted":["proven-model-observation","target-geography-economics-substitution"],"signal":"Madrid proves the narrow service, but no Galicia-specific standalone demand/density evidence emerged and existing community cleaners/caretakers are likely substitutes at a €50/portal/month reference ticket.","nextGate":"explicit administrator portfolio demand or dense uncovered portal cluster"},
-    "pet-waste-removal-b2b-concentrated": {"classification":"possible","roundsCompleted":["nearby-proven-model"],"signal":"Recurring garden cleanup is proven nearby; B2B concentrated dog areas may have better route geometry than dispersed DTC homes.","nextGate":"Spain/Galicia B2B node demand + contract value + density"},
-    "senior-family-tech-concierge": {"classification":"possible-rotated","signal":"Senior-specific 24/7 tech support is already distributed in Spain at very low annual pricing; generic concierge has weak pricing power.","nextGate":"only revisit on distinct high-value job or privileged channel"},
+    "synchronized-community-bin-handling-copy": {"classification":"possible-rotated","nextGate":"explicit administrator portfolio demand or dense uncovered portal cluster"},
+    "pet-waste-removal-b2b-concentrated": {"classification":"possible-rotated","roundsCompleted":["nearby-proven-model","Spain-Galicia-B2B-node-pass"],"signal":"Public dog-waste pain is real, but no standalone Galician B2B node-demand evidence emerged and integrated community maintenance is a strong substitute.","nextGate":"explicit private-node contract, administrator demand, kennel/daycare economics, or privileged dense channel"},
+    "senior-family-tech-concierge": {"classification":"possible-rotated","nextGate":"only revisit on distinct high-value job or privileged channel"},
     "sell-it-for-me-vertical": {"classification":"possible","signal":"Cross-posting software for second-hand shops is occupied; full-service vertical consignment remains untested."},
     "mobile-detailing-subscription-copy": {"classification":"possible","signal":"Spanish mobile detailing subscriptions observed; premium geographies competitive"},
+    "generic-corporate-itad-buyback": {"classification":"observed-occupied","signal":"Spanish operators already integrate valuation, collection, certified erasure, traceability and resale; partner channels are mature."},
     "knife-sharpening-rental-galicia": {"classification":"observed-occupied"}
   },
   "worldObservations": [
@@ -54,10 +55,12 @@
     "certified destruction is proven but locally occupied; expiry-triggered batching may be a better software+physical mutation",
     "recoverable residual value can subsidize an adjacent painful service and strengthen retention; used cooking oil exchanged for kitchen maintenance proves the pattern, including in Galicia",
     "compliance recurrence does not imply intermediary margin when qualified specialists already own scheduling, certification and renewal",
-    "synchronized inventory loops such as linen rental can convert turnover calendars into recurring B2B infrastructure"
+    "synchronized inventory loops such as linen rental can convert turnover calendars into recurring B2B infrastructure",
+    "residual value is only strategically useful when it changes acquisition or service economics; mature recovery markets tend to vertically integrate collection, compliance and monetization",
+    "latent asset value plus a mandatory/risky lifecycle task plus privileged distribution may be stronger than conventional waste recovery; ITAD proves the structure but is occupied"
   ],
   "constraints": {"operatingUmbrella":"rockrai.com","preferredRailwayInfrastructure":"rockrai-experiment-factory","noNewConnectorsForAutonomousRuns":true,"requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]},
-  "nextEngineAction": "Sweep 12: search broadly for residual/by-product streams whose recoverable value can subsidize an adjacent paid service, without narrowing discovery to waste management. In parallel give pet-waste removal one bounded B2B concentration/channel pass; rotate unless Spain/Galicia node economics strengthen materially. Do not build until BRILLIANT.",
+  "nextEngineAction": "Sweep 13: stop enumerating conventional waste streams. Perturb WORLD into unrelated domains and search for latent/stranded asset value that can finance a mandatory, risky or annoying lifecycle task where incumbents have not already vertically integrated both sides. Keep unrelated fresh-signal generation mandatory. Do not build until BRILLIANT.",
   "metaLearning": {
     "enabled": true,
     "architecture": "trajectory-memory-plus-policy-replay",
