@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "sweep-15-world-unrelated-needs",
+  "timestamp": "2026-09-19",
+  "parentId": "sweep-14-world-ap-economics",
+  "rootObservation": "Recovery/refund framing had become an engine attractor, so sample unrelated needs before mapping business models.",
+  "candidateId": null,
+  "policy": {
+    "mode": "world",
+    "reason": "force exogenous domain diversity and test whether the engine can escape a learned economic-pattern attractor",
+    "evidenceDimension": "problem-first cross-domain sampling plus one independent consignment maturation round"
+  },
+  "before": {
+    "classification": "world",
+    "confidence": null
+  },
+  "action": "Sample unrelated household, bereavement, school, hospitality, equipment, property, travel and resale jobs; independently test sell-it-for-me vertical saturation/geometry.",
+  "cost": {
+    "searchCalls": 5,
+    "agentCalls": null,
+    "elapsedMinutes": null,
+    "tokens": null
+  },
+  "evidenceRefs": ["candidates/2026-09-19-sweep15-world-unrelated-needs.md"],
+  "result": "No promotion. Bereavement administration is a real fragmented life-event job but Spanish insurers/funeral providers/gestorias/digital products already cover meaningful portions. School reuse, household inventory and allergen-menu software are occupied. Full-service consignment is proven but vertical-specific economics dominate.",
+  "after": {
+    "classification": "no-promotion",
+    "confidence": null
+  },
+  "decision": "rotate",
+  "nextGate": "Continue broad WORLD sampling. Revisit bereavement only on explicit B2B manual-workflow/payment evidence; revisit consignment only on a specific high-value underserved vertical.",
+  "laterOutcome": null
+}
