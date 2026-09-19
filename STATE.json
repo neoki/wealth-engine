@@ -12,8 +12,8 @@
     "minimumMateriallyDifferentRoundsBeforeTerminalClassification": 3,
     "requiredBehaviorWhenBuyerBlocked": "classify/retain and rotate",
     "lateralConnectionsRequired": true,
-    "lastSweep": "candidates/2026-09-19-sweep09.md",
-    "nextSweep": "sweep-10-world",
+    "lastSweep": "candidates/2026-09-19-sweep10-solar-world.md",
+    "nextSweep": "sweep-11-world",
     "lastSweepSignalCount": 4
   },
   "lifecycle": ["observation","signal","idea","maturation","possible","promising","brilliant","production","rejected"],
@@ -26,19 +26,20 @@
   },
   "principles": {"originalityRequired":false,"provenModelCopyingAllowed":true,"competitionUsuallyDemandEvidence":true,"worldInputsSeparatedFromEngineLearnings":true},
   "promotedKnown": [{"id":"convenio-watch","status":"independent"},{"id":"public-folder-planner","status":"independent-buyer-blocked"}],
-  "currentCandidateQueue": ["solar-maintenance-admin-channel-operator","pet-waste-removal-spain","sell-it-for-me-vertical","senior-family-tech-concierge","mobile-detailing-subscription-copy"],
+  "currentCandidateQueue": ["synchronized-community-bin-handling-copy","pet-waste-removal-spain","sell-it-for-me-vertical","senior-family-tech-concierge","mobile-detailing-subscription-copy"],
   "maturation": {
-    "evidenceFiles": ["candidates/2026-09-19-maturation-wedding-homewatch.md","candidates/2026-09-19-maturation-wedding-homeorg.md","candidates/2026-09-19-homeorg-world-sweep07.md","candidates/2026-09-19-gravecare-world-sweep08.md","candidates/2026-09-19-sweep09.md"],
+    "evidenceFiles": ["candidates/2026-09-19-maturation-wedding-homewatch.md","candidates/2026-09-19-maturation-wedding-homeorg.md","candidates/2026-09-19-homeorg-world-sweep07.md","candidates/2026-09-19-gravecare-world-sweep08.md","candidates/2026-09-19-sweep09.md","candidates/2026-09-19-sweep10-solar-world.md"],
     "wedding-content-creator-network-galicia": {"classification":"promising-plus-rotated","nextGate":"external low-CAC channel evidence; desk research exhausted"},
     "second-home-home-watch-b2b2c-costa-blanca": {"classification":"promising-minus-rotated","nextGate":"only revisit on genuinely new channel/economic evidence"},
     "professional-home-organization-copy": {"classification":"possible-rotated","nextGate":"only revisit on low-CAC referral channel or high-ticket geography evidence"},
     "grave-care-subscription-galicia": {"classification":"possible-rotated","nextGate":"only revisit on dense cemetery cluster plus low-CAC partner channel"},
-    "baby-equipment-rental-channel-first": {"classification":"possible-rotated","roundsCompleted":["Spain-proven-model-pricing","channel-competition","inventory-logistics-economics","safety-operations"],"signal":"Demand is proven, but hotel/accommodation delivery is already standard and broad marketplace supply exists; low weekly ticket makes route density/basket size decisive","nextGate":"only revisit on privileged distribution or dense underserved tourist micro-geography"},
-    "solar-maintenance-admin-channel-operator": {"classification":"possible","roundsCompleted":["Spain-price-demand"],"signal":"Residential and community solar maintenance has recurring spend; administrators are an explicit channel. Mutation is orchestration/reporting/renewal with qualified subcontractors rather than roof labor.","nextGate":"administrator channel saturation + subcontractor margin + renewal economics"},
+    "baby-equipment-rental-channel-first": {"classification":"possible-rotated","nextGate":"only revisit on privileged distribution or dense underserved tourist micro-geography"},
+    "solar-maintenance-admin-channel-operator": {"classification":"possible-rotated","roundsCompleted":["Spain-price-demand","administrator-channel-saturation","margin-renewal-geometry"],"signal":"Demand is proven but the proposed administrator/reporting wedge is already offered by specialists; national residential maintenance is priced around €153/year, leaving weak evidence for an extra orchestration layer.","nextGate":"only revisit on privileged administrator distribution or profitable multi-service bundle"},
+    "synchronized-community-bin-handling-copy": {"classification":"possible","roundsCompleted":["proven-model-observation"],"signal":"Madrid operators sell weekend/holiday communal-bin out-and-back service from ~€50/community/month; municipal schedules manufacture route density.","nextGate":"target-geography need + portals/hour + administrator channel + incumbent substitution"},
     "mobile-detailing-subscription-copy": {"classification":"possible","signal":"Spanish mobile detailing subscriptions observed; premium geographies competitive"},
     "knife-sharpening-rental-galicia": {"classification":"observed-occupied"}
   },
-  "worldObservations": ["2026 Spain telecom price increases coexist with large tariff dispersion","recurring remote physical care plus photo proof plus route density is a reusable business primitive","route businesses should be evaluated on revenue per stop/km/hour rather than TAM","synchronization anchors can manufacture route density","standardize + collect + outsource transformation + return is a reusable service wrapper","delivery itself is not a moat or channel wedge","route/logistics businesses need node density, partner-batched demand, or enough gross margin to absorb two logistics legs"],
+  "worldObservations": ["2026 Spain telecom price increases coexist with large tariff dispersion","recurring remote physical care plus photo proof plus route density is a reusable business primitive","route businesses should be evaluated on revenue per stop/km/hour rather than TAM","synchronization anchors can manufacture route density","standardize + collect + outsource transformation + return is a reusable service wrapper","delivery itself is not a moat or channel wedge","route/logistics businesses need node density, partner-batched demand, or enough gross margin to absorb two logistics legs","external schedules can manufacture route density: search tiny repetitive tasks synchronized by municipal calendars, compliance dates, handoff windows or replenishment cycles","certified destruction is proven but locally occupied; expiry-triggered batching may be a better software+physical mutation"],
   "constraints": {"operatingUmbrella":"rockrai.com","preferredRailwayInfrastructure":"rockrai-experiment-factory","noNewConnectorsForAutonomousRuns":true,"requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]},
-  "nextEngineAction": "Rotate baby equipment rental. Sample fresh unrelated WORLD domains. Give solar-maintenance-admin-channel-operator one maturation pass on administrator channel saturation, subcontractor economics and renewal; rotate unless it strengthens materially. Do not build until BRILLIANT."
+  "nextEngineAction": "Rotate solar maintenance. In sweep 11, sample fresh unrelated WORLD domains around synchronized micro-services. Give community-bin handling at most one maturation pass on target-geography operational need, portals/hour economics, administrator distribution and incumbent substitution; rotate unless it strengthens materially. Do not build until BRILLIANT."
 }
