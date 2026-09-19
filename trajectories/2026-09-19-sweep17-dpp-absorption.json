@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "sweep17-dpp-absorption",
+  "timestamp": "2026-09-19",
+  "parentId": "sweep16-world-problem-first",
+  "rootObservation": "DPP rollout may leave upstream supplier evidence collection as a cross-platform operational burden",
+  "candidateId": "dpp-supplier-evidence-operations-channel",
+  "policy": {
+    "mode": "falsify",
+    "reason": "Test whether the proposed upstream wedge is actually unserved rather than assuming platforms stop at passport publication",
+    "evidenceDimension": "incumbent service-layer absorption plus imminent-category responsibility"
+  },
+  "before": {"classification": "possible", "confidence": null},
+  "action": "Checked official battery-passport responsibility/timing and current DPP vendors for supplier-request, chasing, extraction, verification and service coverage; sampled unrelated WORLD domains in parallel.",
+  "cost": {"searchCalls": 3, "agentCalls": null, "elapsedMinutes": null, "tokens": null},
+  "evidenceRefs": ["candidates/2026-09-19-sweep17-world-dpp-absorption.md"],
+  "result": "Mandatory supplier-data work is real, but multiple vendors already integrate supplier portals, automated requests, document extraction and even explicit supplier chasing/end-to-end service. Generic wedge substantially absorbed.",
+  "after": {"classification": "possible-rotated", "confidence": null},
+  "decision": "rotate",
+  "nextGate": "privileged vertical portfolio with unsolved post-platform human bottleneck, or category-specific evidence job generic portals cannot perform economically",
+  "laterOutcome": null
+}
