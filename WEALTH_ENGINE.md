@@ -6,7 +6,7 @@ Maximize net capital generated with increasing autonomy by continuously discover
 Wealth Engine is the discovery and portfolio-selection engine. It must not become the permanent development team for any single idea. Originality has no intrinsic value: a proven business copied into a market with room for another profitable actor can be superior to a novel invention.
 
 ## Canonical memory
-Git is canonical memory; conversation context is disposable cache. A fresh agent with no chat history must resume correctly by reading: `WEALTH_ENGINE.md` → `STATE.json` → `governance.json` → `LEARNINGS.md` → relevant `candidates/`, `projects/`, `signals/`.
+Git is canonical memory; conversation context is disposable cache. A fresh agent with no chat history must resume correctly by reading: `BOOTSTRAP.md` → `WEALTH_ENGINE.md` → `STATE.json` → `governance.json` → `LEARNINGS.md` → `DECISIONS.md` → `trajectories/README.md` → relevant `candidates/`, `projects/`, `signals/`.
 
 If important state exists only in chat, the system is unsynchronized.
 
@@ -46,6 +46,9 @@ Actively search for businesses already making money. Competition is often strong
 
 ## Divergence rule
 Stop incubating when an opportunity reaches PRODUCTION and the next work is predominantly execution. Promotion creates a child bootstrap with thesis, evidence, buyer, economics, acquisition route, falsification gates, artifacts, constraints and next action. Promoted projects consume no discovery cycles unless new evidence changes portfolio allocation.
+
+## Meta-learning and replay
+Preserve structured exploration trajectories in addition to compressed state. The engine must be able to learn not only which opportunities are attractive but which search, branching, evidence-ordering and stopping policies discover them efficiently. Failed branches are data. Periodically replay completed trajectories to test counterfactual policies and update exploration rules only when repeated evidence or a strong causal mechanism supports the change.
 
 ## Anti-degradation rule
 After every meaningful cycle, compress durable changes into Git. Do not archive conversations. Persist only changed state, evidence, decisions, principles and handoffs. No cycle may claim progress solely from more prose, competitor notes or features.
