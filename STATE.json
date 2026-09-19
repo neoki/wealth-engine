@@ -26,14 +26,15 @@
   },
   "principles": {"originalityRequired":false,"provenModelCopyingAllowed":true,"competitionUsuallyDemandEvidence":true,"worldInputsSeparatedFromEngineLearnings":true},
   "promotedKnown": [{"id":"convenio-watch","status":"independent"},{"id":"public-folder-planner","status":"independent-buyer-blocked"}],
-  "currentCandidateQueue": ["wedding-content-creator-network-galicia","professional-home-organization-copy","mobile-detailing-subscription-copy","pet-waste-removal-spain","sell-it-for-me-vertical"],
+  "currentCandidateQueue": ["professional-home-organization-copy","mobile-detailing-subscription-copy","pet-waste-removal-spain","sell-it-for-me-vertical","senior-family-tech-concierge"],
   "maturation": {
-    "evidenceFile": "candidates/2026-09-19-maturation-wedding-homewatch.md",
-    "wedding-content-creator-network-galicia": {"classification":"promising-plus","roundsCompleted":["demand-price","distribution","economics-scalability","creator-supply-economics"],"nextGate":"repeatable acquisition/channel economics"},
+    "evidenceFiles": ["candidates/2026-09-19-maturation-wedding-homewatch.md","candidates/2026-09-19-maturation-wedding-homeorg.md"],
+    "wedding-content-creator-network-galicia": {"classification":"promising-plus-rotated","roundsCompleted":["demand-price","distribution","economics-scalability","creator-supply-economics","acquisition-channel-economics"],"mutation":"Spain destination-wedding rapid-content network for international/English-speaking couples","nextGate":"external low-CAC channel evidence; desk research exhausted"},
     "second-home-home-watch-b2b2c-costa-blanca": {"classification":"promising-minus-rotated","roundsCompleted":["demand-geography","price-competition","economics-moat","micro-geography-route-economics"],"nextGate":"only revisit on genuinely new channel/economic evidence"},
-    "professional-home-organization-copy": {"classification":"possible","signal":"public Mallorca pricing €600-960 individual spaces, €1500-4000+ projects, €350-650 ongoing visits"},
+    "professional-home-organization-copy": {"classification":"possible","roundsCompleted":["price-demand","market-generalization"],"mutation":"event-driven high-ticket organization: move-in reset, downsizing/estate clear-out, pre-sale declutter, second-home setup","nextGate":"referral distribution + labor/unit economics"},
     "mobile-detailing-subscription-copy": {"classification":"possible","signal":"Costa del Sol public pricing €150 detailing and €600/month VIP package"}
   },
+  "worldObservations": ["2026 Spain telecom price increases coexist with large tariff dispersion; retain as raw switching/savings observation, not yet a product hypothesis"],
   "constraints": {"operatingUmbrella":"rockrai.com","preferredRailwayInfrastructure":"rockrai-experiment-factory","noNewConnectorsForAutonomousRuns":true,"requireExplicitApprovalFor":["domain purchase","paid service","paid advertising","critical DNS change","financial action","irreversible action","outreach in Pablo's name"]},
-  "nextEngineAction": "Give Wedding Content Network one independent acquisition/channel economics round. In parallel mature professional-home-organization-copy from fresh WORLD evidence. Do not build until BRILLIANT. Home Watch is rotated and must not consume another cycle absent genuinely new evidence."
+  "nextEngineAction": "Wedding is rotated after five materially different rounds: no more desk research until external channel evidence appears. Give professional-home-organization one referral-distribution/labor-economics round, then rotate/classify. Simultaneously run fresh WORLD sampling unrelated to weddings/home services and mature whichever new signals have strongest observed spend." 
 }
