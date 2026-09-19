@@ -2,6 +2,9 @@
 
 Newest first; only durable decisions.
 
+## 2026-09-19 — Trajectory memory and policy replay
+Adopt a Dream-RSI-inspired separation between opportunity exploration and learning how to explore. Preserve structured branch/cycle trajectories, including failed branches and approximate costs, so historical exploration can be replayed to improve branching, evidence ordering, stopping and portfolio-allocation policies. Dream-RSI is architectural inspiration, not evidence that its benchmark gains transfer to business discovery.
+
 ## 2026-09-17 — Git becomes canonical memory
 Conversation context is disposable cache. A fresh agent must resume from repository state alone. Every meaningful cycle performs evolutionary compression into Git.
 
