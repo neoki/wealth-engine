@@ -6,6 +6,15 @@ const startedAt = new Date().toISOString();
 const metrics = { visits: 0, intents: 0 };
 
 const experiments = {
+  'automation-triage-24h': {
+    title: '24h Automation Triage',
+    price: '€99 one-time',
+    promise: 'Give us one repetitive workflow. Within 24 hours you get a concrete decision: automate it, simplify it, or leave it alone — with the implementation path and rough ROI.',
+    buyer: 'Spanish SMEs with a repetitive manual workflow costing time every week',
+    deliverable: ['review of one concrete workflow','automation feasibility and failure points','recommended implementation path','rough ROI / hours-saved estimate','fixed next-step recommendation'],
+    cta: 'Request the €99 triage',
+    issueNumber: 11
+  },
   'mcp-audit': {
     title: 'MCP Discovery & Reliability Audit',
     price: '€49 one-time',
