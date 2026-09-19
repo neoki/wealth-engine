@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-09-19-sweep13-recovery-audit-world",
+  "timestamp": "2026-09-19T07:55:00+02:00",
+  "parentId": "2026-09-19-sweep12-residual-world",
+  "rootObservation": "latent asset value plus mandatory/risky/annoying lifecycle task may be stronger than conventional waste recovery",
+  "candidateId": "sme-ap-recovery-audit-via-advisors",
+  "policy": {
+    "mode": "world|recombine|mature",
+    "reason": "Perturb away from physical waste/routes and search unrelated stranded-value recovery structures; compare occupied categories to identify a channel/economics wedge.",
+    "evidenceDimension": "proven spend/recovery economics + incumbent saturation + distribution wedge"
+  },
+  "before": {"classification": "observation", "confidence": null},
+  "action": "Sample guarantees, AP recovery, SaaS spend, telecom audits, construction surplus, ticket resale, freight audit and supplier-credit recovery; retain only a narrow SME AP recovery mutation for maturation.",
+  "cost": {"searchCalls": 4, "agentCalls": null, "elapsedMinutes": null, "tokens": null},
+  "evidenceRefs": ["candidates/2026-09-19-sweep13-recovery-audit-world.md"],
+  "result": "Most latent-value categories sampled were already vertically integrated. AP recovery audit remains interesting only after narrowing to SMEs distributed through accounting/advisory firms that already hold the ledger. Freight and supplier-credit recovery add a reusable machine-detectable-claim primitive.",
+  "after": {"classification": "possible-plus", "confidence": null},
+  "decision": "branch",
+  "nextGate": "Quantify recoverable euros versus invoice volume and minimum client size; map advisor-channel incumbency; test common accounting exports for read-only detection; clarify professional/data constraints.",
+  "laterOutcome": null
+}
