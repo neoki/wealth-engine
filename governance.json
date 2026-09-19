@@ -3,9 +3,16 @@
   "experimentPolicy": {
     "defaultMaxActive": 5,
     "absoluteMaxActive": 5,
-    "defaultExpiryDays": 14,
+    "defaultExpiryDays": 1,
     "requireEconomicMetric": true,
-    "separateTrafficClasses": ["self", "bot", "crawler", "unknown_human", "qualified_lead", "payment"],
+    "separateTrafficClasses": [
+      "self",
+      "bot",
+      "crawler",
+      "unknown_human",
+      "qualified_lead",
+      "payment"
+    ],
     "portfolioDiversity": {
       "maxSharePerDomain": 0.4,
       "exception": "a domain may exceed the share only when superior economic performance is demonstrated with external evidence"
@@ -16,14 +23,14 @@
       "openWorld": 2
     },
     "killIf": [
-      "no external signal by expiry",
-      "negative expected economics after evidence update",
+      "zero external EUR collected within 24 hours of activation",
+      "negative expected economics after payment evidence",
       "material legal, security, or operational risk"
     ],
     "promoteIf": [
-      "multiple independent paying customers",
-      "positive contribution margin",
-      "evidence of repeat purchase or reproducible acquisition channel"
+      "at least one external payment collected within 24 hours",
+      "fulfillment is legal and feasible",
+      "positive plausible contribution margin"
     ],
     "learningLoopPolicy": {
       "buyerBlockedState": "When an experiment has enough public evidence, a usable artifact and a defined buyer gate, mark it buyer-blocked until new external buyer evidence exists.",
@@ -31,7 +38,16 @@
       "rotationRule": "A buyer-blocked experiment keeps its incubation slot but autonomous cycles rotate to other active experiments or open-world discovery unless genuinely decision-changing evidence appears.",
       "widenBeforeKill": "Competition or a narrow wedge is not itself a kill signal. Test adjacent value capture or a wider job-to-be-done when evidence supports it.",
       "maxConsecutiveAutonomousCyclesPerExperiment": 3
-    }
+    },
+    "primaryKPI": "external EUR collected",
+    "nonSuccessSignals": [
+      "traffic",
+      "leads",
+      "stated intent",
+      "commits",
+      "research",
+      "learning"
+    ]
   },
   "businessPolicy": {
     "validatedBusinessesDoNotCountTowardExperimentCap": true,
@@ -73,5 +89,20 @@
     "railwaySoftAlertApproxUSDAt2026_09_10Rate": 58.05,
     "status": "NOT_ENFORCED_FROM_CONNECTOR",
     "reason": "Railway workspace billing limits are not writable through the connected Railway tools; must be set in Workspace Usage/Billing"
+  },
+  "revenue24h": {
+    "enabled": true,
+    "hardDeadlineHours": 24,
+    "clockStarts": "when offer is live/exposed to a plausible buyer channel",
+    "success": "external money actually collected",
+    "expiry": "kill, log trajectory, rotate",
+    "researchRule": "minimum research needed to make an immediately sellable offer",
+    "preferredOfferTypes": [
+      "productized service",
+      "manual done-for-you service",
+      "proven offer copy",
+      "paid diagnostic",
+      "tiny digital deliverable"
+    ]
   }
 }
