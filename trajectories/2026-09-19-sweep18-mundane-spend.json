@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "sweep18-mundane-spend",
+  "timestamp": "2026-09-19",
+  "parentId": "sweep17-dpp-absorption",
+  "rootObservation": "Mundane recurring SME jobs with existing spend may expose better economics than visible regulatory or recovery waves",
+  "candidateId": null,
+  "policy": {
+    "mode": "world",
+    "reason": "Escape prior attractors and sample unrelated recurring-spend domains before pattern matching",
+    "evidenceDimension": "existing spend plus service occupancy plus software commoditization"
+  },
+  "before": {"classification": "empty-active-queue", "confidence": null},
+  "action": "Sampled laundry/linen, clinic reception, rental operations, restaurant profitability, equipment maintenance, vending, pools, office plants, construction assets and adjacent recurring services; then tested restaurant menu engineering more deeply for software absorption.",
+  "cost": {"searchCalls": 3, "agentCalls": null, "elapsedMinutes": null, "tokens": null},
+  "evidenceRefs": ["candidates/2026-09-19-sweep18-world-mundane-spend.md"],
+  "result": "No candidate earned queue entry. Cheap vertical SaaS already absorbs many obvious data-to-recommendation loops. Uptime-as-a-service for revenue-critical SME equipment emerged as a reusable proven primitive worth cross-category testing.",
+  "after": {"classification": "empty-active-queue", "confidence": null},
+  "decision": "branch",
+  "nextGate": "Sweep fragmented revenue-critical equipment categories for preventive-subscription economics while keeping >=50% of WORLD sampling outside equipment to prevent a new attractor.",
+  "laterOutcome": null
+}
