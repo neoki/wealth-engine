@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 3,
-  "updatedAt": "2026-09-19T16:13:00+02:00",
+  "schemaVersion": 4,
+  "updatedAt": "2026-09-25T10:17:00+02:00",
   "phase": "revenue-24h",
   "canonicalMemory": "git",
   "objective": "maximize net capital generated with increasing autonomy",
@@ -257,7 +257,8 @@
       "decision-changing-evidence-per-round",
       "cycles-to-terminal-classification",
       "false-promotion-rate",
-      "domain-pattern-concentration"
+      "domain-pattern-concentration",
+      "timing-calibration-error"
     ],
     "policyChangeRule": "change branching/stopping/evidence-ordering policy only from repeated trajectory evidence or strong causal mechanism"
   },
@@ -282,5 +283,37 @@
       ]
     },
     "rule": "24h clock starts only after actual exposure to plausible buyers; EUR 0 at deadline => DEAD"
+  },
+  "timingGate": {
+    "enabled": true,
+    "canonicalSpec": "TIMING.md",
+    "principle": "arrive late technologically and early commercially",
+    "preferredStates": [
+      "WINDOW_OPENING",
+      "OPTIMAL"
+    ],
+    "states": {
+      "TOO_EARLY": "technology/platform primitive is not yet reliable or economic enough; preserve a cheap option and explicit reopening triggers",
+      "WINDOW_OPENING": "primitive is usable and economics improving while commercial consequences remain underexploited; test now",
+      "OPTIMAL": "primitive is dependable, buyer pain/payment route evidenced, and solution layer is not fully commoditized; execute",
+      "COMMODITIZING": "primitive or obvious solution is becoming bundled/cheap; proceed only with durable capture outside the primitive",
+      "TOO_LATE": "monetizable layer is broadly absorbed and no credible durable wedge remains; kill or materially mutate"
+    },
+    "mandatoryDimensions": [
+      "reliability",
+      "economics",
+      "preExistingPain",
+      "capabilitySolutionGap",
+      "durableCapture"
+    ],
+    "platformAbsorptionCheck": true,
+    "requiredBeforeRevenueActivation": true,
+    "defaultActions": {
+      "TOO_EARLY": "WATCH",
+      "WINDOW_OPENING": "TEST_NOW",
+      "OPTIMAL": "EXECUTE",
+      "COMMODITIZING": "MUTATE_OR_KILL",
+      "TOO_LATE": "KILL"
+    }
   }
 }
