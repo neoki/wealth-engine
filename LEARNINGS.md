@@ -9,6 +9,14 @@ Principles earned from evidence/failure; not a diary.
 - Strong signals trigger lateral exploration, mutation and recombination, not only vertical research.
 - Originality is not a goal. Proven profitable models are first-class opportunity sources.
 
+## Timing
+- Do not optimize for technological first-mover status. Prefer being commercially early after enabling technology becomes reliable and economic.
+- Distinguish primitive maturity from solution-layer maturity: a model/API commoditizing can create the right entry moment for a vertical business.
+- Every technology-dependent candidate must be classified as TOO_EARLY, WINDOW_OPENING, OPTIMAL, COMMODITIZING or TOO_LATE before meaningful build effort.
+- TOO_EARLY ideas should preserve cheap optionality with explicit reopening triggers, not consume product-development cycles.
+- COMMODITIZING ideas require value capture outside the primitive: distribution, proprietary workflow/data, integration, trust/liability, network, brand, operational density or outcome ownership.
+- Ask what becomes economically possible when the primitive is near-free in 12–24 months; build options on those consequences rather than recreating the primitive.
+
 ## Maturation and validation
 - Ideas should mature across multiple materially different evidence rounds before terminal classification; default minimum is 3 unless decisive falsification exists.
 - Classify uncertainty instead of forcing binary promote/reject: POSSIBLE, PROMISING and BRILLIANT preserve valuable optionality.
