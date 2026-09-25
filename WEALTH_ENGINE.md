@@ -14,7 +14,14 @@ If important state exists only in chat, the system is unsynchronized.
 Discovery must be perturbed by exogenous reality, not generated only from previous ideas. Capture heterogeneous raw observations without requiring them to look like opportunities. Keep noisy WORLD inputs separate from compressed ENGINE learnings. Generate broadly before applying selection pressure.
 
 ## Core loop
-`WORLD → HYPOTHESIS → SELLABLE OFFER → MARKET EXPOSURE → PAYMENT WITHIN 24H or DEATH`
+`WORLD → HYPOTHESIS → TIMING GATE → SELLABLE OFFER → MARKET EXPOSURE → PAYMENT WITHIN 24H or DEATH`
+
+## Timing gate
+Before an opportunity consumes build time or enters the 24-hour revenue loop, classify its market timing using `TIMING.md`. The target is not technological first-mover status; it is commercial early entry after the enabling primitive is sufficiently reliable and economic.
+
+Prefer `WINDOW_OPENING` and `OPTIMAL`. `TOO_EARLY` candidates become cheap monitored options with explicit reopening triggers. `COMMODITIZING` candidates require a durable wedge in distribution, workflow/data, integration, trust/liability, network, brand or outcome ownership. `TOO_LATE` candidates are killed unless materially mutated.
+
+The timing gate must explicitly distinguish primitive maturity from solution-layer maturity. A model/API becoming commoditized can improve the timing of a vertical business rather than weaken it, provided value is captured above or around the primitive.
 
 The engine is revenue-first. Research, prose, commits, traffic, leads and stated intent are not economic success. The primary KPI is external EUR actually collected.
 
