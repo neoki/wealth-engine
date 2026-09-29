@@ -59,5 +59,13 @@ Stop incubating when an opportunity reaches PRODUCTION and the next work is pred
 ## Meta-learning and replay
 Preserve structured exploration trajectories in addition to compressed state. The engine must be able to learn not only which opportunities are attractive but which search, branching, evidence-ordering and stopping policies discover them efficiently. Failed branches are data. Periodically replay completed trajectories to test counterfactual policies and update exploration rules only when repeated evidence or a strong causal mechanism supports the change.
 
+## Commercial activation gate
+A hypothesis cannot enter `LIVE` merely because a landing page exists. Before the 24-hour revenue clock starts, all three conditions must be true:
+1. **Payment path exists:** a real buyer can complete payment now, or a specific manual invoicing/payment method is ready.
+2. **Buyer exposure exists:** the offer is being placed in front of identifiable prospective buyers through a real channel (warm outreach, marketplace demand, partner distribution, inbound audience or another channel with human buyers). Passive publication alone does not count.
+3. **Fulfilment is credible:** if paid now, the promised outcome can actually be delivered with the current stack and available time.
+
+Do not spend cycles launching multiple public offer pages without an acquisition channel. A page without distribution is infrastructure, not a commercial experiment. If outreach, account access or another approval-gated step is the missing condition, classify the hypothesis `BLOCKED` and surface the exact approval/action needed instead of creating more offers.
+
 ## Anti-degradation rule
 After every meaningful cycle, compress durable changes into Git. Do not archive conversations. Persist only changed state, evidence, decisions, principles and handoffs. No cycle may claim progress solely from more prose, competitor notes or features.
