@@ -45,6 +45,29 @@ Only PAID experiments earn further build/research time. A first payment validate
 ## Copying proven models
 Actively search for businesses already making money. Competition is often stronger evidence than an unoccupied market. A copy/adaptation is valid when there is credible room for another actor through geography, language, segment, distribution, UX, automation, price, bundling, speed, brand, channel, operational execution or simply a sufficiently large/non-winner-take-all market. Do not invent differentiation merely to appear original.
 
+## Validated-demand cloning protocol
+For wealth-generation discovery, validated demand outranks originality. Prefer adapting businesses that already demonstrate real willingness to pay over inventing products from intuition.
+
+Before meaningful build effort, every copy/adaptation candidate should collect enough evidence to answer:
+1. **Founder-use fit:** would Pablo plausibly use, understand or credibly operate this product or service?
+2. **Revenue proof:** is there credible evidence that at least one comparable business is making money (MRR/ARR, Stripe screenshots, founder disclosure, acquisition filing, marketplace data or similarly concrete evidence)?
+3. **Acquisition anatomy:** where do customers come from: paid ads, SEO, affiliates, marketplaces, outbound, communities, partnerships or an owned audience?
+4. **Channel replicability:** can a new entrant access the same channel without requiring years of brand, proprietary audience, exclusive partnerships or structurally superior economics?
+5. **Solo maintainability:** can one operator plus automation/AI build, support and evolve the initial business without a large team or operationally fragile workflow?
+6. **Unit economics:** do price, gross margin, expected CAC, payback, churn and cost-to-serve plausibly leave contribution margin? Revenue alone is not proof of a good business.
+7. **Entry wedge:** is there credible room through geography, language, vertical, workflow, integration, price, speed, trust, automation, bundling or a non-winner-take-all market?
+8. **Time to first sale:** how quickly can the thesis be exposed to qualified buyers and tested for payment?
+
+Channel interpretation:
+- **PAID_DOMINANT:** attractive for speed only when acquisition economics appear reproducible; ads are not automatically evidence of profitability.
+- **MIXED_PAID_SEO:** strong demand signal when both channels contribute materially; still test whether paid CAC works for a new entrant.
+- **SEO_DOMINANT:** valid business evidence but penalized for short-horizon experiments because distribution may take months.
+- **OTHER:** classify the actual channel and test accessibility rather than assuming it is reproducible.
+
+Operating rule: copy the demand and economic mechanism, never proprietary code, protected creative assets, trademarks or deceptive branding. Start with the smallest sellable/manual version, buy or earn the minimum distribution needed to test payment, and automate only after economic evidence.
+
+A candidate with weak novelty but strong revenue proof, replicable acquisition and simple operations can outrank a technically brilliant unvalidated invention.
+
 ## Exploration heuristics
 - Lateral connections: consider adjacent buyers, workflows, models and unrelated domains before tunnelling deeper.
 - Gradual commitments: evidence before code, code before infrastructure, money after external evidence.
