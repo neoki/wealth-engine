@@ -8,6 +8,12 @@ Principles earned from evidence/failure; not a diary.
 - Separate noisy WORLD memory from compressed ENGINE memory so past learnings do not filter what can be noticed.
 - Strong signals trigger lateral exploration, mutation and recombination, not only vertical research.
 - Originality is not a goal. Proven profitable models are first-class opportunity sources.
+- Proven revenue plus observable acquisition is stronger opportunity evidence than novelty plus plausible demand.
+- Acquisition source must be decomposed before copying a business. Paid traffic is attractive for fast validation only when CAC/conversion economics are plausibly reproducible by a new entrant.
+- Mixed paid + SEO can indicate robust demand; SEO-dominant businesses may still be excellent but are penalized when the current objective requires fast evidence.
+- Public revenue/MRR is not equivalent to profitability. Estimate gross margin, CAC, payback, churn and cost-to-serve before promotion.
+- Solo-operator maintainability is a first-class selection criterion. Avoid opportunities whose apparent simplicity hides heavy support, fragile integrations, compliance burden or human operations.
+- Prefer copying a validated demand mechanism and narrowing the wedge over cloning an incumbent feature-for-feature.
 
 ## Timing
 - Do not optimize for technological first-mover status. Prefer being commercially early after enabling technology becomes reliable and economic.
