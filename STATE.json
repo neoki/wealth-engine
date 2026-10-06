@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 4,
-  "updatedAt": "2026-09-25T10:17:00+02:00",
+  "schemaVersion": 5,
+  "updatedAt": "2026-10-06T08:44:00+02:00",
   "phase": "revenue-24h",
   "canonicalMemory": "git",
   "objective": "maximize net capital generated with increasing autonomy",
@@ -10,7 +10,11 @@
     "hardDeadlineHours": 24,
     "maxLiveExperiments": 5,
     "lastSweep": "candidates/2026-09-19-sweep18-world-mundane-spend.md",
-    "nextSweep": null
+    "nextSweep": null,
+    "lanes": [
+      "validated-demand-clone"
+    ],
+    "validatedDemandPlaybook": "playbooks/validated-demand-cloning.md"
   },
   "lifecycle": [
     "ready",
@@ -30,7 +34,12 @@
     "originalityRequired": false,
     "provenModelCopyingAllowed": true,
     "competitionUsuallyDemandEvidence": true,
-    "worldInputsSeparatedFromEngineLearnings": true
+    "worldInputsSeparatedFromEngineLearnings": true,
+    "validatedDemandBeforeOriginality": true,
+    "observableAcquisitionRequiredForCloneLane": true,
+    "acquisitionReplicabilityOverChannelPresence": true,
+    "revenueIsNotProfitProof": true,
+    "soloOperatorBias": true
   },
   "promotedKnown": [
     {
@@ -227,7 +236,8 @@
     "hotel technology adoption can coexist with large manual reporting burdens; seek a narrow report-to-action loop with measurable economic outcome rather than generic AI reporting",
     "when core vertical workflow software commoditizes, liability-bearing assurance or specialist outcome layers may remain monetizable, but require independent demand evidence",
     "cheap vertical SaaS increasingly absorbs obvious data-to-recommendation loops; rotate early when €20-€100/month software already performs most of the proposed job unless we own distribution, proprietary data, liability or the outcome",
-    "uptime-as-a-service is a proven recurring model: preventive maintenance plus priority repair plus predictable cost can monetize continuity of revenue-critical SME equipment without requiring novel software"
+    "uptime-as-a-service is a proven recurring model: preventive maintenance plus priority repair plus predictable cost can monetize continuity of revenue-critical SME equipment without requiring novel software",
+    "validated revenue + observable acquisition + replicable channel + solo-operable complexity is a preferred discovery pattern; paid acquisition accelerates validation only when new-entrant unit economics plausibly work"
   ],
   "constraints": {
     "operatingUmbrella": "rockrai.com",
