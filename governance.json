@@ -51,7 +51,43 @@
   },
   "businessPolicy": {
     "validatedBusinessesDoNotCountTowardExperimentCap": true,
-    "profitableAssetsPersistWhileEconomicallyPositive": true
+    "profitableAssetsPersistWhileEconomicallyPositive": true,
+    "validatedDemandProtocol": {
+      "enabled": true,
+      "playbook": "playbooks/validated-demand-cloning.md",
+      "requiredEvidence": [
+        "credible revenue proof from at least one comparable business",
+        "acquisition channel classification",
+        "new-entrant channel replicability assessment",
+        "solo-operator complexity assessment",
+        "plausible unit economics",
+        "entry wedge",
+        "time-to-first-sale estimate"
+      ],
+      "channelClasses": {
+        "PAID_DOMINANT": "fast-validation advantage only if CAC/conversion economics are plausibly reproducible",
+        "MIXED_PAID_SEO": "strong demand signal; verify paid economics separately",
+        "SEO_DOMINANT": "valid demand evidence but penalize for short-horizon experiments",
+        "OTHER": "identify actual channel and test whether a new entrant can access it"
+      },
+      "scoreWeights": {
+        "founderUseFit": 0.05,
+        "revenueProof": 0.2,
+        "demandWithoutExceptionalMarketing": 0.1,
+        "acquisitionReplicability": 0.2,
+        "soloMaintainability": 0.1,
+        "unitEconomics": 0.15,
+        "entryWedge": 0.1,
+        "timeToFirstSale": 0.1
+      },
+      "guardrails": [
+        "do not equate revenue with profit",
+        "do not treat paid traffic alone as proof that acquisition economics work",
+        "do not copy proprietary code, protected creative assets, trademarks or deceptive branding",
+        "manual or productized-service validation may precede SaaS automation",
+        "build after payment evidence whenever feasible"
+      ]
+    }
   },
   "buildPolicy": {
     "noFullProductBeforePurchaseSignal": true,

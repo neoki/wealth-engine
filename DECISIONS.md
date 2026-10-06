@@ -2,6 +2,9 @@
 
 Newest first; only durable decisions.
 
+## 2026-10-06 — Validated-demand discovery becomes first-class
+Institutionalize a clone/adaptation discovery lane inspired by evidence-first indie SaaS selection: prefer opportunities with credible proof of revenue, observable acquisition, replicable channels, plausible unit economics and solo-operable complexity. Paid-acquisition-heavy businesses receive a speed advantage only when CAC/conversion economics appear reproducible; SEO-dominant businesses are not rejected, but are penalized for short-horizon revenue tests. Copy demand and economic mechanisms, not proprietary implementation or branding. Every future opportunity sweep should include this lane and persist the evidence used for the score.
+
 ## 2026-09-19 — Trajectory memory and policy replay
 Adopt a Dream-RSI-inspired separation between opportunity exploration and learning how to explore. Preserve structured branch/cycle trajectories, including failed branches and approximate costs, so historical exploration can be replayed to improve branching, evidence ordering, stopping and portfolio-allocation policies. Dream-RSI is architectural inspiration, not evidence that its benchmark gains transfer to business discovery.
 
