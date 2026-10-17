@@ -1,34 +1,23 @@
-name: Verify production API
+name: Verify private production access
 on:
-  push:
-    paths: ['.github/workflows/smoke-production.yml']
   workflow_dispatch:
-  schedule:
-    - cron: '41 6 * * *'
 permissions:
   contents: read
 jobs:
   smoke:
     runs-on: ubuntu-latest
     steps:
-      - name: Verify live autonomous discovery
+      - name: Verify anonymous access is blocked
         shell: bash
         run: |
           set -euo pipefail
           base='https://wealth-engine-production-e178.up.railway.app'
-          for i in $(seq 1 24); do
-            if curl --fail --silent --max-time 15 "$base/health" -o health.json && node -e "const x=require('./health.json');process.exit(x.version==='0.8.0'?0:1)"; then break; fi
-            sleep 10
+          curl --fail --silent --show-error --max-time 15 "$base/health" -o health.json
+          node -e "const x=require('./health.json');if(x.mode!=='private'||x.usage||x.liveSignalSources)process.exit(1)"
+          for path in / /api/opportunities /api/live-scan /api/voice-margin-index /usage /.well-known/agent-capabilities.json; do
+            status=$(curl --silent --show-error --max-time 15 -o /dev/null -w '%{http_code}' "$base$path")
+            test "$status" = '401'
           done
-          node -e "const x=require('./health.json');if(x.version!=='0.8.0')process.exit(1)"
-          curl --fail --silent --show-error --max-time 20 "$base/api/live-scan" -o live.json
-          node <<'NODE'
-          const fs=require('fs'); const health=JSON.parse(fs.readFileSync('health.json')); const live=JSON.parse(fs.readFileSync('live.json'));
-          if(health.version!=='0.8.0') throw new Error('v0.8.0 not live');
-          if(live.autonomous!==true) throw new Error('live ingestion is not autonomous');
-          if(live.sourcesAttempted<1) throw new Error('no live sources attempted');
-          if(!Array.isArray(live.signals)||live.signals.length<1) throw new Error(`no live signal fetched: ${JSON.stringify(live.errors)}`);
-          if(!live.signals.some(x=>x.ingestion?.autonomous===true)) throw new Error('signal lacks autonomous provenance');
-          if(!Array.isArray(live.opportunities)||live.opportunities.length<1) throw new Error('live signal produced no opportunity');
-          console.log(JSON.stringify({ok:true,version:health.version,signals:live.signals.length,opportunities:live.opportunities.map(x=>x.title),errors:live.errors},null,2));
-          NODE
+          status=$(curl --silent --show-error --max-time 15 -o /dev/null -w '%{http_code}' -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' "$base/mcp")
+          test "$status" = '401'
+          echo 'Anonymous access is blocked; no opportunity data was logged.'

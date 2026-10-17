@@ -1,28 +1,18 @@
 # Wealth Engine
 
-**Economic opportunity intelligence for AI agents and digital business experiments.**
+Private opportunity intelligence for Pablo's own businesses.
+
+The internal engine, research and MCP are private by default. External products are a separate commercial decision. Do not publish internal opportunities or enable public access without Pablo's explicit decision.
 
 Wealth Engine turns public market evidence into machine-consumable economic hypotheses, ranked experiments, pricing benchmarks, and explicit kill criteria. It is not a generic MCP directory and it does not claim to predict revenue. Its purpose is to shorten the path from observable market evidence to a falsifiable economic experiment.
 
-## Use it now
+## Internal access
 
-Remote MCP server:
+Set a strong `WEALTH_ENGINE_ACCESS_TOKEN` in the service's environment and configure authorized clients to send `Authorization: Bearer <token>`. Keep the token out of Git, URLs, public issue trackers and logs. If no token is configured, all data access is denied.
 
-```text
-https://wealth-engine-production-e178.up.railway.app/mcp
-```
+Authentication protects MCP, APIs, discovery metadata, usage and HTML pages. Only a minimal `/health` response and a restrictive `/robots.txt` are public. Responses use `Cache-Control: no-store` and discourage search indexing.
 
-Economic opportunities API:
-
-```text
-GET https://wealth-engine-production-e178.up.railway.app/api/opportunities
-```
-
-Capability discovery:
-
-```text
-GET https://wealth-engine-production-e178.up.railway.app/.well-known/agent-capabilities.json
-```
+Registry publishing is disabled. Deploying this code does not change GitHub repository visibility or erase material already indexed by third parties. Those are separate containment steps.
 
 ## Active commercial experiments
 
@@ -78,7 +68,9 @@ Use it when an agent needs to decide **what economic experiment to run next**, n
 
 Read-only. Returns structured AI-voice retail pricing, revenue-per-minute calculations, gross-margin cost ceilings, source URLs, and row-level verification metadata.
 
-No account. No API key. No signup. Both tools are currently free while demand and willingness to pay are validated.
+### `live_market_scan`
+
+Fetches the configured market source and derives hypotheses using the discovery rules. All three tools require internal authorization.
 
 ## Example prompts
 
@@ -98,13 +90,13 @@ Opportunity scores are prioritization heuristics, not forecasts. Every opportuni
 
 ## Privacy
 
-Wealth Engine does not require authentication and does not intentionally collect prompts, conversation history, uploaded files, personal identifiers, or request bodies. It records aggregate operational counters used to measure endpoint usage and paid-intent clicks.
+Wealth Engine requires bearer-token authentication and does not intentionally collect prompts, conversation history, uploaded files, personal identifiers, or request bodies. Authorized requests can update aggregate operational counters. Health responses expose no pricing, source inventory, opportunity data or usage statistics.
 
 ## Support and troubleshooting
 
 Report data-quality, compatibility, product, purchasing-interest, or security issues using this repository's GitHub issue tracker.
 
-The MCP endpoint uses Streamable HTTP over JSON-RPC POST. A browser GET request to `/mcp` may return 404 and is not a valid protocol test. Use an MCP client or MCP Inspector to initialize the server and call `tools/list`.
+The MCP endpoint uses JSON-RPC POST. Without authorization, it returns 401. Configure an authorized MCP client to initialize the server and call `tools/list`. Run `npm run check:private` to verify private-by-default behavior locally.
 
 ## Direction
 

@@ -325,5 +325,18 @@
       "COMMODITIZING": "MUTATE_OR_KILL",
       "TOO_LATE": "KILL"
     }
+  },
+  "distributionPolicy": {
+    "beneficiary": "Pablo",
+    "internalIntelligence": "private-by-default",
+    "freePublicDistribution": false,
+    "externalProductRequiresExplicitDecision": true,
+    "currentContainmentStatus": "PATCH_PREPARED_NOT_DEPLOYED",
+    "remainingExposure": [
+      "public runtime",
+      "public GitHub repository",
+      "third-party cached listings"
+    ],
+    "reason": "2026-10-17: Pablo clarified that discovered businesses are for his own wealth generation."
   }
 }

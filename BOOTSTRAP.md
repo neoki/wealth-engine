@@ -3,6 +3,8 @@
 This file is the entry point for a fresh agent/session with zero useful chat history.
 
 ## Prime directive
+Wealth Engine generates business opportunities and net capital for Pablo. Its research, candidate queue, scoring, trajectories and internal MCP are private by default. Do not publish or freely distribute internal intelligence. Publishing a specific finished commercial product requires Pablo's explicit decision about its scope and economics. This overrides older free-access and public-registry instructions.
+
 Git is canonical memory. Chat context is disposable cache. Do not ask Pablo to reconstruct prior reasoning unless the repository is genuinely inconsistent or missing required state.
 
 ## Read order

@@ -140,5 +140,13 @@
       "paid diagnostic",
       "tiny digital deliverable"
     ]
+  },
+  "distributionPolicy": {
+    "beneficiary": "Pablo",
+    "internalIntelligencePrivateByDefault": true,
+    "publishInternalOpportunitiesForFree": false,
+    "registerInternalEngineInPublicMarketplaces": false,
+    "publishExternalProductRequiresExplicitPabloDecision": true,
+    "marketingAnApprovedOfferDoesNotAuthorizePublishingInternalResearch": true
   }
 }

@@ -1,11 +1,6 @@
 name: Publish MCP Registry
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - server.json
-      - .github/workflows/publish-mcp.yml
   workflow_dispatch:
 
 permissions:
@@ -14,6 +9,8 @@ permissions:
 
 jobs:
   publish:
+    # Internal engine: publishing requires a new, explicit commercial decision.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
